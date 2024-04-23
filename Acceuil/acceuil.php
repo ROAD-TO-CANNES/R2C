@@ -15,6 +15,7 @@
   }
 
   include '/home/r2c/R2C/timer.php';
+  include '/home/r2c/R2C/Acceuil/compareLists.php';
 
   //Récuperation des bonnes pratiques
   $sql = "SELECT * FROM BONNESPRATIQUES";
@@ -47,9 +48,34 @@
   $phases = $request->fetchAll();
 
   // Récupération des filtres
-  $filtre = json_decode($_POST['divIds'])
-?>
+  $filtres = json_decode($_COOKIE['filtres']);
+  
+  $filtrePH = [];
+  $filtrePR = [];
+  $filtreMC = [];
 
+  foreach($filtres as $filtre) {
+    $type = substr($filtre, 0, 2); // Obtient les deux premiers caractères de la chaîne
+
+    switch($type) {
+      case 'PH':
+        $filtrePH[] = substr($filtre, 2);
+        break;
+      case 'PR':
+        $filtrePR[] = substr($filtre, 2);
+        break;
+      case 'MC':
+        $filtreMC[] = substr($filtre, 2);
+        break;
+    }
+  }
+
+  if(!empty($filtrePR) || !empty($filtrePH) || !empty($filtreMC)) {
+    $bpsFiltered = compare_lists($filtrePR, $filtrePH, $filtreMC, $bps);
+  } else {
+    $bpsFiltered = $bps;
+  }
+?>
 <!DOCTYPE html>
 <html>
   <head>
@@ -78,11 +104,11 @@
     </div>
     <div class="scroll">
       <?php
-        foreach ($bps as $i => $bp) { 
-          $date = date('j F Y à g:i', strtotime($bps[$i]['dateprog'])); 
+        foreach ($bpsFiltered as $i => $bpFiltered) { 
+          $date = date('j F Y à g:i', strtotime($bpsFiltered[$i]['dateprog'])); 
           echo('
             <div class="bp">
-              <h2>'.$bps[$i]['descbp'].'</h2>
+              <h2>'.$bpsFiltered[$i]['descbp'].'</h2>
             </div>
           ');
         }
@@ -132,9 +158,6 @@
         </div>
         ');       
       ?>
-      <form id="hiddenForm" action="../Acceuil/acceuil.php" method="post">
-        <input type="hidden" id="divIdsInput" name="divIds">
-      </form>
       <div class="divBtn">
         <a class="livalidbtn"><button id="validBtn">Valider</button></a>
         <a class="licancelbtn"><button id="cancelBtn">Annuler</button></a>

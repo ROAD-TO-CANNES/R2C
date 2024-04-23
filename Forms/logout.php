@@ -3,6 +3,8 @@
 
   include '/home/r2c/R2C/bdd.php';
 
+  setcookie('filtres', '', time() - 3600, "/");
+
   //Mise a jours du status de la connexion//
   $sql = "UPDATE USER SET statutcon=0 WHERE login LIKE '$_SESSION[name]'";
   $request = $BDD->prepare($sql);

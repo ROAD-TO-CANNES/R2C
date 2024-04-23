@@ -1,17 +1,24 @@
 $("#filtre").on("click", function () {
+  // Add "active-popup" class to select-popup element
   $(".select-popup").addClass("active-popup");
+  // Add "active-fond" class to select-fond_popup element
   $(".select-fond_popup").addClass("active-fond");
 });
 
 $(".select-fond_popup").on("click", function () {
+  // Remove "active-popup" class from select-popup element
   $(".select-popup").removeClass("active-popup");
+  // Remove "active-fond" class from select-fond_popup element
   $(".select-fond_popup").removeClass("active-fond");
 });
 
-// Already dysplay first items
+// Already display first items
 $(document).ready(function () {
+  // When selectProg, selectPhase, or selectMotClef changes
   $("#selectProg, #selectPhase, #selectMotClef").change(function () {
+    // Remove focus from the select element
     $(this).blur();
+    // Select the first option
     $(this).find("option:first").prop("selected", true);
   });
 });
@@ -19,9 +26,19 @@ $(document).ready(function () {
 // Select multiple items
 let divIds = [];
 
-function updateSelectedItems(selectId, selectedItemsDiv) {
+function updateSelectedItems(selectId, selectedItemsDiv, optionValue = null) {
   const select = document.getElementById(selectId);
-  const selectedOptions = Array.from(select.selectedOptions);
+  let selectedOptions;
+
+  if (optionValue) {
+    // Filter options based on optionValue
+    selectedOptions = Array.from(select.options).filter(
+      (option) => option.value === optionValue
+    );
+  } else {
+    // Get selected options
+    selectedOptions = Array.from(select.selectedOptions);
+  }
 
   // Determine the prefix based on the selectId
   let prefix;
@@ -39,30 +56,32 @@ function updateSelectedItems(selectId, selectedItemsDiv) {
       prefix = "error";
   }
 
-  // Affiche les éléments sélectionnés dans la div
+  // Display selected items in the div
   selectedOptions.forEach((option) => {
-    // Vérifie si une div avec le même id existe déjà
+    // Check if a div with the same id already exists
     const itemId = prefix + option.value;
     if (document.getElementById(prefix + option.value)) {
       return;
     } else {
-      // Crée une div pour chaque élément sélectionné
+      // Create a div for each selected item
       const itemDiv = document.createElement("div");
       itemDiv.className = "object";
       itemDiv.id = itemId;
       itemDiv.textContent = option.textContent;
 
-      // Ajoute l'ID de la div au tableau
+      // Add the div's ID to the array
       divIds.push(itemId);
 
-      // Ajoute un bouton pour retirer l'élément
+      // Add a button to remove the item
       const removeButton = document.createElement("button");
       removeButton.textContent = "✘";
       removeButton.addEventListener("click", () => {
+        // Deselect the option
         select.options[option.index].selected = false;
+        // Remove the div
         itemDiv.remove();
 
-        // Retire l'ID de la div du tableau
+        // Remove the div's ID from the array
         const index = divIds.indexOf(itemId);
         if (index > -1) {
           divIds.splice(index, 1);
@@ -75,7 +94,7 @@ function updateSelectedItems(selectId, selectedItemsDiv) {
   });
 }
 
-// Écoute l'événement de changement de sélection pour chaque liste déroulante
+// Listen for change event on selectProg
 document.getElementById("selectProg").addEventListener("change", () => {
   updateSelectedItems(
     "selectProg",
@@ -83,6 +102,7 @@ document.getElementById("selectProg").addEventListener("change", () => {
   );
 });
 
+// Listen for change event on selectPhase
 document.getElementById("selectPhase").addEventListener("change", () => {
   updateSelectedItems(
     "selectPhase",
@@ -90,6 +110,7 @@ document.getElementById("selectPhase").addEventListener("change", () => {
   );
 });
 
+// Listen for change event on selectMotClef
 document.getElementById("selectMotClef").addEventListener("change", () => {
   updateSelectedItems(
     "selectMotClef",
@@ -97,16 +118,59 @@ document.getElementById("selectMotClef").addEventListener("change", () => {
   );
 });
 
-// Annuler la sélection
+// Cancel selection
 $("#cancelBtn").on("click", function () {
+  // Remove all object divs
   $(".object").remove();
+  // Remove "active-popup" class from select-popup element
   $(".select-popup").removeClass("active-popup");
+  // Remove "active-fond" class from select-fond_popup element
   $(".select-fond_popup").removeClass("active-fond");
+  // Clear the divIds array
   divIds = [];
 });
 
-// Valider la sélection
+// Validate selection
 $("#validBtn").on("click", function () {
-  $("#divIdsInput").val(JSON.stringify(divIds));
-  $("#hiddenForm").submit();
+  // Set a cookie with the name "filtres" and the value of the stringified divIds array
+  document.cookie = "filtres=" + JSON.stringify(divIds) + ";path=/";
+  // Reload the page
+  location.reload();
+});
+
+// On page load, retrieve selected items from the cookie
+$(document).ready(function () {
+  // Find the cookie with the name "filtres"
+  const cookie = document.cookie
+    .split("; ")
+    .find((row) => row.startsWith("filtres="));
+  if (cookie) {
+    // Parse the selected items from the cookie
+    const selectedItems = JSON.parse(cookie.split("=")[1]);
+    // Iterate over each selected item
+    selectedItems.forEach((itemId) => {
+      // Determine the prefix of the item
+      const prefix = itemId.substring(0, 2);
+      // Determine the selectId and selectedItemsDivId based on the prefix
+      const selectId =
+        prefix === "PR"
+          ? "selectProg"
+          : prefix === "PH"
+          ? "selectPhase"
+          : "selectMotClef";
+      const selectedItemsDivId =
+        prefix === "PR"
+          ? "selected-itemsProg"
+          : prefix === "PH"
+          ? "selected-itemsPhase"
+          : "selected-itemsMotClef";
+      // Get the selectedItemsDiv element
+      const selectedItemsDiv = document.getElementById(selectedItemsDivId);
+      // Get the option value from the itemId
+      const option = itemId.substring(2);
+
+      // Call the updateSelectedItems function with the appropriate parameters
+      updateSelectedItems(selectId, selectedItemsDiv, option);
+    });
+  }
 });

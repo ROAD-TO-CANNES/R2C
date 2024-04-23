@@ -60,4 +60,5 @@
       <a href="../Acceuil/acceuil.php"><button class="annulerProg" type="button">Annuler</button></a>
     </form>
   </body>
+  <script src="../timer.js"></script>
 </html>

@@ -54,4 +54,5 @@
         ?>
     </pre>
   </body>
+  <script src="../timer.js"></script>
 </html>

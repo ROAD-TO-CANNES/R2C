@@ -65,4 +65,5 @@
       <a class="liokbtn" href="../Acceuil/acceuil.php"><button id="okbtn">OK</button></a>
     </div>
   </body>
+  <script src="../timer.js"></script>
 </html>
