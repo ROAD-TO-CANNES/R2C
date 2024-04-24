@@ -87,6 +87,7 @@
     <?php include '/home/r2c/R2C/Header/header.php'; ?>
   </header>
   <body>
+    <div class="fond_delConfirm"></div>
     <div class="top">
       <h1>Selectionnez les bonne pratiques souhaitée</h1>
       <div class="btns">
@@ -106,9 +107,29 @@
       <?php
         foreach ($bpsFiltered as $i => $bpFiltered) { 
           $date = date('j F Y à g:i', strtotime($bpsFiltered[$i]['dateprog'])); 
+          $idbp = $bpsFiltered[$i]['idbp'];
+          $descbp = $bpsFiltered[$i]['descbp'];
           echo('
             <div class="bp">
-              <h2>'.$bpsFiltered[$i]['descbp'].'</h2>
+              <h2>'.$descbp.'</h2>
+              <input type="checkbox" name="idbp" value="'.$idbp.'">
+              <label for="idbp">Selectionner la bonne pratique</label>');   
+              if ($_SESSION['droits'] > 0) {
+                echo('
+                <form action="../Forms/delBp.php" method="post">
+                  <img id="'.$idbp.'" class="corbeille" src="../Img/corbeille.png" alt="corbeille">
+                  <div id="'.$idbp.'" class="delConfirm">
+                    <p>Êtes-vous sûr de vouloir supprimer <br/> la bonne pratique "'.$descbp.'" ?</p>
+                    <input type="hidden" name="idbp" value="'.$idbp.'">
+                    <button type="submit">Oui</button>
+                    <button type="button">Non</button>
+                  </div>
+                </form>   
+                ');
+              }  
+              echo('
+              <input class="switch-case" type="checkbox" id="switch'.$idbp.'" />
+              <label class="switch" for="switch'.$idbp.'">Toggle</label>
             </div>
           ');
         }
@@ -164,6 +185,7 @@
       </div>
     </div>
   </body>
-  <script src="../Acceuil/acceuil.js"></script>
+  <script src="../Acceuil/filtres.js"></script>
+  <script src="../Acceuil/delConfirm.js"></script>
   <script src="../timer.js"></script>
 </html>

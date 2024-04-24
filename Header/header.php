@@ -38,7 +38,7 @@
                 $role.'<br>
               </div>
             </div>');
-            if($_SESSION['droits'] > 0) {
+            if($_SESSION['droits'] == 1) {
               echo('<span class="changepsw">Modifier votre mot de passe</span>');
             };
             echo('
