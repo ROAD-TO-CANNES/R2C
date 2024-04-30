@@ -109,6 +109,7 @@
           $date = date('j F Y à g:i', strtotime($bpsFiltered[$i]['dateprog'])); 
           $idbp = $bpsFiltered[$i]['idbp'];
           $descbp = $bpsFiltered[$i]['descbp'];
+          $statut = $bpsFiltered[$i]['statut'];
           echo('
             <div class="bp">
               <h2>'.$descbp.'</h2>
@@ -126,10 +127,19 @@
                   </div>
                 </form>   
                 ');
-              }  
+              };
+              if ($statut == 1) {
+                echo('
+                <input class="switch-case" type="checkbox" id="switch'.$idbp.'" checked />
+                <label class="switch" for="switch'.$idbp.'">Toggle</label>
+                ');
+              } elseif ($statut == 0) {
+                echo('
+                <input class="switch-case" type="checkbox" id="switch'.$idbp.'" />
+                <label class="switch" for="switch'.$idbp.'">Toggle</label>
+                ');
+              };
               echo('
-              <input class="switch-case" type="checkbox" id="switch'.$idbp.'" />
-              <label class="switch" for="switch'.$idbp.'">Toggle</label>
             </div>
           ');
         }
@@ -187,5 +197,6 @@
   </body>
   <script src="../Acceuil/filtres.js"></script>
   <script src="../Acceuil/delConfirm.js"></script>
+  <script src="../Acceuil/enableDisableBP.js"></script>
   <script src="../timer.js"></script>
 </html>
