@@ -1,7 +1,6 @@
 <?php session_start(); 
 
-  include '/home/r2c/R2C/timer.php';
-  include '/home/r2c/R2C/bdd.php';
+  include '/home/r2c/R2C/Form/checkSession.php';
 
   //Recuperation des specs du mot de passe
   $sql = "SELECT * FROM SPECSPSW";
