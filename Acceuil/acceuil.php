@@ -23,6 +23,18 @@
   $request->execute();
   $bps = $request->fetchAll();
 
+  //Récuperation des correspondances entre les bonnes pratiques et les programmes
+  $sql = "SELECT * FROM BONNESPRATIQUES_PROGRAMME";
+  $request = $BDD->prepare($sql);
+  $request->execute();
+  $bpsProg = $request->fetchAll();
+
+  //Récuperation des correspondances entre les bonnes pratiques et les mots clefs
+  $sql = "SELECT * FROM BONNESPRATIQUES_MOTSCLEF";
+  $request = $BDD->prepare($sql);
+  $request->execute();
+  $bpsMC = $request->fetchAll();
+
   // Récupération des programmes
   $sql = "SELECT * FROM PROGRAMME";
   $request = $BDD->prepare($sql);
@@ -71,7 +83,7 @@
   }
 
   if(!empty($filtrePR) || !empty($filtrePH) || !empty($filtreMC)) {
-    $bpsFiltered = compare_lists($filtrePR, $filtrePH, $filtreMC, $bps);
+    $bpsFiltered = compare_lists($filtrePR, $filtrePH, $filtreMC, $bps, $bpsProg, $bpsMC);
   } else {
     $bpsFiltered = $bps;
   }
@@ -143,7 +155,8 @@
             </div>
           ');
         }
-      ?>
+        
+?>
     </div>
     <a><button class="pdf_btn"><img src="../Img/pdf.png" alt="PDF">Générer un fichier PDF</button></a>
     <a><button class="csv_btn"><img src="../Img/csv.png" alt="CSV">Générer un fichier CSV</button></a>

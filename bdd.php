@@ -4,7 +4,7 @@
       $BDD = new PDO(
         'mysql:host=localhost;dbname=project;charset=utf8',
         'tomh', 
-        'MopAssant03$'
+        'HJ34!5r&*'
       );
     }
     catch (Exception $e) {
