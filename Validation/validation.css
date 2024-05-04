@@ -36,6 +36,10 @@ body {
   transition: 0.3s;
 }
 
-.validation button:hover {
+.okbtn:hover {
   box-shadow: 0 0 20px 4px #006900;
+}
+
+.errbtn:hover {
+  box-shadow: 0 0 20px 4px #690000;
 }

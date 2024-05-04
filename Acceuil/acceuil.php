@@ -1,20 +1,7 @@
 <?php 
   session_start(); 
+  include '/home/r2c/R2C/Forms/checkSession.php';
 
-  include '/home/r2c/R2C/bdd.php';
-
-  // verify if the user is already connected
-  $sql = "SELECT statutcon FROM USER WHERE login LIKE '$_SESSION[name]'";
-  $request = $BDD->prepare($sql);
-  $request->execute();
-  $statutcon = $request->fetchColumn();
-
-  // if the user is not connected, redirect to the login page
-  if($statutcon == 0) {
-    header('Location: ../index.php');
-  }
-
-  include '/home/r2c/R2C/timer.php';
   include '/home/r2c/R2C/Acceuil/compareLists.php';
 
   //Récuperation des bonnes pratiques
@@ -111,28 +98,27 @@
             ');
           }
         ?>
-        <button>Créer une bonne pratique</button>
+        <a href="../NewBP/newBP.php"><button>Créer une bonne pratique</button></a>
         <button style="width: 4vw;" id="filtre"><img src="../Img/filter.png" alt="filtrer"></button>
       </div>    
     </div>
     <div class="scroll">
       <?php
         foreach ($bpsFiltered as $i => $bpFiltered) { 
-          $date = date('j F Y à g:i', strtotime($bpsFiltered[$i]['dateprog'])); 
           $idbp = $bpsFiltered[$i]['idbp'];
-          $descbp = $bpsFiltered[$i]['descbp'];
+          $nombp = $bpsFiltered[$i]['nombp'];
           $statut = $bpsFiltered[$i]['statut'];
           echo('
             <div class="bp">
-              <h2>'.$descbp.'</h2>
-              <input type="checkbox" name="idbp" value="'.$idbp.'">
-              <label for="idbp">Selectionner la bonne pratique</label>');   
+              <h2>'.$nombp.'</h2>
+              <input type="checkbox" id="bp'.$i.'" name="idbp" value="'.$idbp.'">
+              <label for="bp'.$i.'">Selectionner la bonne pratique</label>');   
               if ($_SESSION['droits'] > 0) {
                 echo('
                 <form action="../Forms/delBp.php" method="post">
                   <img id="'.$idbp.'" class="corbeille" src="../Img/corbeille.png" alt="corbeille">
                   <div id="'.$idbp.'" class="delConfirm">
-                    <p>Êtes-vous sûr de vouloir supprimer <br/> la bonne pratique "'.$descbp.'" ?</p>
+                    <p>Êtes-vous sûr de vouloir supprimer <br/> la bonne pratique "'.$nombp.'" ?</p>
                     <input type="hidden" name="idbp" value="'.$idbp.'">
                     <button type="submit">Oui</button>
                     <button type="button">Non</button>
@@ -163,44 +149,7 @@
     <div class="select-fond_popup"></div> 
     <div class="select-popup">
       <?php
-        echo('
-        <div class="divProg">
-          <select id="selectProg" name="programme" form="formProg">
-            <option class="default_value" value="">Programmes</option>
-          ');
-          foreach($progs as $i => $prog) {
-            echo('<option value="'.$progs[$i]['idprog'].'">'.$progs[$i]['nomprog'].'</option>');
-          }
-          echo('
-          </select>
-          <h2>Sélectionnez les programmes</h2>
-          <div class="selected-itemsDiv" id="selected-itemsProg"></div>
-        </div>
-        <div class="divPhase">
-          <select id="selectPhase" name="phase" form="formPhase">
-            <option class="default_value" value="" disabled selected>Phases</option>
-          ');
-          foreach($phases as $i => $phase) {
-            echo('<option value="'.$phases[$i]['idphase'].'">Phase '.$phases[$i]['idphase'].'</option>');
-          }
-          echo('
-          </select>
-          <h2>Sélectionnez les phases</h2>
-          <div class="selected-itemsDiv" id="selected-itemsPhase"></div>
-        </div>
-        <div class="divMotClef">
-          <select id="selectMotClef" name="motClef" form="formMotClef">
-            <option class="default_value" value="">Mots clefs</option>
-          ');
-          foreach($motsClefs as $i => $motClef) {
-            echo('<option value="'.$motsClefs[$i]['idmotclef'].'">'.$motsClefs[$i]['motclef'].'</option>');
-          }
-          echo('
-          </select>
-          <h2>Sélectionnez les mots clefs</h2>
-          <div class="selected-itemsDiv" id="selected-itemsMotClef"></div>
-        </div>
-        ');       
+        include '/home/r2c/R2C/Forms/selectFiltres.php';      
       ?>
       <div class="divBtn">
         <a class="livalidbtn"><button id="validBtn">Valider</button></a>
@@ -208,8 +157,9 @@
       </div>
     </div>
   </body>
-  <script src="../Acceuil/filtres.js"></script>
   <script src="../Acceuil/delConfirm.js"></script>
+  <script src="../Acceuil/popupFiltres.js"></script>
+  <script src="../Acceuil/selectFiltres.js"></script>
   <script src="../Acceuil/enableDisableBP.js"></script>
   <script src="../timer.js"></script>
 </html>

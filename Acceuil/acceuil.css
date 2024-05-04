@@ -168,7 +168,7 @@ body {
 }
 
 .switch {
-  cursor: pointer;
+  cursor: default;
   text-indent: -9999px;
   width: 6vw;
   height: 3vw;
@@ -179,6 +179,7 @@ body {
 }
 
 .switch:after {
+  cursor: pointer;
   content: "";
   position: absolute;
   top: 0.2vw;
@@ -319,6 +320,10 @@ select {
   height: 3vh;
   padding: 5px;
   margin: 5px 5px 5px 0;
+}
+
+select:hover {
+  cursor: pointer;
 }
 
 .selected-itemsDiv {
