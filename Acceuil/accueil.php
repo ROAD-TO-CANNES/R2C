@@ -2,7 +2,7 @@
   session_start(); 
   include '/home/r2c/R2C/Forms/checkSession.php';
 
-  include '/home/r2c/R2C/Acceuil/compareLists.php';
+  include '/home/r2c/R2C/Accueil/compareLists.php';
 
   //Récuperation des bonnes pratiques
   $sql = "SELECT * FROM BONNESPRATIQUES";
