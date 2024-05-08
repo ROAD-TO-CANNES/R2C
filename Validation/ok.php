@@ -28,4 +28,4 @@
     points="23,12 15,20 10,15 "
   />
 </svg>
-<a class="liokbtn" href="../Acceuil/acceuil.php"><button class="okbtn" id="okbtn">OK</button></a>
+<a class="liokbtn" href="../Accueil/accueil.php"><button class="okbtn" id="okbtn">OK</button></a>

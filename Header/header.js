@@ -29,7 +29,7 @@ $("#okbtn").on("click", function () {
   document.body.classList.remove("noScroll");
 });
 
-// Logo redirect to acceuil
+// Logo redirect to accueil
 $(".logo").on("click", function () {
   window.location.href = "../index.php";
 });

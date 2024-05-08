@@ -42,4 +42,4 @@
       y2="22"
     />
 </svg>
-<a class="liokbtn" href="../Acceuil/acceuil.php"><button class="errbtn" id="okbtn">OK</button></a>
+<a class="liokbtn" href="../Accueil/accueil.php"><button class="errbtn" id="okbtn">OK</button></a>

@@ -9,7 +9,7 @@
   include '/home/r2c/R2C/bdd.php';
 
   if (!$_SESSION['droits'] > 0) {
-    header('Location: ../Acceuil/acceuil.php');
+    header('Location: ../Accueil/accueil.php');
   }
 ?>
 

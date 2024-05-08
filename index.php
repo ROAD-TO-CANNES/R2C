@@ -10,7 +10,7 @@
 
   // if the user is already connected, redirect to the home page
   if($statutcon == 1) {
-    header('Location: ./Acceuil/acceuil.php');
+    header('Location: ./Accueil/accueil.php');
   }
 ?>
 

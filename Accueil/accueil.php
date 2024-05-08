@@ -78,7 +78,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>R2C - Acceuil</title>
+    <title>R2C - Accueil</title>
     <link rel="stylesheet" type="text/css" href="../Accueil/accueil.css">
     <link rel="icon" type="image/png" href="../Img/icon.png">
   </head>
@@ -157,9 +157,9 @@
       </div>
     </div>
   </body>
-  <script src="../Acceuil/delConfirm.js"></script>
-  <script src="../Acceuil/popupFiltres.js"></script>
-  <script src="../Acceuil/selectFiltres.js"></script>
-  <script src="../Acceuil/enableDisableBP.js"></script>
+  <script src="../Accueil/delConfirm.js"></script>
+  <script src="../Accueil/popupFiltres.js"></script>
+  <script src="../Accueil/selectFiltres.js"></script>
+  <script src="../Accueil/enableDisableBP.js"></script>
   <script src="../timer.js"></script>
 </html>

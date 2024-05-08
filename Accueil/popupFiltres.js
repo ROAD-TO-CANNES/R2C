@@ -12,16 +12,20 @@ $(".select-fond_popup").on("click", function () {
   $(".select-fond_popup").removeClass("active-fond");
 });
 
-// Cancel selection
-$("#cancelBtn").on("click", function () {
+// Delete selection
+$("#rmFiltreBtn").on("click", function () {
   // Remove all object divs
   $(".object").remove();
+  // Clear the divIds array
+  divIds = [];
+});
+
+// Cancel popup
+$("#cancelBtn").on("click", function () {
   // Remove "active-popup" class from select-popup element
   $(".select-popup").removeClass("active-popup");
   // Remove "active-fond" class from select-fond_popup element
   $(".select-fond_popup").removeClass("active-fond");
-  // Clear the divIds array
-  divIds = [];
 });
 
 // Validate selection

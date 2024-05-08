@@ -8,5 +8,5 @@
   $request = $BDD->prepare($sql);
   $request->execute();
 
-  header('Location: ../Acceuil/acceuil.php')
+  header('Location: ../Accueil/accueil.php')
 ?>

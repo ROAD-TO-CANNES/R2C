@@ -48,10 +48,9 @@ include '../bdd.php';
 
       //Remise a 0 de l'inactivité//
       $_SESSION['derniereActivite'] = time();
-      setcookie('m1', 0, 0, "/");
 
       //Redirection//
-      header('Location: ../Acceuil/acceuil.php');
+      header('Location: ../Accueil/accueil.php');
     } else {
     
       //Envoie d'erreur//
@@ -117,7 +116,7 @@ include '../bdd.php';
           setcookie('m1', 0, 0, "/");
 
           //Redirection//
-          header('Location: ../Acceuil/acceuil.php');
+          header('Location: ../Accueil/accueil.php');
         } else {
           //+1 tentative de connexion echouée//
           $sql = "UPDATE USER SET tentativedelogin=tentativedelogin+1 WHERE login LIKE $name_seq";

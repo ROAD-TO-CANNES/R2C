@@ -12,7 +12,7 @@
     <h2>Sélectionnez les programmes</h2>
     <div class="selected-itemsDiv" id="selected-itemsProg"></div>
   </div>');
-  if ($_SERVER['REQUEST_URI'] == "/Acceuil/acceuil.php") {
+  if ($_SERVER['REQUEST_URI'] == "/Accueil/accueil.php") {
     echo ('
     <div class="divPhase">
       <select id="selectPhase" name="phase" form="formPhase">

@@ -80,7 +80,7 @@
       </div>
       <input type="hidden" id="divIds" name="divIds" />
       <button class="enregistrer" type="submit" value="Enregistrer">Enregistrer</button>
-      <a class="aannulerBP" href="../Acceuil/acceuil.php"><button class="annulerBP" type="button">Annuler</button></a>
+      <a class="aannulerBP" href="../Accueil/accueil.php"><button class="annulerBP" type="button">Annuler</button></a>
     </form>
     <script src="../NewBP/selectFiltres.js"></script>
   </body>

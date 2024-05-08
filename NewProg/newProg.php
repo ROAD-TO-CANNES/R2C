@@ -4,7 +4,7 @@
   include '/home/r2c/R2C/Forms/checkSession.php';
 
   if (!$_SESSION['droits'] > 0) {
-    header('Location: ../Acceuil/acceuil.php');
+    header('Location: ../Accueil/accueil.php');
   }
 ?>
 
@@ -44,7 +44,7 @@
         required
       ></textarea>
       <button class="enregistrer" type="submit" value="Enregistrer">Enregistrer</button>
-      <a href="../Acceuil/acceuil.php"><button class="annulerProg" type="button">Annuler</button></a>
+      <a href="../Accueil/accueil.php"><button class="annulerProg" type="button">Annuler</button></a>
     </form>
   </body>
   <script src="../timer.js"></script>
