@@ -1,5 +1,6 @@
 <?php 
   session_start();
+  setcookie('m1', 1, time()-3600, "/");
 
 //Récuperation des données//
   $name = htmlspecialchars($_POST['userName']);
