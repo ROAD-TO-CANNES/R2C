@@ -55,9 +55,19 @@
         placeholder="Nom de la bonne pratique"
         required
       />
-      <input class="switch-case" type="checkbox" id="switch" name="switch" checked />
-      <label class="switch" for="switch">Activer/Désactiver la bonne pratique : </label>
-      <select id="selectPhase" name="phase">
+      <?php
+        if($_SESSION['droits'] > 0) {
+          echo '
+            <input class="switch-case" type="checkbox" id="switch" name="switch" checked />
+            <label class="switch" for="switch">Activer/Désactiver la bonne pratique : </label> 
+          ';
+        } elseif($_SESSION['droits'] == 0) {
+          echo '
+            <input class="switch-case" type="hidden" id="switch" name="switch" value="on" />
+          ';
+        }
+      ?>
+        <select id="selectPhase" name="phase">
         <option class="default_value" value="" disabled selected>Phases</option>
         <?php
           foreach($phases as $i => $phase) {
