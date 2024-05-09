@@ -148,12 +148,13 @@
     <a><button class="csv_btn"><img src="../Img/csv.png" alt="CSV">Générer un fichier CSV</button></a>
     <div class="select-fond_popup"></div> 
     <div class="select-popup">
+      <button id="rmFiltreBtn">Effacer tous les filtres</button>
       <?php
         include '/home/r2c/R2C/Forms/selectFiltres.php';      
       ?>
       <div class="divBtn">
-        <a class="livalidbtn"><button id="validBtn">Valider</button></a>
-        <a class="licancelbtn"><button id="cancelBtn">Annuler</button></a>
+        <button id="validBtn">Valider</button>
+        <button id="cancelBtn">Annuler</button>
       </div>
     </div>
   </body>

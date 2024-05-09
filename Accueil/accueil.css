@@ -392,14 +392,10 @@ select:hover {
   margin-top: 4vh;
 }
 
-.livalidbtn,
-.licancelbtn {
+#rmFiltreBtn,
+#validBtn,
+#cancelBtn {
   width: 20%;
-}
-
-.livalidbtn button,
-.licancelbtn button {
-  width: 100%;
   padding: 6px 0px 6px 0px;
   background: #000000;
   border: none;
@@ -411,11 +407,19 @@ select:hover {
   transition: 0.3s;
 }
 
-.livalidbtn button:hover {
+#rmFiltreBtn {
+  margin-bottom: 2vh;
+}
+
+#rmFiltreBtn:hover {
+  box-shadow: 0 0 20px 4px #2f2f2f;
+}
+
+#validBtn:hover {
   box-shadow: 0 0 20px 4px #006900;
 }
 
-.licancelbtn button:hover {
+#cancelBtn:hover {
   box-shadow: 0 0 20px 4px #690000;
 }
 
