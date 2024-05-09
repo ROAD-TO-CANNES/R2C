@@ -1,16 +1,7 @@
 <?php 
   session_start(); 
 
-  if(!isset($_SESSION['name'])) {
-    header('Location: ../index.php');
-  }
-
-  include '/home/r2c/R2C/timer.php';
-  include '/home/r2c/R2C/bdd.php';
-
-  if (!$_SESSION['droits'] > 0) {
-    header('Location: ../Accueil/accueil.php');
-  }
+  include '/home/r2c/R2C/Forms/checkSession.php';
 ?>
 
 <!DOCTYPE html>
@@ -26,19 +17,24 @@
   <body>
     <div class="validation">
       <?php
-        if (isset($_GET['message']) && $_GET['message'] == "cp") {
+      if (isset($_GET['message'])) {
+        if ($_GET['message'] == "cp") {
           echo('<p>Programme créé avec succès</p>');
           include '/home/r2c/R2C/Validation/ok.php';
-        } elseif (isset($_GET['message']) && $_GET['message'] == "cbp") {
+        } elseif ($_GET['message'] == "cbp") {
           echo('<p>Bonne pratique créée avec succès</p>');
           include '/home/r2c/R2C/Validation/ok.php';
-        } elseif (isset($_GET['message']) && $_GET['message'] == "ebp") {
+        } elseif ($_GET['message'] == "ebp") {
           echo('<p style="color:red">Une erreur est survenue lors de la création de la bonne pratique</p>');
+          include '/home/r2c/R2C/Validation/error.php';
+        } elseif ($_GET['message'] == "ed") {
+          echo('<p style="color:red">Une erreur est survenue lors de la supression de la bonne pratique</p>');
           include '/home/r2c/R2C/Validation/error.php';
         } else {
           echo('<p style="color:red">Error</p>');
           include '/home/r2c/R2C/Validation/error.php';
-        }
+        };
+      };
       ?>
     </div>
   </body>

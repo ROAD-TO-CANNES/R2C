@@ -9,6 +9,11 @@
   $request = $BDD->prepare($sql);
   $request->execute();
   $bps = $request->fetchAll();
+  if ($_SESSION['droits'] == 0) {
+    $bps = array_filter($bps, function($bp) {
+      return $bp['statut'] == 1;
+    });
+  }
 
   //Récuperation des correspondances entre les bonnes pratiques et les programmes
   $sql = "SELECT * FROM BONNESPRATIQUES_PROGRAMME";
@@ -115,7 +120,13 @@
               <label for="bp'.$i.'">Selectionner la bonne pratique</label>');   
               if ($_SESSION['droits'] > 0) {
                 echo('
-                <form action="../Forms/delBp.php" method="post">
+                <form action="../Forms/delBp.php" method="post">');
+              }
+              elseif ($_SESSION['droits'] == 0) {
+                echo('
+                <form action="../Accueil/enableDisableBP.php" method="post">');
+              }
+              echo('
                   <img id="'.$idbp.'" class="corbeille" src="../Img/corbeille.png" alt="corbeille">
                   <div id="'.$idbp.'" class="delConfirm">
                     <p>Êtes-vous sûr de vouloir supprimer <br/> la bonne pratique "'.$nombp.'" ?</p>
@@ -125,17 +136,18 @@
                   </div>
                 </form>   
                 ');
-              };
-              if ($statut == 1) {
-                echo('
-                <input class="switch-case" type="checkbox" id="switch'.$idbp.'" checked />
-                <label class="switch" for="switch'.$idbp.'">Toggle</label>
-                ');
-              } elseif ($statut == 0) {
-                echo('
-                <input class="switch-case" type="checkbox" id="switch'.$idbp.'" />
-                <label class="switch" for="switch'.$idbp.'">Toggle</label>
-                ');
+              if ($_SESSION['droits'] > 0) {
+                if ($statut == 1) {
+                  echo('
+                  <input class="switch-case" type="checkbox" id="switch'.$idbp.'" checked />
+                  <label class="switch" for="switch'.$idbp.'">Toggle</label>
+                  ');
+                } elseif ($statut == 0) {
+                  echo('
+                  <input class="switch-case" type="checkbox" id="switch'.$idbp.'" />
+                  <label class="switch" for="switch'.$idbp.'">Toggle</label>
+                  ');
+                };
               };
               echo('
             </div>
