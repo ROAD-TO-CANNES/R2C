@@ -37,6 +37,16 @@
     }
     echo('
     </select>
+    ');
+    if ($_SERVER['REQUEST_URI'] == "/NewBP/newBP.php") {
+      echo('
+        <form id="formMotClef" action="../Forms/addMotClef.php" method="post">
+          <button type="submit" id="addMotClef">Ajouter</button>
+          <input type="text" id="newMotClef" name="newMotClef" placeholder="Ajouter un mot clef" required>
+        </form>
+      ');
+    };
+    echo('
     <h2>Sélectionnez les mots clefs</h2>
     <div class="selected-itemsDiv" id="selected-itemsMotClef"></div>
   </div>

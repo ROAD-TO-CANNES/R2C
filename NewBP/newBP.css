@@ -125,6 +125,8 @@ input:checked + .switch:after {
 .select-filtre {
   background: #a2a2a2;
   border-radius: 15px;
+  width: 80vw;
+  margin: 0 0 15vh 10vw;
 }
 
 .divProg,
@@ -215,10 +217,50 @@ select:hover {
 }
 /**/
 
+form[id="formMotClef"] input {
+  float: right;
+  height: 3vh;
+  border-radius: 300px;
+  outline: 0;
+  outline-style: none;
+  border: 2px solid #575757;
+  background-color: #0f0f0fe3;
+  padding: 0 10px 0 10px;
+  margin: 3px 7px 3px 0;
+  font-size: 14px;
+  width: 15vw;
+  color: white;
+  transition: 0.3s;
+}
+
+form[id="formMotClef"] button {
+  float: right;
+  background: #9fccff;
+  border: none;
+  border-radius: 100px;
+  height: 3vh;
+  width: 5vw;
+  margin: 5px 25px 5px 0;
+  color: #003e74;
+  font-family: sans-serif;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+form[id="formMotClef"] button:hover {
+  border: 0.5px solid #00182e;
+}
+
+form[id="formMotClef"] button:active {
+  background: #003e74;
+  color: #9fccff;
+}
+
 .enregistrer,
 .annulerBP {
-  position: relative;
-  width: 20%;
+  position: absolute;
+  bottom: -20vh;
+  width: 20vw;
   padding: 6px 0px 6px 0;
   border-radius: 100px;
   border: none;
@@ -232,7 +274,7 @@ select:hover {
 
 .enregistrer {
   background: #1f6900;
-  top: 35px;
+  left: 10vw;
 }
 
 .enregistrer:hover {
@@ -240,14 +282,9 @@ select:hover {
   box-shadow: 0 0px 20px #1f6900;
 }
 
-.aannulerBP {
-  position: relative;
-  left: 60%;
-  top: 35px;
-}
-
 .annulerBP {
   background: #9b0000;
+  left: 70vw;
 }
 
 .annulerBP:hover {

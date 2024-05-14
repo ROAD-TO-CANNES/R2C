@@ -30,6 +30,9 @@
         } elseif ($_GET['message'] == "ed") {
           echo('<p style="color:red">Une erreur est survenue lors de la supression de la bonne pratique</p>');
           include '/home/r2c/R2C/Validation/error.php';
+        } elseif ($_GET['message'] == "ecmc") {
+          echo('<p style="color:red">Impossible d\'ajouter le mot clef/p>');
+          include '/home/r2c/R2C/Validation/error.php';
         } else {
           echo('<p style="color:red">Error</p>');
           include '/home/r2c/R2C/Validation/error.php';

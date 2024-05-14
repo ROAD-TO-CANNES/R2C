@@ -83,15 +83,16 @@
         cols="50"
         required
       ></textarea>
-      <div class="select-filtre">
-        <?php
-          include '/home/r2c/R2C/Forms/selectFiltres.php';          
-        ?>
-      </div>
       <input type="hidden" id="divIds" name="divIds" />
       <button class="enregistrer" type="submit" value="Enregistrer">Enregistrer</button>
-      <a class="aannulerBP" href="../Accueil/accueil.php"><button class="annulerBP" type="button">Annuler</button></a>
+      <a href="../Accueil/accueil.php"><button class="annulerBP" type="button">Annuler</button></a>
     </form>
+    <div class="select-filtre">
+      <?php
+        include '/home/r2c/R2C/Forms/selectFiltres.php';          
+      ?>
+    </div>
     <script src="../NewBP/selectFiltres.js"></script>
+    <script src="../NewBP/addMc.js"></script>
   </body>
 </html>
