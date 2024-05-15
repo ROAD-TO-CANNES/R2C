@@ -45,36 +45,53 @@
     $request = $BDD->prepare($sql);
     $request->execute();
 
-    if(isset($prog)) {
-      $sql = "SELECT idbp FROM BONNESPRATIQUES WHERE nombp = $nombp_seq";
-      $request = $BDD->prepare($sql);
-      $request->execute();
-      $idbp = $request->fetchColumn();
+    $sql = "SELECT idbp FROM BONNESPRATIQUES WHERE nombp = $nombp_seq";
+    $request = $BDD->prepare($sql);
+    $request->execute();
+    $idbp = $request->fetchColumn();
 
+    //Log de création de BP//
+    $typelog = "Réussite";
+    $desclog = 'Création de la bonne pratique "'.$nombp.'" id='.$idbp;
+    $loginlog = $_SESSION['name'];
+    include '/home/r2c/R2C/Forms/addLogs.php';
+
+    if(isset($prog)) {
       foreach ($prog as $idprog) {
         $sql = "INSERT INTO BONNESPRATIQUES_PROGRAMME (idbp, idprog) VALUES ($idbp, $idprog)";
         $request = $BDD->prepare($sql);
         $request->execute();
       }
+      //Log d'ajout de relation programme-BP//
+      $typelog = "Réussite";
+      $desclog = 'Création des relations programme-bonne pratique pour "'.$nombp.'" id='.$idbp;
+      $loginlog = $_SESSION['name'];
+      include '/home/r2c/R2C/Forms/addLogs.php';
     }
     
     if(isset($motclef)){
-      $sql = "SELECT idbp FROM BONNESPRATIQUES WHERE nombp = $nombp_seq";
-      $request = $BDD->prepare($sql);
-      $request->execute();
-      $idbp = $request->fetchColumn();
-
       foreach ($motclef as $idmotclef) {
         $sql = "INSERT INTO BONNESPRATIQUES_MOTSCLEF (idbp, idmotclef) VALUES ($idbp, $idmotclef)";
         $request = $BDD->prepare($sql);
         $request->execute();
       }
+      //Log d'ajout de relation mot clef-BP//
+      $typelog = "Réussite";
+      $desclog = 'Création des relations mot clef-bonne pratique pour "'.$nombp.'" id='.$idbp;
+      $loginlog = $_SESSION['name'];
+      include '/home/r2c/R2C/Forms/addLogs.php';
     }
 
     $message = "cbp";
     urlencode($message);
     header('Location: ../Validation/validation.php?message='.$message);
   } else {
+    //Log d'erreur de création de BP//
+    $typelog = "Erreur";
+    $desclog = 'Erreur lors de la création de la bonne pratique certains parametres sont manquants';
+    $loginlog = $_SESSION['name'];
+    include '/home/r2c/R2C/Forms/addLogs.php';
+
     $message = "ebp";
     urlencode($message);
     header('Location: ../Validation/validation.php?message='.$message);

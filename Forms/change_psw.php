@@ -39,27 +39,75 @@
                   $sql = "UPDATE USER SET mdp=$new_psw_seq WHERE login LIKE '".$_SESSION['name']."'";
                   $request = $BDD->prepare($sql);
                   $request->execute();
+                  //log de changement de mot de passe//
+                  $typelog = "Réussite";
+                  $desclog = "Changement de mot de passe réussi";
+                  $loginlog = $_SESSION['name'];
+                  include '/home/r2c/R2C/Forms/addLogs.php';
+                  //Envoie de confirmation//
                   $response = 0;
                 } else {
+                  //log de tentative de changement de mot de passe//
+                  $typelog = "Erreur";
+                  $desclog = "Tentative de changement de mot de passe échouée mot de passe incorrect";
+                  $loginlog = $_SESSION['name'];
+                  include '/home/r2c/R2C/Forms/addLogs.php';
+                  //Envoie d'erreur//
                   $response = 1; //Mot de passe incorrect
                 };
                 //----------Requete SQL------------//
               } else {
+                //log de tentative de changement de mot de passe//
+                $typelog = "Erreur";
+                $desclog = "Tentative de changement de mot de passe échouée le nouveau mot de passe doit être différent de l'ancien";
+                $loginlog = $_SESSION['name'];
+                include '/home/r2c/R2C/Forms/addLogs.php';
+                //Envoie d'erreur//
                 $response = 3;//Le nouveau mot de passe doit être différent de l'ancien
               }
             } else {
+              //log de tentative de changement de mot de passe//
+              $typelog = "Erreur";
+              $desclog = "Tentative de changement de mot de passe échouée le mot de passe ne contient pas assez de majuscules";
+              $loginlog = $_SESSION['name'];
+              include '/home/r2c/R2C/Forms/addLogs.php';
+              //Envoie d'erreur//
               $response = 7;//Le mot de passe doit contenir au moins $specspsw['uppercase'] majuscule 
             }
           } else {
+            //log de tentative de changement de mot de passe//
+            $typelog = "Erreur";
+            $desclog = "Tentative de changement de mot de passe échouée le mot de passe ne contient pas assez de caractères spéciaux";
+            $loginlog = $_SESSION['name'];
+            include '/home/r2c/R2C/Forms/addLogs.php';
+            //Envoie d'erreur//
             $response = 6;//Le mot de passe doit contenir au moins $specspsw['specialchar'] caractères spéciaux 
           }
         } else {
+          //log de tentative de changement de mot de passe//
+          $typelog = "Erreur";
+          $desclog = "Tentative de changement de mot de passe échouée le mot de passe ne contient pas assez de chiffres";
+          $loginlog = $_SESSION['name'];
+          include '/home/r2c/R2C/Forms/addLogs.php';
+          //Envoie d'erreur//
           $response = 5;//Le mot de passe doit contenir au moins $specspsw['number'] chiffres 
         }
       } else {
+        //log de tentative de changement de mot de passe//
+        $typelog = "Erreur";
+        $desclog = "Tentative de changement de mot de passe échouée le mot de passe est trop court";
+        $loginlog = $_SESSION['name'];
+        include '/home/r2c/R2C/Forms/addLogs.php';
+        //Envoie d'erreur//
         $response = 4;//Le mot de passe doit faire aux moins $specspsw['size'] caractères 
       }
     } else {
+      //log de tentative de changement de mot de passe//
+      $typelog = "Erreur";
+      $desclog = "Tentative de changement de mot de passe échouée les mots de passe ne correspondent pas";
+      $loginlog = $_SESSION['name'];
+      include '/home/r2c/R2C/Forms/addLogs.php';
+      //Envoie d'erreur//
       $response = 2;//Les mots de passe ne correspondent pas 
     };
     echo json_encode($response);

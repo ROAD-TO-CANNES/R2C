@@ -32,6 +32,12 @@
     $request = $BDD->prepare($sql);
     $request->execute();
 
+    //Log d'ajout de mot clef//
+    $typelog = "Réussite";
+    $desclog = 'Création du mot clef "'.$newMotClef.'"';
+    $loginlog = $_SESSION['name'];
+    include '/home/r2c/R2C/Forms/addLogs.php';
+
     $sql = "SELECT idmotclef FROM MOTSCLEF WHERE motclef LIKE $newMotClef_seq";
     $request = $BDD->prepare($sql);
     $request->execute();
@@ -50,6 +56,11 @@
 
     header('Location: ../NewBP/newBP.php');   
   } else {
+    //Log d'erreur d'ajout de mot clef//
+    $typelog = "Erreur";
+    $desclog = 'Erreur lors de la création du mot clef certains parametres sont manquants';
+    $loginlog = $_SESSION['name'];
+    include '/home/r2c/R2C/Forms/addLogs.php';
     header('Location: ../Validation/validation.php?message=ecmc');
   }
 ?>

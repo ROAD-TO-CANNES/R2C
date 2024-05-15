@@ -21,7 +21,10 @@
         if ($_GET['message'] == "cp") {
           echo('<p>Programme créé avec succès</p>');
           include '/home/r2c/R2C/Validation/ok.php';
-        } elseif ($_GET['message'] == "cbp") {
+        } elseif ($_GET['message'] == "ep") {
+          echo('<p style="color:red">Une erreur est survenue lors de la création du programme</p>');
+          include '/home/r2c/R2C/Validation/ok.php';
+        }  elseif ($_GET['message'] == "cbp") {
           echo('<p>Bonne pratique créée avec succès</p>');
           include '/home/r2c/R2C/Validation/ok.php';
         } elseif ($_GET['message'] == "ebp") {

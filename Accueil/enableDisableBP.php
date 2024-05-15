@@ -15,20 +15,42 @@
     $request->execute();
     $statut = $request->fetchColumn();
 
+    $sql = "SELECT nombp FROM BONNESPRATIQUES WHERE idbp = $idBP";
+    $request = $BDD->prepare($sql);
+    $request->execute();
+    $nombp = $request->fetchColumn();
+
     if ($statut == 1) {
       $sql = "UPDATE BONNESPRATIQUES SET statut = 0 WHERE idbp = $idBP";
       $request = $BDD->prepare($sql);
       $request->execute();
+
+      //Log de désactivation de BP//
+      $typelog = "Réussite";
+      $desclog = 'Désactivation de la bonne pratique "'.$nombp.'" id='.$idBP;
+      $loginlog = $_SESSION['name'];
+      include '/home/r2c/R2C/Forms/addLogs.php';
     } elseif ($statut == 0) {
       $sql = "UPDATE BONNESPRATIQUES SET statut = 1 WHERE idbp = $idBP";
       $request = $BDD->prepare($sql);
       $request->execute();
+
+      //Log d'activation de BP//
+      $typelog = "Réussite";
+      $desclog = 'Activation de la bonne pratique "'.$nombp.'" id='.$idBP;
+      $loginlog = $_SESSION['name'];
+      include '/home/r2c/R2C/Forms/addLogs.php';
     };
 
     if(isset($_POST['idbp'])) {
       header('Location: /Accueil/accueil.php');
     };
   } else {
+    //Log d'erreur de désactivation/activation de BP//
+    $typelog = "Erreur";
+    $desclog = 'Erreur lors de la désactivation/activation de la bonne pratique certains pparametres sont manquants';
+    $loginlog = $_SESSION['name'];
+    include '/home/r2c/R2C/Forms/addLogs.php';
     header('Location: ../Validation/validation.php?message=ed');
   };
 ?>

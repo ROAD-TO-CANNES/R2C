@@ -65,7 +65,7 @@
 </div>
 
 <div class="psw-popup">
-  <?php include '../Forms/change_psw.html' ?>
+  <?php include '/home/r2c/R2C/Forms/change_psw.html' ?>
 </div>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>

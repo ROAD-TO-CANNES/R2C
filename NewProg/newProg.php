@@ -1,6 +1,5 @@
 <?php 
   session_start(); 
-
   include '/home/r2c/R2C/Forms/checkSession.php';
 
   if (!$_SESSION['droits'] > 0) {
