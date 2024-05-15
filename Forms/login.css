@@ -77,7 +77,7 @@ form button:active {
   background-color: #222;
 }
 
-.error {
+.errorlog {
   border: 1px solid rgba(241, 6, 6, 0.81);
   border-radius: 7px;
   background-color: rgba(220, 17, 1, 0.16);
@@ -89,13 +89,13 @@ form button:active {
   color: #641a1a;
 }
 
-.error:hover {
+.errorlog:hover {
   background-color: rgba(220, 17, 1, 0.33);
   transition: 0.5s;
   color: #eecfcf;
 }
 
-.error p {
+.errorlog p {
   margin: 2px;
   text-align: center;
   font-size: 13px;
@@ -103,7 +103,7 @@ form button:active {
     Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
 }
 
-.message {
+.messagelog {
   border: 1px solid rgba(241, 163, 6, 0.81);
   border-radius: 7px;
   background-color: rgba(220, 143, 1, 0.16);
@@ -115,13 +115,13 @@ form button:active {
   color: #644a1a;
 }
 
-.message:hover {
+.messagelog:hover {
   background-color: rgba(220, 151, 1, 0.33);
   transition: 0.5s;
   color: #292203;
 }
 
-.message p {
+.messagelog p {
   margin: 2px;
   text-align: center;
   font-size: 13px;
