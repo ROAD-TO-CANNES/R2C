@@ -105,7 +105,7 @@
     } else { //Si connexion d'un utilisateur ou administrateur//
 
       //Verrification de la disponibilité de connexion//
-      $sql = "SELECT statutcon FROM USER";
+      $sql = "SELECT login, statutcon FROM USER";
       $request = $BDD->prepare($sql);
       $request->execute();
       $statusconns = $request->fetchAll();
@@ -113,13 +113,14 @@
       foreach ($statusconns as $statusconn) {
         if ($statusconn['statutcon'] == 1) {
           $connexcount++;
-        }
+          $userconected = $statusconn['login'];
+        };
       };
 
       if ($connexcount > 0) {
         //Log d'érreure de connexion//
         $typelog = "Connexion";
-        $desclog = "Connexion échouée un utilisateur est déjà connecté";
+        $desclog = 'Connexion échouée l\'utilisateur "'.$userconected.'" est déjà connecté';
         $loginlog = $name;
         include '/home/r2c/R2C/Forms/addLogs.php';
 
