@@ -2,7 +2,7 @@ document
   .getElementById("change-password-form")
   .addEventListener("submit", function (event) {
     event.preventDefault();
-    fetch("../Forms/change_psw.php", {
+    fetch("../Forms/change_pswScript.php", {
       method: "POST",
       body: new FormData(event.target),
     })

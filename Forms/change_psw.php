@@ -1,115 +1,100 @@
-<?php session_start(); 
-
-  include '/home/r2c/R2C/Form/checkSession.php';
-
-  //Recuperation des specs du mot de passe
+<?php
+  session_start();
+  include '/home/r2c/R2C/bdd.php';
+  
   $sql = "SELECT * FROM SPECSPSW";
   $request = $BDD->prepare($sql);
   $request->execute();
-  $specspsw = $request->fetch();
-
-  if(isset($_POST['old_psw']) && isset($_POST['new_psw']) && isset($_POST['new_psw2'])){
-    $old_psw = $_POST['old_psw'];
-    $new_psw = $_POST['new_psw'];
-    $new_psw_hash = password_hash($new_psw, PASSWORD_DEFAULT);
-    $new_psw2 = $_POST['new_psw2'];
-
-    if($new_psw == $new_psw2){
-      $size = strlen($new_psw);//Taille du mot de passe
-      if ($size >= $specspsw['size']) {
-        $nbnumber = preg_match_all("/[0-9]/", $new_psw);//Nombre de chiffres
-        if ($nbnumber >= $specspsw['number']) {
-          $nbspecial = preg_match_all("/[^a-zA-Z0-9]/", $new_psw);//Nombre de caractères spéciaux
-          if ($nbspecial >= $specspsw['specialchar']) {
-            $nbupper = preg_match_all("/[A-Z]/", $new_psw);//Nombre de majuscules
-            if ($nbupper >= $specspsw['uppercase']) {
-              if($new_psw != $old_psw) {
-                //Sécurisez les entrées//
-                $new_psw_seq = $BDD->quote($new_psw_hash);
-                //---------Sécurisez les entrées---------//
-
-                //Requete SQL//
-                $sql = "SELECT mdp FROM USER WHERE login LIKE '".$_SESSION['name']."'";
-                $request = $BDD->prepare($sql);
-                $request->execute();
-                $result = $request->fetch();
-
-
-                if(password_verify($old_psw, $result['mdp'])){
-                  $sql = "UPDATE USER SET mdp=$new_psw_seq WHERE login LIKE '".$_SESSION['name']."'";
-                  $request = $BDD->prepare($sql);
-                  $request->execute();
-                  //log de changement de mot de passe//
-                  $typelog = "Réussite";
-                  $desclog = "Changement de mot de passe réussi";
-                  $loginlog = $_SESSION['name'];
-                  include '/home/r2c/R2C/Forms/addLogs.php';
-                  //Envoie de confirmation//
-                  $response = 0;
-                } else {
-                  //log de tentative de changement de mot de passe//
-                  $typelog = "Erreur";
-                  $desclog = "Tentative de changement de mot de passe échouée mot de passe incorrect";
-                  $loginlog = $_SESSION['name'];
-                  include '/home/r2c/R2C/Forms/addLogs.php';
-                  //Envoie d'erreur//
-                  $response = 1; //Mot de passe incorrect
-                };
-                //----------Requete SQL------------//
-              } else {
-                //log de tentative de changement de mot de passe//
-                $typelog = "Erreur";
-                $desclog = "Tentative de changement de mot de passe échouée le nouveau mot de passe doit être différent de l'ancien";
-                $loginlog = $_SESSION['name'];
-                include '/home/r2c/R2C/Forms/addLogs.php';
-                //Envoie d'erreur//
-                $response = 3;//Le nouveau mot de passe doit être différent de l'ancien
-              }
-            } else {
-              //log de tentative de changement de mot de passe//
-              $typelog = "Erreur";
-              $desclog = "Tentative de changement de mot de passe échouée le mot de passe ne contient pas assez de majuscules";
-              $loginlog = $_SESSION['name'];
-              include '/home/r2c/R2C/Forms/addLogs.php';
-              //Envoie d'erreur//
-              $response = 7;//Le mot de passe doit contenir au moins $specspsw['uppercase'] majuscule 
-            }
-          } else {
-            //log de tentative de changement de mot de passe//
-            $typelog = "Erreur";
-            $desclog = "Tentative de changement de mot de passe échouée le mot de passe ne contient pas assez de caractères spéciaux";
-            $loginlog = $_SESSION['name'];
-            include '/home/r2c/R2C/Forms/addLogs.php';
-            //Envoie d'erreur//
-            $response = 6;//Le mot de passe doit contenir au moins $specspsw['specialchar'] caractères spéciaux 
-          }
-        } else {
-          //log de tentative de changement de mot de passe//
-          $typelog = "Erreur";
-          $desclog = "Tentative de changement de mot de passe échouée le mot de passe ne contient pas assez de chiffres";
-          $loginlog = $_SESSION['name'];
-          include '/home/r2c/R2C/Forms/addLogs.php';
-          //Envoie d'erreur//
-          $response = 5;//Le mot de passe doit contenir au moins $specspsw['number'] chiffres 
-        }
-      } else {
-        //log de tentative de changement de mot de passe//
-        $typelog = "Erreur";
-        $desclog = "Tentative de changement de mot de passe échouée le mot de passe est trop court";
-        $loginlog = $_SESSION['name'];
-        include '/home/r2c/R2C/Forms/addLogs.php';
-        //Envoie d'erreur//
-        $response = 4;//Le mot de passe doit faire aux moins $specspsw['size'] caractères 
-      }
-    } else {
-      //log de tentative de changement de mot de passe//
-      $typelog = "Erreur";
-      $desclog = "Tentative de changement de mot de passe échouée les mots de passe ne correspondent pas";
-      $loginlog = $_SESSION['name'];
-      include '/home/r2c/R2C/Forms/addLogs.php';
-      //Envoie d'erreur//
-      $response = 2;//Les mots de passe ne correspondent pas 
-    };
-    echo json_encode($response);
-  };
+  $specspsw = $request->fetch(); 
 ?>
+<link rel="stylesheet" href="../Forms/change_psw.css" />
+
+<form
+  id="change-password-form"
+  class="change-password-form"
+  action="../Forms/change_pswScript.php"
+  method="post"
+>
+  <h1>Changer le mot de passe</h1>
+  <input
+    type="password"
+    id="old_psw"
+    name="old_psw"
+    placeholder="Mot de passe actuel"
+    autofocus
+    required
+  />
+  <div id="err1" class="error">
+    <p>Mot de passe incorrecte</p>
+  </div>
+  <input
+    type="password"
+    id="new_psw"
+    name="new_psw"
+    placeholder="Nouveau mot de passe"
+    required
+  />
+  <input
+    type="password"
+    id="new_psw2"
+    name="new_psw2"
+    placeholder="Confirmer le nouveau mot de passe"
+    required
+  />
+  <div id="err2" class="error">
+    <p>Les mots de passe ne correspondent pas</p>
+  </div>
+  <div id="err3" class="error">
+    <p>Veuillez choisir un mot de passe différent de l'actuel</p>
+  </div>
+  <div id="err4" class="error">
+    <?php echo '<p>Le mot de passe doit faire aux moins '.$specspsw['size'].' caractères</p>';?>
+  </div>
+  <div id="err5" class="error">
+    <?php echo '<p>Le mot de passe doit contenir au moins '.$specspsw['number'].' chiffres</p>';?>
+  </div>
+  <div id="err6" class="error">
+    <?php echo '<p>Le mot de passe doit contenir au moins '.$specspsw['specialchar'].' caractères spéciaux</p>';?>
+  </div>
+  <div id="err7" class="error">
+    <?php echo '<p>Le mot de passe doit contenir au moins '.$specspsw['uppercase'].' majuscule</p>';?>
+  </div>
+  <button class="valider" type="submit" value="Valider">Valider</button>
+  <button class="annuler" type="button">Annuler</button>
+</form>
+<div class="valid">
+  <p>Mot de passe changé avec succès</p>
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    xmlns:xlink="http://www.w3.org/1999/xlink"
+    version="1.1"
+    id="Layer_1"
+    x="0px"
+    y="0px"
+    viewBox="0 0 32 32"
+    enable-background="new 0 0 32 32"
+    xml:space="preserve"
+  >
+    <circle
+      class="ok circle"
+      fill="none"
+      stroke="#28a745"
+      stroke-width="1"
+      stroke-miterlimit="10"
+      cx="16"
+      cy="16"
+      r="12"
+    />
+    <polyline
+      class="ok check"
+      fill="none"
+      stroke="#28a745"
+      stroke-width="1"
+      stroke-miterlimit="10"
+      points="23,12 15,20 10,15 "
+    />
+  </svg>
+  <button id="okbtn">OK</button>
+</div>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="../Forms/change_psw.js"></script>
