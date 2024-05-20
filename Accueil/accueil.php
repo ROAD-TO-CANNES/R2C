@@ -86,7 +86,7 @@
     <title>R2C - Accueil</title>
     <link rel="stylesheet" type="text/css" href="../Accueil/accueil.css">
     <link rel="icon" type="image/png" href="../Img/icon.png">
-    
+
   </head>
   <header>
     <?php include '/var/www/r2c.uca-project.com/Header/header.php'; ?>
@@ -101,7 +101,7 @@
             echo('
                 <a href="../NewProg/newProg.php"><button>Créer un programme</button></a>
                 <a href="../Users/users.php"><button>Gérer les utilisateur</button></a>
-                <a href="../log/log.php"><button>consulter les logs</button></a>
+                <a href="../log/log.php"><button>Consulter les logs</button></a>
             ');
           }
         ?>

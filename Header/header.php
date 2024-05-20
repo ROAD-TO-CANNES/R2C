@@ -48,7 +48,7 @@
           </div>
           <img src="../Img/default_pp.png" alt="photo de profile" style="background-color:#5893c7" class="pp connected_pp">
         </div>
-        <p>Bonjours </br>'. ucfirst(strtolower($_SESSION['name'])) .'</p>'
+        <p>Bonjour </br>'. ucfirst(strtolower($_SESSION['name'])) .'</p>'
       );
     } 
     else {

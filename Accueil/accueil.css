@@ -20,8 +20,7 @@ body {
 
 .top h1 {
   margin: 0;
-  font-family: "sans-serif";
-  font-style: non-bold;
+  font-weight: normal;
   font-size: 170%;
 }
 
@@ -96,6 +95,9 @@ body {
   justify-content: space-between;
   align-items: center;
   height: 7vh;
+}
+.bp h2 {
+  font-weight: normal;
 }
 
 .bp input[type="checkbox"] {
