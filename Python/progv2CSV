@@ -1,0 +1,56 @@
+import csv
+import mysql.connector
+from flask import Flask, request, jsonify
+
+app = Flask(__name__)
+
+@app.route('/generate_csv', methods=['POST'])
+def generate_csv():
+    # Récupérer les données envoyées via POST et stocker dans une variable
+    data = request.get_json()
+    
+    # Extraire les ids de la variable data
+    ids = data['ids']
+    
+    # Convertir les ids en une chaîne de caractères pour la requête SQL
+    ids_str = ','.join(map(str, ids))
+
+    # Se connecter à la base de données
+    db = mysql.connector.connect(
+        host="localhost",
+        user="tomh",
+        password="HJ34!5r&*",
+        database="project",
+        port=8457
+    )
+
+    # Créer un curseur pour exécuter des requêtes
+    cursor = db.cursor()
+
+    # Exécuter la requête pour récupérer les données spécifiques
+    query = f"SELECT * FROM MOTSCLEF WHERE id IN ({ids_str})"
+    cursor.execute(query)
+    result = cursor.fetchall()
+
+    # Définir le nom du fichier CSV
+    csv_filename = "Bonnes_Pratiques.csv"
+
+    # Créer et écrire dans le fichier CSV
+    with open(csv_filename, mode='w', newline='') as file:
+        writer = csv.writer(file)
+
+        # Écrire les en-têtes de colonnes (facultatif, ici supposé comme étant id et mots clef)
+        writer.writerow(['ID', 'MotsClef'])  # Modifier selon les colonnes de votre table MOTSCLEF
+
+        # Écrire les lignes récupérées
+        for row in result:
+            writer.writerow(row)
+
+    # Fermer la connexion à la base de données
+    cursor.close()
+    db.close()
+
+    return jsonify({"message": "CSV generated successfully", "filename": csv_filename}), 200
+
+if __name__ == '__main__':
+    app.run(debug=True)
