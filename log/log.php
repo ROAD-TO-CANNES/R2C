@@ -22,27 +22,30 @@
       <h1>Consulter les logs</h1>
     </div>
     <div class="content">
-      <table>
-        <tr>
-          <th>Date</th>
-          <th>Utilisateur</th>
-          <th>Page</th>
-          <th>Action</th>
-        </tr>
-        <?php
-          $sql = "SELECT * FROM LOGS";
-          $request = $BDD->prepare($sql);
-          $request->execute();
-          $logs = $request->fetchAll();
+      <table class="content-table">
+        <thead>
+          <tr>
+            <th>Date</th>
+            <th>Utilisateur</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          <?php
+            $sql = "SELECT * FROM LOGS";
+            $request = $BDD->prepare($sql);
+            $request->execute();
+            $logs = $request->fetchAll();
 
-          foreach($logs as $log) {
-            echo '<tr>';
-            echo '<td>' . $log['datea'] . '</td>';
-            echo '<td>' . $log['login'] . '</td>';
-            echo '<td>' . $log['desca'] . '</td>';
-            echo '</tr>';
-          }
-        ?>
+            foreach($logs as $log) {
+              echo '<tr>';
+              echo '<td>' . $log['datea'] . '</td>';
+              echo '<td>' . $log['login'] . '</td>';
+              echo '<td>' . $log['desca'] . '</td>';
+              echo '</tr>';
+            }
+          ?>
+        </tbody>
       </table>
     </div>
   </body>
