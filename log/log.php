@@ -19,7 +19,7 @@
   </header>
   <body>
     <div class="top">
-      <h1>consulter les logs</h1>
+      <h1>Consulter les logs</h1>
     </div>
   </body>
   <script src="../timer.js"></script>
