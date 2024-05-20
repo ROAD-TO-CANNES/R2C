@@ -116,7 +116,7 @@
           echo('
             <div class="bp">
               <h2>'.$nombp.'</h2>
-              <input type="checkbox" id="bp'.$i.'" name="idbp" value="'.$idbp.'">
+              <input type="checkbox" id="bp'.$i.'" name="idbp" value="'.$idbp.'" checked />
               <label for="bp'.$i.'">Selectionner la bonne pratique</label>');   
               if ($_SESSION['droits'] > 0) {
                 echo('
