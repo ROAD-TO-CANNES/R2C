@@ -22,9 +22,9 @@
       <link rel="icon" type="image/png" href="./Img/icon.png">
   </head>
   <header>
-    <?php include '/home/r2c/R2C/Header/header.php'; ?>
+    <?php include '/var/www/r2c.uca-project.com/Header/header.php'; ?>
   </header>
   <body>
-    <?php include '/home/r2c/R2C/Forms/login_form.php'; ?>
+    <?php include '/var/www/r2c.uca-project.com/Forms/login_form.php'; ?>
   </body>
 </html>
