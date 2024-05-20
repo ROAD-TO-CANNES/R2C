@@ -19,16 +19,31 @@ body {
     margin: 0;
   }
 .content {
-    text-align: center;
     margin-left: 10vw;
+    height: 60vh;
+    width: 80vw;
+    overflow: scroll;
+  }
+  .content::-webkit-scrollbar {
+    width: 10px;
+  }
+  
+  .content::-webkit-scrollbar-track {
+    background: rgb(192 192 192);
+    border-radius: 10px;
+  }
+  
+  .content::-webkit-scrollbar-thumb {
+    background-color: rgb(106 106 106);
+    border: 2px solid rgb(192 192 192);
+    border-radius: 20px;
   }
   
 .content-table{
     border-collapse: collapse;
-    margin: 25px 0;
     font-size: 0.9em;
-    min-width: 88%;
     text-align: left;
+    width: 100%;
 }
 
 .content-table thead tr{
