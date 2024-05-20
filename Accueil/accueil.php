@@ -1,8 +1,8 @@
 <?php 
   session_start(); 
-  include '/home/r2c/R2C/Forms/checkSession.php';
+  include '/var/www/r2c.uca-project.com/Forms/checkSession.php';
 
-  include '/home/r2c/R2C/Accueil/compareLists.php';
+  include '/var/www/r2c.uca-project.com/Accueil/compareLists.php';
 
   //Récuperation des bonnes pratiques
   $sql = "SELECT * FROM BONNESPRATIQUES";
@@ -88,7 +88,7 @@
     <link rel="icon" type="image/png" href="../Img/icon.png">
   </head>
   <header>
-    <?php include '/home/r2c/R2C/Header/header.php'; ?>
+    <?php include '/var/www/r2c.uca-project.com/Header/header.php'; ?>
   </header>
   <body>
     <div class="fond_delConfirm"></div>
@@ -162,7 +162,7 @@
     <div class="select-popup">
       <button id="rmFiltreBtn">Effacer tous les filtres</button>
       <?php
-        include '/home/r2c/R2C/Forms/selectFiltres.php';      
+        include '/var/www/r2c.uca-project.com/Forms/selectFiltres.php';      
       ?>
       <div class="divBtn">
         <button id="validBtn">Valider</button>

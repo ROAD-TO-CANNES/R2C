@@ -1,13 +1,13 @@
 <?php 
   session_start();
 
-  $inactiviteMax = 300; // 5 minutes = 300 secondes
+  $inactiviteMax = 3; // 5 minutes = 300 secondes
 
   if (isset($_SESSION['derniereActivite'])) {
     $inactivite = time() - $_SESSION['derniereActivite'];
     if ($inactivite > $inactiviteMax) {
       $desclog = "Déconnexion automatique après 5 minutes d'inactivité";
-      include '/home/r2c/R2C/Forms/logout.php';
+      include '/var/www/r2c.uca-project.com/Forms/logout.php';
       setcookie('m1', 1, 0, "/");
       exit();
     } else {

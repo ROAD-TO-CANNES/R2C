@@ -1,6 +1,6 @@
 <?php
   session_start(); 
-  include '/home/r2c/R2C/Forms/checkSession.php';
+  include '/var/www/r2c.uca-project.com/Forms/checkSession.php';
 
   if(isset($_POST['idbp'])) {
     $bpToDelete = $_POST['idbp'];
@@ -26,7 +26,7 @@
     $typelog = "Réussite";
     $desclog = 'Suppression de la bonne pratique "'.$nombp.'" id='.$bpToDelete;
     $loginlog = $_SESSION['name'];
-    include '/home/r2c/R2C/Forms/addLogs.php';
+    include '/var/www/r2c.uca-project.com/Forms/addLogs.php';
 
     header('Location: ../Accueil/accueil.php');
   } else {
@@ -34,7 +34,7 @@
     $typelog = "Erreur";
     $desclog = 'Erreur lors de la suppression de la bonne pratique certains parametres sont manquants';
     $loginlog = $_SESSION['name'];
-    include '/home/r2c/R2C/Forms/addLogs.php';
+    include '/var/www/r2c.uca-project.com/Forms/addLogs.php';
     header('Location: ../Validation/validation.php?message=ed');
   }
 ?>

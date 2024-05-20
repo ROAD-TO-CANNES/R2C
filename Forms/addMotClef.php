@@ -1,6 +1,6 @@
 <?php
   session_start();
-  include '/home/r2c/R2C/Forms/checkSession.php';
+  include '/var/www/r2c.uca-project.com/Forms/checkSession.php';
 
   if(isset($_POST['newMotClef'])) {
     $newMotClef = htmlspecialchars($_POST['newMotClef']);
@@ -36,7 +36,7 @@
     $typelog = "Réussite";
     $desclog = 'Création du mot clef "'.$newMotClef.'"';
     $loginlog = $_SESSION['name'];
-    include '/home/r2c/R2C/Forms/addLogs.php';
+    include '/var/www/r2c.uca-project.com/Forms/addLogs.php';
 
     $sql = "SELECT idmotclef FROM MOTSCLEF WHERE motclef LIKE $newMotClef_seq";
     $request = $BDD->prepare($sql);
@@ -60,7 +60,7 @@
     $typelog = "Erreur";
     $desclog = 'Erreur lors de la création du mot clef certains parametres sont manquants';
     $loginlog = $_SESSION['name'];
-    include '/home/r2c/R2C/Forms/addLogs.php';
+    include '/var/www/r2c.uca-project.com/Forms/addLogs.php';
     header('Location: ../Validation/validation.php?message=ecmc');
   }
 ?>
