@@ -100,6 +100,7 @@
             echo('
                 <a href="../NewProg/newProg.php"><button>Créer un programme</button></a>
                 <a href="../Users/users.php"><button>Gérer les utilisateur</button></a>
+                <a href="../log/log.php"><button>consulter les logs</button></a>
             ');
           }
         ?>
