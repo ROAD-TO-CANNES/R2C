@@ -86,6 +86,7 @@
     <title>R2C - Accueil</title>
     <link rel="stylesheet" type="text/css" href="../Accueil/accueil.css">
     <link rel="icon" type="image/png" href="../Img/icon.png">
+    
   </head>
   <header>
     <?php include '/var/www/r2c.uca-project.com/Header/header.php'; ?>

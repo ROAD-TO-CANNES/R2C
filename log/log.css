@@ -2,6 +2,7 @@ body {
     margin: 0;
     width: 100%;
     height: 100%;
+    font-family: sans-serif;
   }
   
 .top {
@@ -17,6 +18,8 @@ body {
   
 .top h1 {
     margin: 0;
+    font-size: 170%;
+    font-weight: normal;
   }
 .content {
     margin-left: 10vw;
@@ -59,4 +62,7 @@ body {
 }
 .content-table tbody tr:nth-last-child(even){
     background-color: #f3f3f3;
+}
+.content-table tbody tr:last-child{
+    border-bottom: 2px solid #34a5d7;
 }
