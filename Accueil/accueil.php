@@ -93,7 +93,7 @@
   <body>
     <div class="fond_delConfirm"></div>
     <div class="top">
-      <h1>Selectionnez les bonne pratiques souhaitée</h1>
+      <h1>Selectionnez les bonnes pratiques souhaitée</h1>
       <div class="btns">
         <?php
           if ($_SESSION['droits'] > 0) {
