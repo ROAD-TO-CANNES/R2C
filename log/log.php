@@ -20,5 +20,8 @@
     <header>
         <?php include '/var/www/r2c.uca-project.com/Header/header.php'; ?>
     </header>
+    <div class="top">
+      <h1>consultez les logs de l'application</h1>
+    </div>
   </body>
 </html>
