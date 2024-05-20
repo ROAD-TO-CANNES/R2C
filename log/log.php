@@ -17,5 +17,8 @@
     <link rel="icon" type="image/png" href="../Img/icon.png">
   </head>
   <body>
+    <header>
+        <?php include '/var/www/r2c.uca-project.com/Header/header.php'; ?>
+    </header>
   </body>
 </html>
