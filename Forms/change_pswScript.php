@@ -1,7 +1,7 @@
 <?php 
 
   session_start(); 
-  include '/home/r2c/R2C/Forms/checkSession.php';
+  include '/var/www/r2c.uca-project.com/Forms/checkSession.php';
 
   //Recuperation des specs du mot de passe
   $sql = "SELECT * FROM SPECSPSW";
@@ -44,7 +44,7 @@
                   $typelog = "Réussite";
                   $desclog = "Changement de mot de passe réussi";
                   $loginlog = $_SESSION['name'];
-                  include '/home/r2c/R2C/Forms/addLogs.php';
+                  include '/var/www/r2c.uca-project.com/Forms/addLogs.php';
                   //Envoie de confirmation//
                   $response = 0;
                 } else {
@@ -52,7 +52,7 @@
                   $typelog = "Erreur";
                   $desclog = "Tentative de changement de mot de passe échouée mot de passe incorrect";
                   $loginlog = $_SESSION['name'];
-                  include '/home/r2c/R2C/Forms/addLogs.php';
+                  include '/var/www/r2c.uca-project.com/Forms/addLogs.php';
                   //Envoie d'erreur//
                   $response = 1; //Mot de passe incorrect
                 };
@@ -62,7 +62,7 @@
                 $typelog = "Erreur";
                 $desclog = "Tentative de changement de mot de passe échouée le nouveau mot de passe doit être différent de l'ancien";
                 $loginlog = $_SESSION['name'];
-                include '/home/r2c/R2C/Forms/addLogs.php';
+                include '/var/www/r2c.uca-project.com/Forms/addLogs.php';
                 //Envoie d'erreur//
                 $response = 3;//Le nouveau mot de passe doit être différent de l'ancien
               }
@@ -71,7 +71,7 @@
               $typelog = "Erreur";
               $desclog = "Tentative de changement de mot de passe échouée le mot de passe ne contient pas assez de majuscules";
               $loginlog = $_SESSION['name'];
-              include '/home/r2c/R2C/Forms/addLogs.php';
+              include '/var/www/r2c.uca-project.com/Forms/addLogs.php';
               //Envoie d'erreur//
               $response = 7;//Le mot de passe doit contenir au moins $specspsw['uppercase'] majuscule 
             }
@@ -80,7 +80,7 @@
             $typelog = "Erreur";
             $desclog = "Tentative de changement de mot de passe échouée le mot de passe ne contient pas assez de caractères spéciaux";
             $loginlog = $_SESSION['name'];
-            include '/home/r2c/R2C/Forms/addLogs.php';
+            include '/var/www/r2c.uca-project.com/Forms/addLogs.php';
             //Envoie d'erreur//
             $response = 6;//Le mot de passe doit contenir au moins $specspsw['specialchar'] caractères spéciaux 
           }
@@ -89,7 +89,7 @@
           $typelog = "Erreur";
           $desclog = "Tentative de changement de mot de passe échouée le mot de passe ne contient pas assez de chiffres";
           $loginlog = $_SESSION['name'];
-          include '/home/r2c/R2C/Forms/addLogs.php';
+          include '/var/www/r2c.uca-project.com/Forms/addLogs.php';
           //Envoie d'erreur//
           $response = 5;//Le mot de passe doit contenir au moins $specspsw['number'] chiffres 
         }
@@ -98,7 +98,7 @@
         $typelog = "Erreur";
         $desclog = "Tentative de changement de mot de passe échouée le mot de passe est trop court";
         $loginlog = $_SESSION['name'];
-        include '/home/r2c/R2C/Forms/addLogs.php';
+        include '/var/www/r2c.uca-project.com/Forms/addLogs.php';
         //Envoie d'erreur//
         $response = 4;//Le mot de passe doit faire aux moins $specspsw['size'] caractères 
       }
@@ -107,7 +107,7 @@
       $typelog = "Erreur";
       $desclog = "Tentative de changement de mot de passe échouée les mots de passe ne correspondent pas";
       $loginlog = $_SESSION['name'];
-      include '/home/r2c/R2C/Forms/addLogs.php';
+      include '/var/www/r2c.uca-project.com/Forms/addLogs.php';
       //Envoie d'erreur//
       $response = 2;//Les mots de passe ne correspondent pas 
     };

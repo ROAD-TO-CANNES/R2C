@@ -7,7 +7,7 @@
     $inactivite = time() - $_SESSION['derniereActivite'];
     if ($inactivite > $inactiviteMax) {
       $desclog = "Déconnexion automatique après 5 minutes d'inactivité";
-      include '/home/r2c/R2C/Forms/logout.php';
+      include '/var/www/r2c.uca-project.com/Forms/logout.php';
       setcookie('m1', 1, 0, "/");
       exit();
     } else {

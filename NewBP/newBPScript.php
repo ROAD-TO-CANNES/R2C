@@ -1,6 +1,6 @@
 <?php
   session_start();
-  include '/home/r2c/R2C/Forms/checkSession.php';
+  include '/var/www/r2c.uca-project.com/Forms/checkSession.php';
 
   if (isset($_POST['nombp']) && isset($_POST['descbp']) && isset($_POST['phase'])) {
     $nombp = htmlspecialchars($_POST['nombp']);
@@ -36,7 +36,7 @@
       }
     }
     
-    include '/home/r2c/R2C/bdd.php';
+    include '/var/www/r2c.uca-project.com/bdd.php';
 
     $nombp_seq = $BDD->quote($nombp);
     $descbp_seq = $BDD->quote($descbp);
@@ -54,7 +54,7 @@
     $typelog = "Réussite";
     $desclog = 'Création de la bonne pratique "'.$nombp.'" id='.$idbp;
     $loginlog = $_SESSION['name'];
-    include '/home/r2c/R2C/Forms/addLogs.php';
+    include '/var/www/r2c.uca-project.com/Forms/addLogs.php';
 
     if(isset($prog)) {
       foreach ($prog as $idprog) {
@@ -66,7 +66,7 @@
       $typelog = "Réussite";
       $desclog = 'Création des relations programme-bonne pratique pour "'.$nombp.'" id='.$idbp;
       $loginlog = $_SESSION['name'];
-      include '/home/r2c/R2C/Forms/addLogs.php';
+      include '/var/www/r2c.uca-project.com/Forms/addLogs.php';
     }
     
     if(isset($motclef)){
@@ -79,7 +79,7 @@
       $typelog = "Réussite";
       $desclog = 'Création des relations mot clef-bonne pratique pour "'.$nombp.'" id='.$idbp;
       $loginlog = $_SESSION['name'];
-      include '/home/r2c/R2C/Forms/addLogs.php';
+      include '/var/www/r2c.uca-project.com/Forms/addLogs.php';
     }
 
     $message = "cbp";
@@ -90,7 +90,7 @@
     $typelog = "Erreur";
     $desclog = 'Erreur lors de la création de la bonne pratique certains parametres sont manquants';
     $loginlog = $_SESSION['name'];
-    include '/home/r2c/R2C/Forms/addLogs.php';
+    include '/var/www/r2c.uca-project.com/Forms/addLogs.php';
 
     $message = "ebp";
     urlencode($message);

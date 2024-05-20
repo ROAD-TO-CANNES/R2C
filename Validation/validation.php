@@ -1,7 +1,7 @@
 <?php 
   session_start(); 
 
-  include '/home/r2c/R2C/Forms/checkSession.php';
+  include '/var/www/r2c.uca-project.com/Forms/checkSession.php';
 ?>
 
 <!DOCTYPE html>
@@ -12,7 +12,7 @@
     <link rel="icon" type="image/png" href="../Img/icon.png">
   </head>
   <header>
-    <?php include '/home/r2c/R2C/Header/header.php'; ?>
+    <?php include '/var/www/r2c.uca-project.com/Header/header.php'; ?>
   </header>
   <body>
     <div class="validation">
@@ -20,25 +20,25 @@
       if (isset($_GET['message'])) {
         if ($_GET['message'] == "cp") {
           echo('<p>Programme créé avec succès</p>');
-          include '/home/r2c/R2C/Validation/ok.php';
+          include '/var/www/r2c.uca-project.com/Validation/ok.php';
         } elseif ($_GET['message'] == "ep") {
           echo('<p style="color:red">Une erreur est survenue lors de la création du programme</p>');
-          include '/home/r2c/R2C/Validation/ok.php';
+          include '/var/www/r2c.uca-project.com/Validation/ok.php';
         }  elseif ($_GET['message'] == "cbp") {
           echo('<p>Bonne pratique créée avec succès</p>');
-          include '/home/r2c/R2C/Validation/ok.php';
+          include '/var/www/r2c.uca-project.com/Validation/ok.php';
         } elseif ($_GET['message'] == "ebp") {
           echo('<p style="color:red">Une erreur est survenue lors de la création de la bonne pratique</p>');
-          include '/home/r2c/R2C/Validation/error.php';
+          include '/var/www/r2c.uca-project.com/Validation/error.php';
         } elseif ($_GET['message'] == "ed") {
           echo('<p style="color:red">Une erreur est survenue lors de la supression de la bonne pratique</p>');
-          include '/home/r2c/R2C/Validation/error.php';
+          include '/var/www/r2c.uca-project.com/Validation/error.php';
         } elseif ($_GET['message'] == "ecmc") {
           echo('<p style="color:red">Impossible d\'ajouter le mot clef/p>');
-          include '/home/r2c/R2C/Validation/error.php';
+          include '/var/www/r2c.uca-project.com/Validation/error.php';
         } else {
           echo('<p style="color:red">Error</p>');
-          include '/home/r2c/R2C/Validation/error.php';
+          include '/var/www/r2c.uca-project.com/Validation/error.php';
         };
       };
       ?>

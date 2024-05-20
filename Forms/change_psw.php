@@ -1,6 +1,6 @@
 <?php
   session_start();
-  include '/home/r2c/R2C/bdd.php';
+  include '/var/www/r2c.uca-project.com/bdd.php';
   
   $sql = "SELECT * FROM SPECSPSW";
   $request = $BDD->prepare($sql);

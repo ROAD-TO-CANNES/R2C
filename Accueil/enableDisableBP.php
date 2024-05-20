@@ -1,7 +1,7 @@
 <?php
   session_start(); 
 
-  include '/home/r2c/R2C/Forms/checkSession.php';
+  include '/var/www/r2c.uca-project.com/Forms/checkSession.php';
 
   if(isset($_POST['id']) || isset($_POST['idbp'])) {
     if(isset($_POST['id'])) {
@@ -29,7 +29,7 @@
       $typelog = "Réussite";
       $desclog = 'Désactivation de la bonne pratique "'.$nombp.'" id='.$idBP;
       $loginlog = $_SESSION['name'];
-      include '/home/r2c/R2C/Forms/addLogs.php';
+      include '/var/www/r2c.uca-project.com/Forms/addLogs.php';
     } elseif ($statut == 0) {
       $sql = "UPDATE BONNESPRATIQUES SET statut = 1 WHERE idbp = $idBP";
       $request = $BDD->prepare($sql);
@@ -39,7 +39,7 @@
       $typelog = "Réussite";
       $desclog = 'Activation de la bonne pratique "'.$nombp.'" id='.$idBP;
       $loginlog = $_SESSION['name'];
-      include '/home/r2c/R2C/Forms/addLogs.php';
+      include '/var/www/r2c.uca-project.com/Forms/addLogs.php';
     };
 
     if(isset($_POST['idbp'])) {
@@ -50,7 +50,7 @@
     $typelog = "Erreur";
     $desclog = 'Erreur lors de la désactivation/activation de la bonne pratique certains pparametres sont manquants';
     $loginlog = $_SESSION['name'];
-    include '/home/r2c/R2C/Forms/addLogs.php';
+    include '/var/www/r2c.uca-project.com/Forms/addLogs.php';
     header('Location: ../Validation/validation.php?message=ed');
   };
 ?>

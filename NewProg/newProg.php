@@ -1,6 +1,6 @@
 <?php 
   session_start(); 
-  include '/home/r2c/R2C/Forms/checkSession.php';
+  include '/var/www/r2c.uca-project.com/Forms/checkSession.php';
 
   if (!$_SESSION['droits'] > 0) {
     header('Location: ../Accueil/accueil.php');
@@ -15,7 +15,7 @@
     <link rel="icon" type="image/png" href="../Img/icon.png">
   </head>
   <header>
-    <?php include '/home/r2c/R2C/Header/header.php'; ?>
+    <?php include '/var/www/r2c.uca-project.com/Header/header.php'; ?>
   </header>
   <body>
     <div class="top">

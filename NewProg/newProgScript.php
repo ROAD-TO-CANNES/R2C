@@ -1,6 +1,6 @@
 <?php
   session_start();
-  include '/home/r2c/R2C/Forms/checkSession.php';
+  include '/var/www/r2c.uca-project.com/Forms/checkSession.php';
 
   if (isset($_POST['nomprog']) && isset($_POST['descprog'])) {
     $nomprog = htmlspecialchars($_POST['nomprog']);
@@ -23,7 +23,7 @@
     $typelog = "Réussite";
     $desclog = 'Création du programme "'.$nomprog.'" id='.$idprog;
     $loginlog = $_SESSION['name'];
-    include '/home/r2c/R2C/Forms/addLogs.php';
+    include '/var/www/r2c.uca-project.com/Forms/addLogs.php';
 
     $message = "cp";
     urlencode($message);
@@ -33,7 +33,7 @@
     $typelog = "Erreur";
     $desclog = 'Erreur lors de la création du programme certains parametres sont manquants';
     $loginlog = $_SESSION['name'];
-    include '/home/r2c/R2C/Forms/addLogs.php';
+    include '/var/www/r2c.uca-project.com/Forms/addLogs.php';
     header('Location: ../Validation/validation.php?message=ep');
   }
 ?>
