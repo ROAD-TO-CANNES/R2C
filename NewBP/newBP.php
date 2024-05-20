@@ -1,7 +1,7 @@
 <?php 
   session_start(); 
 
-  include '/home/r2c/R2C/Forms/checkSession.php';
+  include '/var/www/r2c.uca-project.com/Forms/checkSession.php';
 
   // Récupération des programmes
   $sql = "SELECT * FROM PROGRAMME";
@@ -36,7 +36,7 @@
     <link rel="icon" type="image/png" href="../Img/icon.png">
   </head>
   <header>
-    <?php include '/home/r2c/R2C/Header/header.php'; ?>
+    <?php include '/var/www/r2c.uca-project.com/Header/header.php'; ?>
   </header>
   <body>
     <div class="top">
@@ -89,7 +89,7 @@
     </form>
     <div class="select-filtre">
       <?php
-        include '/home/r2c/R2C/Forms/selectFiltres.php';          
+        include '/var/www/r2c.uca-project.com/Forms/selectFiltres.php';          
       ?>
     </div>
     <script src="../NewBP/selectFiltres.js"></script>
