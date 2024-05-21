@@ -115,6 +115,22 @@
           $idbp = $bpsFiltered[$i]['idbp'];
           $nombp = $bpsFiltered[$i]['nombp'];
           $statut = $bpsFiltered[$i]['statut'];
+          if ($statut == 1) {
+            $statutAff = 'Activé';
+          } else {
+            $statutAff = 'Désactivé';
+          }
+
+          $sql = "SELECT idprog FROM BONNESPRATIQUES_PROGRAMME WHERE idbp = $idbp";
+          $request = $BDD->prepare($sql);
+          $request->execute();
+          $progsOfBp = $request->fetchAll();
+
+          $sql = "SELECT idmotclef FROM BONNESPRATIQUES_MOTSCLEF WHERE idbp = $idbp";
+          $request = $BDD->prepare($sql);
+          $request->execute();
+          $motsClefsOfBp = $request->fetchAll();
+
           echo('
             <div class="bp">
               <h2>'.$nombp.'</h2>
