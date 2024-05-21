@@ -1,7 +1,7 @@
 <?php 
   session_start();
 
-  $inactiviteMax = 3; // 5 minutes = 300 secondes
+  $inactiviteMax = 300; // 5 minutes = 300 secondes
 
   if (isset($_SESSION['derniereActivite'])) {
     $inactivite = time() - $_SESSION['derniereActivite'];

@@ -1,7 +1,7 @@
 <?php 
   session_start(); 
 
-  include '/home/r2c/R2Cbdd.php';
+  include '/var/www/r2c.uca-project.com/bdd.php';
   // verify if the user is already connected
   $sql = "SELECT statutcon FROM USER WHERE login LIKE '$_SESSION[name]'";
   $request = $BDD->prepare($sql);
