@@ -192,6 +192,16 @@
       </div>
     </div>
   </body>
+  <?php 
+    // Recuperation de la fenetre ouverte
+    if(isset($_GET['info'])) {
+    $info = $_GET['info'];
+      echo('<script>
+        document.querySelector(\'.infopopup#info'.$info.'\').style.display = "flex";
+        document.querySelector(\'.fond_delConfirm\').style.display = "block";
+      </script>');
+    } 
+  ?>
   <script src="../Accueil/delConfirm.js"></script>
   <script src="../Accueil/popupFiltres.js"></script>
   <script src="../Accueil/selectFiltres.js"></script>

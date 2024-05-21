@@ -19,7 +19,7 @@
         $request = $BDD->prepare($sql);
         $request->execute();
         $nomprog = $request->fetchColumn();
-        echo('<div class="object" id="PR'.$progOfBp['idprog'].'">'.$nomprog.'<span id="'.$progOfBp['idprog'].'" class="delete-item">✘</span></div>');
+        echo('<div class="objectInfo" id="PR'.$progOfBp['idprog'].'">'.$nomprog.'<button id="'.$progOfBp['idprog'].'" class="delete-item">✘</button></div>');
       }
     echo('
     </div>
@@ -34,9 +34,10 @@
     }
     echo('
     </select>
-    <form id="formMotClefInfo'.$idbp.'" action="../Forms/addMotClef.php" method="post">
+    <form id="formMotClefInfo'.$idbp.'" action="../Forms/addMotClefInfo.php" method="post">
       <button type="submit" id="addMotClefInfo'.$idbp.'">Ajouter</button>
       <input type="text" id="newMotClefInfo'.$idbp.'" name="newMotClef" placeholder="Ajouter un mot clef" required>
+      <input type="hidden" name="idbp" value="'.$idbp.'">
     </form>
     <h2>Sélectionnez les mots clefs</h2>
     <div class="selected-itemsDiv" id="selected-itemsMotClefInfo'.$idbp.'">
@@ -46,7 +47,7 @@
         $request = $BDD->prepare($sql);
         $request->execute();
         $motclef = $request->fetchColumn();
-        echo('<div class="object" id="MC'.$motClefOfBp['idmotclef'].'">'.$motclef.'<span id="'.$motClefOfBp['idmotclef'].'" class="delete-item">✘</span></div>');
+        echo('<div class="objectInfo" id="MC'.$motClefOfBp['idmotclef'].'">'.$motclef.'<button id="'.$motClefOfBp['idmotclef'].'" class="delete-item">✘</button></div>');
       }
     echo('
     </div>
