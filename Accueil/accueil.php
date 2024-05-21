@@ -119,7 +119,11 @@
             <div class="bp">
               <h2>'.$nombp.'</h2>
               <input type="checkbox" id="bp'.$i.'" name="idbp" value="'.$idbp.'" checked />
-              <label for="bp'.$i.'">Selectionner la bonne pratique</label>');   
+              <label for="bp'.$i.'">Selectionner la bonne pratique</label>  
+              <button class="infobtn" id="info'.$idbp.'">Voir la bonne pratique</button>
+              <div class="infopopup" id="info'.$idbp.'">');
+                include '/var/www/r2c.uca-project.com/Forms/infoBp.php';
+              echo ('</div>'); 
               if ($_SESSION['droits'] > 0) {
                 echo('
                 <form action="../Forms/delBp.php" method="post">');
@@ -176,5 +180,6 @@
   <script src="../Accueil/popupFiltres.js"></script>
   <script src="../Accueil/selectFiltres.js"></script>
   <script src="../Accueil/enableDisableBP.js"></script>
+  <script src="../Accueil/popupInfo.js"></script>
   <script src="../timer.js"></script>
 </html>
