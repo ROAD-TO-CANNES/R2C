@@ -20,6 +20,7 @@
   <body>
     <div class="top">
       <h1>Consulter les logs</h1>
+      <button style="width: 4vw;" id="filtre"><img src="../Img/filter.png" alt="filtrer"></button>
     </div>
     <div class="content">
       <table class="content-table">
