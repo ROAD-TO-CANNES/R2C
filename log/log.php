@@ -32,8 +32,8 @@
         </select>
         <select name="action">
           <option value="">filter by action</option>
-          <option value="1"  <?= isset($_GET['action'])==true ? ($_GET['action']=='1' ? 'selected':'' ):'' ?> >Connexion réussie</option>
-          <option value="2"  <?= isset($_GET['action'])==true ? ($_GET['action']=='2' ? 'selected':'' ):'' ?> >Déconnexion automatique après 5 minutes d'inactivité</option>
+          <option value="Connexion réussie"  <?= isset($_GET['action'])==true ? ($_GET['action']=='Connexion réussie' ? 'selected':'' ):'' ?> >Connexion réussie</option>
+          <option value="Déconnexion automatique après 5 minutes d\'inactivité"  <?= isset($_GET['action'])==true ? ($_GET['action']=='Déconnexion automatique après 5 minutes d\'inactivité' ? 'selected':'' ):'' ?> >Déconnexion automatique après 5 minutes d'inactivité</option>
           <option value="3"  <?= isset($_GET['action'])==true ? ($_GET['action']=='3' ? 'selected':'' ):'' ?> >Déconnexion manuelle réussie</option>
           <option value="4"  <?= isset($_GET['action'])==true ? ($_GET['action']=='4' ? 'selected':'' ):'' ?> >Connexion échouée l'utilisateur "admin" est déjà connecté</option>
           <option value="5"  <?= isset($_GET['action'])==true ? ($_GET['action']=='5' ? 'selected':'' ):'' ?> >Connexion échouée mot de passe incorrect</option>
@@ -52,7 +52,7 @@
         </thead>
         <tbody>
           <?php
-            if( isset($_GET['date']) && $_GET['date']!='' && isset($_GET['user']) && $_GET['user']!='' && isset($_GET['action']) && $_GET['acttion']!='' ){
+            if( isset($_GET['date']) && $_GET['date']!='' && isset($_GET['user']) && $_GET['user']!='' && isset($_GET['action']) && $_GET['action']!='' ){
               $datea = $_GET['date'];
               $login = $_GET['user'];
               $type = $_GET['action'];
