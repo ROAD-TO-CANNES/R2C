@@ -4,7 +4,18 @@ body {
     height: 100%;
     font-family: sans-serif;
   }
+  #filtre{
+    width: 50px;
+    height: 50px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
 
+#filtre img{
+    width: 90%;
+    height: 90%;
+}
 .top {
     display: flex;
     align-items: flex-end;
@@ -65,17 +76,4 @@ body {
 }
 .content-table tbody tr:last-child{
     border-bottom: 2px solid #34a5d7;
-}
-
-#filtre{
-    width: 50px;
-    height: 50px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
-#filtre img{
-    width: 90%;
-    height: 90%;
 }
