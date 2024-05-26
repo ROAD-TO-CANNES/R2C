@@ -6,7 +6,6 @@
     header('Location: ../Accueil/accueil.php');
   }
 ?>
-
 <!DOCTYPE html>
 <html>
   <head>
@@ -20,14 +19,23 @@
   <body>
     <div class="top">
       <h1>Consulter les logs</h1>
-      <button id="filtre"><img src="../Img/filter.png" alt="filtrer"></button>
+      <!-- <button id="filtre"><img src="../Img/filter.png" alt="filtrer"></button> -->
       <form action="NULL" method="GET" >
         <input type="date" name="filtre" id="filtreInput" placeholder="Filtrer par utilisateur">
         <select>
-          <option value="1">Tous</option>
-          <option value="2">Ajout</option>
-          <option value="3">Modification</option>
-          <option value="4">Suppression</option>
+          <option value="NULL">filter by user</option>
+          <option value="1">admin</option>
+          <option value="2">tom</option>
+          <option value="3">hugo</option>
+          <option value="4">test</option>
+        </select>
+        <select>
+          <option value="NULL">filter by action</option>
+          <option value="1">Connexion réussie</option>
+          <option value="2">Déconnexion automatique après 5 minutes d'inactivité</option>
+          <option value="3">Déconnexion manuelle réussie</option>
+          <option value="4">Connexion échouée l'utilisateur "admin" est déjà connecté</option>
+          <option value="5">Connexion échouée mot de passe incorrect</option>
         </select>
       </form>
     </div>
