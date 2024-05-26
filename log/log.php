@@ -22,7 +22,7 @@
       <h1>Consulter les logs</h1>
       <button id="filtre"><img src="../Img/filter.png" alt="filtrer"></button>
       <form action="NULL" method="GET" >
-        <input type="date" name="filtre" id="filtreInput" placeholder="Filtrer par date">
+        <input type="date" name="filtre" id="filtreInput" placeholder="Filtrer par utilisateur">
         <select>
           <option value="1">Tous</option>
           <option value="2">Ajout</option>
