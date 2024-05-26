@@ -52,10 +52,22 @@
         </thead>
         <tbody>
           <?php
-            $sql = "SELECT * FROM LOGS WHERE idlog > 0 ORDER BY datea DESC LIMIT 10;";
-            $request = $BDD->prepare($sql);
-            $request->execute();
-            $logs = $request->fetchAll();
+            if( isset($_GET['date']) && $_GET['date']!='' && isset($_GET['user']) && $_GET['user']!='' && isset($_GET['action']) && $_GET['acttion']!='' ){
+              $datea = $_GET['date'];
+              $login = $_GET['user'];
+              $type = $_GET['action'];
+              $sql = "SELECT * FROM LOGS WHERE datea = $datea AND login = $login AND type = $type ORDER BY datea DESC LIMIT 10;";
+              $request = $BDD->prepare($sql);
+              $request->execute();
+              $logs = $request->fetchAll();
+            }
+            else{
+              $sql = "SELECT * FROM LOGS WHERE idlog > 0 ORDER BY datea DESC LIMIT 10;";
+              $request = $BDD->prepare($sql);
+              $request->execute();
+              $logs = $request->fetchAll();
+            }
+            
 
             foreach($logs as $log) {
               echo '<tr>';
