@@ -52,11 +52,15 @@
         </thead>
         <tbody>
           <?php
-            if( isset($_GET['date']) && $_GET['date']!='' && isset($_GET['user']) && $_GET['user']!='' && isset($_GET['action']) && $_GET['action']!='' ){
-              $datea = $_GET['date'];
-              $login = $_GET['user'];
-              $type = $_GET['action'];
-              $sql = "SELECT * FROM LOGS WHERE datea = $datea AND login = $login AND type = $type ORDER BY datea DESC LIMIT 10;";
+            if( isset($_GET['date']) && isset($_GET['user']) && isset($_GET['action']) ){
+              if($_GET['date'] == '')
+              $datea = '%'.$_GET['date'].'%';
+              echo $datea;
+              $login = '%'.$_GET['user'].'%';
+              echo $login;
+              $type = '%'.$_GET['action'].'%';
+              echo $type;
+              $sql = "SELECT * FROM LOGS WHERE datea LIKE $datea AND login LIKE $login AND type LIKE $type ORDER BY datea DESC LIMIT 10;";
               $request = $BDD->prepare($sql);
               $request->execute();
               $logs = $request->fetchAll();
