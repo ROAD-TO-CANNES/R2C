@@ -20,7 +20,16 @@
   <body>
     <div class="top">
       <h1>Consulter les logs</h1>
-      <button style="width: 4vw;" id="filtre"><img src="../Img/filter.png" alt="filtrer"></button>
+      <button id="filtre"><img src="../Img/filter.png" alt="filtrer"></button>
+      <form action="NULL" method="GET" >
+        <input type="date" name="filtre" id="filtreInput" placeholder="Filtrer par date">
+        <select>
+          <option value="1">Tous</option>
+          <option value="2">Ajout</option>
+          <option value="3">Modification</option>
+          <option value="4">Suppression</option>
+        </select>
+      </form>
     </div>
     <div class="content">
       <table class="content-table">
@@ -33,7 +42,7 @@
         </thead>
         <tbody>
           <?php
-            $sql = "SELECT * FROM LOGS";
+            $sql = "SELECT * FROM LOGS WHERE idlog > 0 ORDER BY datea DESC LIMIT 10;";
             $request = $BDD->prepare($sql);
             $request->execute();
             $logs = $request->fetchAll();
