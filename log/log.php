@@ -37,6 +37,7 @@
           <option value="4">Connexion échouée l'utilisateur "admin" est déjà connecté</option>
           <option value="5">Connexion échouée mot de passe incorrect</option>
         </select>
+        <button type="submit" id="filtre"><img src="../Img/filter.png" alt="filtrer"><a href="../log/log.php"></a></button>
       </form>
     </div>
     <div class="content">
