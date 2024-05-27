@@ -46,7 +46,12 @@ function updateSelectedItems(selectId, selectedItemsDiv, optionValue = null) {
   selectedOptions.forEach((option) => {
     // Check if a div with the same id already exists
     const itemId = prefix + option.value;
-    if (document.getElementById(prefix + option.value)) {
+    if (
+      document.getElementById(prefix + option.value) &&
+      document
+        .getElementById(prefix + option.value)
+        .classList.contains("object")
+    ) {
       return;
     } else {
       // Create a div for each selected item
