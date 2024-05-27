@@ -1,40 +1,57 @@
-from fpdf import FPDF
-import mysql.connector
-from fpdf.enums import XPos, YPos
+import mariadb
+from reportlab.lib.pagesizes import letter
+from reportlab.pdfgen import canvas
+import sys
 
-# Se connecter à la base de données
-db = mysql.connector.connect(
-    host="localhost",
-    user="tomh",
-    password="HJ34!5r&*",
-    database="project",
-    port = 8457
-)
+def generate_pdf(idbp_list):
+    # Connect to the database
+    db = mariadb.connect(
+        host="localhost",
+        user="tomh",
+        password="HJ34!5r&*",
+        database="project",
+        port=8457
+    )
 
-# Créer un curseur pour exécuter des requêtes
-cursor = db.cursor()
+    # Create a cursor to execute queries
+    cursor = db.cursor()
 
-# Exécuter la requête pour récupérer du texte
-query = "SELECT * FROM MOTSCLEF"
-cursor.execute(query)
-result = cursor.fetchall()
+    # Create a PDF file
+    c = canvas.Canvas('/var/www/r2c.uca-project.com/Python/Download/Bonnes_Pratiques.pdf', pagesize=letter)
 
-# Créer un fichier PDF
-pdf = FPDF()
-pdf.add_page()
+    # Set the font and font size for the PDF
+    c.setFont("Helvetica", 12)
 
-# Définir une police
-pdf.set_font("Helvetica", size=12)
+    # Add the table headers
+    c.drawString(50, 750, "ID")
+    c.drawString(150, 750, "Description")
 
-# Ajouter le texte récupéré au fichier PDF
-for row in result:
-    # Assurer que toutes les valeurs sont des chaînes de caractères
-    text = str(row[0])
-    pdf.cell(0, 10, text, new_x=XPos.LMARGIN, new_y=YPos.NEXT)
+    y = 720  # Initial y-coordinate for the table rows
 
-# Enregistrer le fichier PDF
-pdf.output("Bonnes_Pratiques.pdf")
+    for idbp in idbp_list:
+        # Execute the query to retrieve the text
+        query = f"SELECT descbp, idbp FROM BONNESPRATIQUES WHERE idbp = {idbp};"
+        cursor.execute(query)
+        result = cursor.fetchall()
 
-# Fermer la connexion à la base de données
-cursor.close()
-db.close()
+        # Add the retrieved data to the table
+        for row in result:
+            idbp = str(row[1])
+            descbp = str(row[0])
+            c.drawString(50, y, idbp)
+            c.drawString(150, y, descbp)
+            y -= 20
+
+    # Save the PDF file
+    c.save()
+
+    # Close the database connection
+    cursor.close()
+    db.close()
+
+if __name__ == "__main__":
+    # Convert the command line arguments to integers
+    idbp_list = [int(idbp) for idbp in sys.argv[1:]]
+
+    # Call the function with the idbp list
+    generate_pdf(idbp_list)

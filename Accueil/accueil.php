@@ -182,7 +182,7 @@
       <button type="submit" class="pdf_btn"><img src="../Img/pdf.png" alt="PDF">Générer un fichier PDF</button>
     </form>
     <form id="pythonCSV" action="../Python/generateCSV.php" method="post">
-      <input type="hidden" name="generate_csv" value="<?php echo json_encode($bpsFiltered); ?>">
+      <input type="hidden" id="generate_csv" name="generate_csv" >
       <button type="submit" class="csv_btn"><img src="../Img/csv.png" alt="CSV">Générer un fichier CSV</button>
     </form>
     <div class="select-fond_popup"></div> 
@@ -212,48 +212,6 @@
   <script src="../Accueil/selectFiltres.js"></script>
   <script src="../Accueil/enableDisableBP.js"></script>
   <script src="../Accueil/popupInfo.js"></script>
-  <script>
-    // Créez un tableau vide pour stocker les valeurs
-    let checkedValues = [];
-    // Obtenez tous les éléments input avec le nom "checkedBp"
-    let inputs = document.querySelectorAll('input[name="checkedBp"]');
-    // Obtenez l'élément input avec l'ID "generate_pdf"
-    let pdfInput = document.getElementById('generate_pdf');
-    // Obtenez le formulaire avec l'ID "pythonPDF"
-    let pdfForm = document.getElementById('pythonPDF');
-
-
-    // Parcourez tous les éléments input
-    inputs.forEach((input) => {
-      // Si l'input est coché, ajoutez sa valeur au tableau
-      if(input.checked) {
-        checkedValues.push(input.value);
-      }
-      // Ajoutez un écouteur d'événement "change" à chaque input
-      input.addEventListener('change', () => {
-        // Si l'input est coché, ajoutez sa valeur au tableau
-        if(input.checked) {
-          checkedValues.push(input.value);
-        } else {
-          // Si l'input est décoché, retirez sa valeur du tableau
-          let index = checkedValues.indexOf(input.value);
-          if (index > -1) {
-            checkedValues.splice(index, 1);
-          }
-        }
-        // Mettez à jour la valeur de generate_pdf avec le tableau checkedValues
-        pdfInput.value = JSON.stringify(checkedValues);
-        console.log(checkedValues);
-      });
-    });
-
-    // Soumettez le formulaire via AJAX lorsque l'utilisateur clique sur le bouton "Générer PDF"
-    pdfForm.addEventListener('submit', function(e) {
-      fetch('../Python/generatePDF.php', {
-        method: 'POST',
-        body: new FormData(pdfForm),
-      })
-    });
-  </script>
+  <script src="../Accueil/updateInputs.js"></script>
   <script src="../timer.js"></script>
 </html>
