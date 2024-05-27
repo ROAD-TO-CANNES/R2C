@@ -52,34 +52,28 @@
         </thead>
         <tbody>
           <?php
-            if( isset($_GET['date']) && isset($_GET['user']) && isset($_GET['action']) ){
-              if($_GET['date'] == '')
-              $datea = '%'.$_GET['date'].'%';
-              echo $datea;
-              $login = '%'.$_GET['user'].'%';
-              echo $login;
-              $type = '%'.$_GET['action'].'%';
-              echo $type;
-              $sql = "SELECT * FROM LOGS WHERE datea LIKE $datea AND login LIKE $login AND type LIKE $type ORDER BY datea DESC LIMIT 10;";
-              $request = $BDD->prepare($sql);
-              $request->execute();
-              $logs = $request->fetchAll();
-            }
-            else{
-              $sql = "SELECT * FROM LOGS WHERE idlog > 0 ORDER BY datea DESC LIMIT 10;";
-              $request = $BDD->prepare($sql);
-              $request->execute();
-              $logs = $request->fetchAll();
-            }
-            
+          if (isset($_GET['date']) && isset($_GET['user']) && isset($_GET['action'])) {
+            $datea = '%' . $_GET['date'] . '%';
+            $login = '%' . $_GET['user'] . '%';
+            $type = '%' . $_GET['action'] . '%';
+            $sql = "SELECT * FROM LOGS WHERE datea LIKE '$datea' AND login LIKE '$login' AND desca LIKE '$type' ORDER BY datea DESC LIMIT 10;";
+            $request = $BDD->prepare($sql);
+            $request->execute();
+            $logs = $request->fetchAll();
+          } else {
+            $sql = "SELECT * FROM LOGS WHERE idlog > 0 ORDER BY datea DESC LIMIT 10;";
+            $request = $BDD->prepare($sql);
+            $request->execute();
+            $logs = $request->fetchAll();
+          }
 
-            foreach($logs as $log) {
-              echo '<tr>';
-              echo '<td>' . $log['datea'] . '</td>';
-              echo '<td>' . $log['login'] . '</td>';
-              echo '<td>' . $log['desca'] . '</td>';
-              echo '</tr>';
-            }
+          foreach ($logs as $log) {
+            echo '<tr>';
+            echo '<td>' . $log['datea'] . '</td>';
+            echo '<td>' . $log['login'] . '</td>';
+            echo '<td>' . $log['desca'] . '</td>';
+            echo '</tr>';
+          }
           ?>
         </tbody>
       </table>
