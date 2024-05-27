@@ -19,19 +19,19 @@ def generate_csv(idbp_list):
     with open('/var/www/r2c.uca-project.com/Python/Download/Bonnes_Pratiques.csv', 'w', newline='') as file:
         writer = csv.writer(file, delimiter=';')
         # Ajouter les en-têtes du tableau
-        writer.writerow(["ID", "Description"])
+        writer.writerow(["Nom", "Description"])
 
         for idbp in idbp_list:
             # Exécuter la requête pour récupérer du texte
-            query = f"SELECT descbp, idbp FROM BONNESPRATIQUES WHERE idbp = {idbp};"
+            query = f"SELECT nombp, descbp, idbp FROM BONNESPRATIQUES WHERE idbp = {idbp};"
             cursor.execute(query)
             result = cursor.fetchall()
 
             # Ajouter les données récupérées au tableau
             for row in result:
-                idbp = str(row[1])
-                descbp = str(row[0])
-                writer.writerow([idbp, descbp])
+                nombp = str(row[0])
+                descbp = str(row[1])
+                writer.writerow([nombp, descbp])
 
     # Fermer la connexion à la base de données
     cursor.close()
