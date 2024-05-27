@@ -85,6 +85,30 @@ body {
   border-radius: 20px;
 }
 
+#bigFiltre {
+  width: 20vw;
+  height: 6vh;
+  border-radius: 50000px;
+  border: none;
+  background-color: #9fccff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: x-large;
+  transition: 0.3s;
+}
+
+#bigFiltre img {
+  height: 3vh;
+  margin-left: 15px;
+}
+
+#bigFiltre:hover {
+  background-color: #c2deff;
+  border: 0.5px solid #00182e;
+  cursor: pointer;
+}
+
 .bp {
   background-color: grey;
   border-radius: 8px;

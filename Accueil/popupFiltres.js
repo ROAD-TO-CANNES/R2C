@@ -1,4 +1,4 @@
-$("#filtre").on("click", function () {
+$(".filtre").on("click", function () {
   // Add "active-popup" class to select-popup element
   $(".select-popup").addClass("active-popup");
   // Add "active-fond" class to select-fond_popup element

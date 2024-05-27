@@ -77,7 +77,7 @@
   if(!empty($filtrePR) || !empty($filtrePH) || !empty($filtreMC)) {
     $bpsFiltered = compare_lists($filtrePR, $filtrePH, $filtreMC, $bps, $bpsProg, $bpsMC);
   } else {
-    $bpsFiltered = $bps;
+    $bpsFiltered = null;
   }
 ?>
 <!DOCTYPE html>
@@ -106,11 +106,23 @@
           }
         ?>
         <a href="../NewBP/newBP.php"><button>Créer une bonne pratique</button></a>
-        <button style="width: 4vw;" id="filtre"><img src="../Img/filter.png" alt="filtrer"></button>
+        <button style="width: 4vw;" class="filtre"><img src="../Img/filter.png" alt="filtrer"></button>
       </div>    
     </div>
-    <div class="scroll">
-      <?php
+    <?php
+      if ($bpsFiltered == null) {
+        echo '
+        <div style="justify-content: center; align-items: center" class="scroll">
+          <p style="font-size: x-large;">Veulliez appliquer des filtres pour afficher les bonnes pratiques correspondantes</p>
+          <button class="filtre" id="bigFiltre">Filtrer<img src="../Img/filter.png" alt="filtrer"></button>
+          <style>
+            .pdf_btn,
+            .csv_btn {
+              display: none;
+            }
+          </style>';
+      } else {
+        echo '<div class="scroll">';
         foreach ($bpsFiltered as $i => $bpFiltered) { 
           $idbp = $bpsFiltered[$i]['idbp'];
           $nombp = $bpsFiltered[$i]['nombp'];
@@ -133,8 +145,13 @@
 
           echo('
             <div class="bp">
-              <h2>'.$nombp.'</h2>
-              <input type="checkbox" id="bp'.$i.'" name="checkedBp" value="'.$idbp.'" checked />
+              <h2>'.$nombp.'</h2>');
+              if ($statut == 1) {
+                echo('<input type="checkbox" id="bp'.$i.'" name="checkedBp" value="'.$idbp.'" checked />' );
+              } elseif ($statut == 0) {
+                echo('<input type="checkbox" id="bp'.$i.'" name="checkedBp" value="'.$idbp.'" />' );
+              };
+              echo ('
               <label for="bp'.$i.'">Selectionner la bonne pratique</label>  
               <button class="infobtn" id="info'.$idbp.'">Voir la bonne pratique</button>
               <div class="infopopup" id="info'.$idbp.'">');
@@ -175,7 +192,8 @@
             </div>
           ');
         }
-      ?>
+      }
+    ?>
     </div>
     <form id="pythonPDF" action="../Python/generatePDF.php" method="post">
       <input type="hidden" id="generate_pdf" name="generate_pdf">
