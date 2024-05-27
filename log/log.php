@@ -34,9 +34,9 @@
           <option value="">filter by action</option>
           <option value="Connexion réussie"  <?= isset($_GET['action'])==true ? ($_GET['action']=='Connexion réussie' ? 'selected':'' ):'' ?> >Connexion réussie</option>
           <option value="Déconnexion automatique après 5 minutes d\'inactivité"  <?= isset($_GET['action'])==true ? ($_GET['action']=='Déconnexion automatique après 5 minutes d\'inactivité' ? 'selected':'' ):'' ?> >Déconnexion automatique après 5 minutes d'inactivité</option>
-          <option value="3"  <?= isset($_GET['action'])==true ? ($_GET['action']=='3' ? 'selected':'' ):'' ?> >Déconnexion manuelle réussie</option>
-          <option value="4"  <?= isset($_GET['action'])==true ? ($_GET['action']=='4' ? 'selected':'' ):'' ?> >Connexion échouée l'utilisateur "admin" est déjà connecté</option>
-          <option value="5"  <?= isset($_GET['action'])==true ? ($_GET['action']=='5' ? 'selected':'' ):'' ?> >Connexion échouée mot de passe incorrect</option>
+          <option value="Déconnexion manuelle réussie"  <?= isset($_GET['action'])==true ? ($_GET['action']=='Déconnexion manuelle réussie' ? 'selected':'' ):'' ?> >Déconnexion manuelle réussie</option>
+          <option value="Connexion échouée l\'utilisateur admin est déjà connecté"  <?= isset($_GET['action'])==true ? ($_GET['action']=='Connexion échouée l\'utilisateur admin est déjà connecté' ? 'selected':'' ):'' ?> >Connexion échouée l'utilisateur "admin" est déjà connecté</option>
+          <option value="Connexion échouée mot de passe incorrect"  <?= isset($_GET['action'])==true ? ($_GET['action']=='Connexion échouée mot de passe incorrect' ? 'selected':'' ):'' ?> >Connexion échouée mot de passe incorrect</option>
         </select>
         <button type="submit" id="filtre"><img src="../Img/filter.png" alt="filtrer"><a href="../log/log.php"></a></button>
       </form>
