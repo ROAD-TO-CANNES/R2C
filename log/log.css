@@ -36,7 +36,7 @@ body {
   margin-left: 10vw;
   height: 60vh;
   width: 80vw;
-  overflow: scroll;
+  overflow-y: scroll;
 }
 .content::-webkit-scrollbar {
   width: 10px;

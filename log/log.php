@@ -61,7 +61,7 @@
             $request->execute();
             $logs = $request->fetchAll();
           } else {
-            $sql = "SELECT * FROM LOGS WHERE idlog > 0 ORDER BY datea DESC LIMIT 10;";
+            $sql = "SELECT * FROM LOGS WHERE idlog > 0 ORDER BY datea DESC LIMIT 20;";
             $request = $BDD->prepare($sql);
             $request->execute();
             $logs = $request->fetchAll();

@@ -112,7 +112,7 @@
     <?php
       if ($bpsFiltered == null) {
         echo '
-        <div style="justify-content: center; align-items: center" class="scroll">
+        <div style="overflow: hidden; justify-content: center; align-items: center" class="scroll">
           <p style="font-size: x-large;">Veulliez appliquer des filtres pour afficher les bonnes pratiques correspondantes</p>
           <button class="filtre" id="bigFiltre">Filtrer<img src="../Img/filter.png" alt="filtrer"></button>
           <style>
