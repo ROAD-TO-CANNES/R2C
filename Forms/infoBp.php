@@ -1,10 +1,11 @@
+<link rel="stylesheet" type="text/css" href="../Forms/infoBp.css">
 <?php
   echo('
   <h1>Informations de la bonne pratique : "'.$nombp.'"</h1>
   <h2>Phase : '.$nomphase.'</h2>
   <h2>Statut : '.$statutAff.'</h2> 
   <div class="divProg">
-    <select id="selectProgInfo'.$idbp.'" name="programme" form="formProg">
+    <select id="SP'.$idbp.'" class="selectProgInfo" name="programme" form="formProg">
       <option class="default_value" value="">Programmes</option>
     ');
     foreach($progs as $i => $prog) {
@@ -13,7 +14,7 @@
     echo('
     </select>
     <h2>Sélectionnez les programmes</h2>
-    <div class="selected-itemsDiv" id="selected-itemsProgInfo'.$idbp.'">
+    <div class="selected-itemsDivProgInfo" id="SP'.$idbp.'">
     ');
       foreach ($progsOfBp as $progOfBp) {
         $sql = 'SELECT nomprog FROM PROGRAMME WHERE idprog = '.$progOfBp['idprog'];
@@ -27,7 +28,7 @@
   </div>');
   echo('
   <div class="divMotClef">
-    <select id="selectMotClefInfo'.$idbp.'" name="motClef" form="formMotClef">
+    <select id="SM'.$idbp.'" class="selectMotClefInfo" name="motClef" form="formMotClef">
       <option class="default_value" value="">Mots clefs</option>
     ');
     foreach($motsClefs as $i => $motClef) {
@@ -41,7 +42,7 @@
       <input type="hidden" name="idbp" value="'.$idbp.'">
     </form>
     <h2>Sélectionnez les mots clefs</h2>
-    <div class="selected-itemsDiv" id="selected-itemsMotClefInfo'.$idbp.'">
+    <div class="selected-itemsDivMcInfo" id="SM'.$idbp.'">
     ');
       foreach ($motsClefsOfBp as $motClefOfBp) {
         $sql = 'SELECT motclef FROM MOTSCLEF WHERE idmotclef = '.$motClefOfBp['idmotclef'];

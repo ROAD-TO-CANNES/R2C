@@ -1,0 +1,16 @@
+.selected-itemsDivProgInfo,
+.selected-itemsDivMcInfo {
+  background-color: #a2a2a2;
+  width: 60vw;
+  height: 10vh;
+  border-bottom-left-radius: 15px;
+  border-bottom-right-radius: 15px;
+  padding: 10px;
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+  align-content: flex-start;
+  align-items: center;
+  justify-content: center;
+  overflow-y: overlay;
+}
