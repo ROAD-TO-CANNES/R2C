@@ -1,7 +1,8 @@
 <?php
   echo('
   <h1>Informations de la bonne pratique : "'.$nombp.'"</h1>
-  <h1>Statut : '.$statutAff.'</h1> 
+  <h2>Phase : '.$nomphase.'</h2>
+  <h2>Statut : '.$statutAff.'</h2> 
   <div class="divProg">
     <select id="selectProgInfo'.$idbp.'" name="programme" form="formProg">
       <option class="default_value" value="">Programmes</option>

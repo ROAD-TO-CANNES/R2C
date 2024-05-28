@@ -132,6 +132,12 @@
           } else {
             $statutAff = 'Désactivé';
           }
+          $idphase = $bpsFiltered[$i]['phase'];
+          foreach ($phases as $phase) {
+            if ($phase['idphase'] == $idphase) {
+              $nomphase = $phase['descript'];
+            }
+          }
 
           $sql = "SELECT idprog FROM BONNESPRATIQUES_PROGRAMME WHERE idbp = $idbp";
           $request = $BDD->prepare($sql);
