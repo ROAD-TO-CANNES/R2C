@@ -36,6 +36,12 @@
         } elseif ($_GET['message'] == "ecmc") {
           echo('<p style="color:red">Impossible d\'ajouter le mot clef/p>');
           include '/var/www/r2c.uca-project.com/Validation/error.php';
+        } elseif ($_GET['message'] == "eccsv") {
+          echo('<p style="color:red">Erreure lors de la création du fichier CSV</p>');
+          include '/var/www/r2c.uca-project.com/Validation/error.php';
+        } elseif ($_GET['message'] == "ecpdf") {
+          echo('<p style="color:red">Erreure lors de la création du fichier PDF</p>');
+          include '/var/www/r2c.uca-project.com/Validation/error.php';
         } else {
           echo('<p style="color:red">Error</p>');
           include '/var/www/r2c.uca-project.com/Validation/error.php';
