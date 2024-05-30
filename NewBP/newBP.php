@@ -71,7 +71,7 @@
         <option class="default_value" value="" disabled selected>Phases</option>
         <?php
           foreach($phases as $i => $phase) {
-            echo('<option value="'.$phases[$i]['idphase'].'">Phase '.$phases[$i]['idphase'].'</option>');
+            echo('<option value="'.$phases[$i]['idphase'].'">'.$phases[$i]['descript'].'</option>');
           }
         ?>
       </select>
