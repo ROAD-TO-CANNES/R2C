@@ -20,7 +20,7 @@
         $request->execute();
 
         // logs d'ajout de programme
-        $typelog = 'Réussite';
+        $typelog = 'Information';
         $desclog = 'Ajout du programme '.$idprog.' à la bonne pratique '.$idbp;
         $loginlog = $_SESSION['name'];
         include '/var/www/r2c.uca-project.com/Forms/addLogs.php';
@@ -30,7 +30,7 @@
         $request->execute();
 
         // logs d'ajout de mot clef
-        $typelog = 'Réussite';
+        $typelog = 'Information';
         $desclog = 'Ajout du mot clef '.$idmotclef.' à la bonne pratique '.$idbp;
         $loginlog = $_SESSION['name'];
         include '/var/www/r2c.uca-project.com/Forms/addLogs.php';
@@ -42,7 +42,7 @@
         $request->execute();
 
         // logs de suppression de programme
-        $typelog = 'Réussite';
+        $typelog = 'Information';
         $desclog = 'Suppression du programme '.$idprog.' de la bonne pratique '.$idbp;
         $loginlog = $_SESSION['name'];
         include '/var/www/r2c.uca-project.com/Forms/addLogs.php';
@@ -53,7 +53,7 @@
         $request->execute();
 
         // logs de suppression de mot clef
-        $typelog = 'Réussite';
+        $typelog = 'Information';
         $desclog = 'Suppression du mot clef '.$idmotclef.' de la bonne pratique '.$idbp;
         $loginlog = $_SESSION['name'];
         include '/var/www/r2c.uca-project.com/Forms/addLogs.php';
@@ -62,7 +62,7 @@
   } else {
     echo 'No POST';
     // logs d'erreur
-    $typelog = 'Erreur';
+    $typelog = 'Warning';
     $desclog = 'Erreur lors de la modification d\'éléments de la bonne pratique';
     $loginlog = $_SESSION['name'];
     include '/var/www/r2c.uca-project.com/Forms/addLogs.php';

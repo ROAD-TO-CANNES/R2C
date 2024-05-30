@@ -19,7 +19,7 @@
 
   if ($result == NULL) {
     //Log d'érreure de connexion//
-    $typelog = "Connexion";
+    $typelog = "Information";
     $desclog = "Connexion échouée utilisateur inconnu";
     $loginlog = $name;
     include '/var/www/r2c.uca-project.com/Forms/addLogs.php';
@@ -60,7 +60,7 @@
             $request->execute();
 
             //Log de déconnexion//
-            $typelog = "Déconnexion";
+            $typelog = "Information";
             $desclog = "Déconnexion forcée par le SuperAdministrateur";
             $loginlog = $user['login'];
             include '/var/www/r2c.uca-project.com/Forms/addLogs.php';
@@ -71,7 +71,7 @@
         $_SESSION['name'] = $name;
 
         //Log de connexion//
-        $typelog = "Connexion";
+        $typelog = "Information";
         $desclog = "Connexion réussie";
         $loginlog = $name;
         include '/var/www/r2c.uca-project.com/Forms/addLogs.php';
@@ -92,7 +92,7 @@
       } else {
 
         //Log d'érreure de connexion//
-        $typelog = "Connexion";
+        $typelog = "Warning";
         $desclog = "Connexion échouée mot de passe incorrect";
         $loginlog = $name;
         include '/var/www/r2c.uca-project.com/Forms/addLogs.php';
@@ -119,7 +119,7 @@
 
       if ($connexcount > 0) {
         //Log d'érreure de connexion//
-        $typelog = "Connexion";
+        $typelog = "Warning";
         $desclog = 'Connexion échouée l\'utilisateur "'.$userconected.'" est déjà connecté';
         $loginlog = $name;
         include '/var/www/r2c.uca-project.com/Forms/addLogs.php';
@@ -147,7 +147,7 @@
             $_SESSION['name'] = $name;
 
             //Log de connexion//
-            $typelog = "Connexion";
+            $typelog = "Information";
             $desclog = "Connexion réussie";
             $loginlog = $name;
             include '/var/www/r2c.uca-project.com/Forms/addLogs.php';
@@ -173,7 +173,7 @@
             header('Location: ../Accueil/accueil.php');
           } else {
             //Log d'érreure de connexion//
-            $typelog = "Connexion";
+            $typelog = "Warning";
             $desclog = "Connexion échouée mot de passe incorrect";
             $loginlog = $name;
             include '/var/www/r2c.uca-project.com/Forms/addLogs.php';
@@ -191,7 +191,7 @@
 
             if ($tentative == 3) {
               //Log de blocage du compte//
-              $typelog = "Blocage";
+              $typelog = "Alert";
               $desclog = "Blocage du compte suite à 3 tentatives de connexion échouées";
               $loginlog = $name;
               include '/var/www/r2c.uca-project.com/Forms/addLogs.php';
@@ -204,7 +204,7 @@
           };  
         } else {
           //Log d'érreure de connexion//
-          $typelog = "Connexion";
+          $typelog = "Warning";
           $desclog = "Connexion échouée le compte est bloqué";
           $loginlog = $name;
           include '/var/www/r2c.uca-project.com/Forms/addLogs.php';

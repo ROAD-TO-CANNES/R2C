@@ -51,7 +51,7 @@
     $idbp = $request->fetchColumn();
 
     //Log de création de BP//
-    $typelog = "Réussite";
+    $typelog = "Information";
     $desclog = 'Création de la bonne pratique "'.$nombp.'" id='.$idbp;
     $loginlog = $_SESSION['name'];
     include '/var/www/r2c.uca-project.com/Forms/addLogs.php';
@@ -63,7 +63,7 @@
         $request->execute();
       }
       //Log d'ajout de relation programme-BP//
-      $typelog = "Réussite";
+      $typelog = "Information";
       $desclog = 'Création des relations programme-bonne pratique pour "'.$nombp.'" id='.$idbp;
       $loginlog = $_SESSION['name'];
       include '/var/www/r2c.uca-project.com/Forms/addLogs.php';
@@ -76,7 +76,7 @@
         $request->execute();
       }
       //Log d'ajout de relation mot clef-BP//
-      $typelog = "Réussite";
+      $typelog = "Information";
       $desclog = 'Création des relations mot clef-bonne pratique pour "'.$nombp.'" id='.$idbp;
       $loginlog = $_SESSION['name'];
       include '/var/www/r2c.uca-project.com/Forms/addLogs.php';
@@ -87,7 +87,7 @@
     header('Location: ../Validation/validation.php?message='.$message);
   } else {
     //Log d'erreur de création de BP//
-    $typelog = "Erreur";
+    $typelog = "Warning";
     $desclog = 'Erreur lors de la création de la bonne pratique certains parametres sont manquants';
     $loginlog = $_SESSION['name'];
     include '/var/www/r2c.uca-project.com/Forms/addLogs.php';

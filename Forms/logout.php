@@ -22,7 +22,7 @@
   $request->execute();
 
   //Log de déconnexion//
-  $typelog = "Déconnexion";
+  $typelog = "Information";
   if(!isset($desclog)){
     $desclog = "Déconnexion manuelle réussie";
   }

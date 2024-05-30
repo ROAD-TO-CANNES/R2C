@@ -26,7 +26,7 @@
       $request->execute();
 
       //Log de désactivation de BP//
-      $typelog = "Réussite";
+      $typelog = "Information";
       $desclog = 'Désactivation de la bonne pratique "'.$nombp.'" id='.$idBP;
       $loginlog = $_SESSION['name'];
       include '/var/www/r2c.uca-project.com/Forms/addLogs.php';
@@ -36,7 +36,7 @@
       $request->execute();
 
       //Log d'activation de BP//
-      $typelog = "Réussite";
+      $typelog = "Information";
       $desclog = 'Activation de la bonne pratique "'.$nombp.'" id='.$idBP;
       $loginlog = $_SESSION['name'];
       include '/var/www/r2c.uca-project.com/Forms/addLogs.php';
@@ -47,8 +47,8 @@
     };
   } else {
     //Log d'erreur de désactivation/activation de BP//
-    $typelog = "Erreur";
-    $desclog = 'Erreur lors de la désactivation/activation de la bonne pratique certains pparametres sont manquants';
+    $typelog = "Warning";
+    $desclog = 'Erreur lors de la désactivation/activation de la bonne pratique certains parametres sont manquants';
     $loginlog = $_SESSION['name'];
     include '/var/www/r2c.uca-project.com/Forms/addLogs.php';
     header('Location: ../Validation/validation.php?message=ed');

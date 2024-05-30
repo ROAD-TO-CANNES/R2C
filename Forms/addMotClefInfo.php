@@ -32,7 +32,7 @@
         $request = $BDD->prepare($sql);
         $request->execute();
         //Log d'ajout de mot clef//
-        $typelog = "Réussite";
+        $typelog = "Information";
         $desclog = 'Ajout du mot clef "'.$newMotClef.'" à la bonne pratique id='.$idbp;
         $loginlog = $_SESSION['name'];
         include '/var/www/r2c.uca-project.com/Forms/addLogs.php';
@@ -40,7 +40,7 @@
         header('Location: ../Accueil/accueil.php?info='.$idbp);
       } else {
         //Log d'erreur d'ajout de mot clef//
-        $typelog = "Erreur";
+        $typelog = "Warning";
         $desclog = 'Erreur lors de l\'ajout du mot clef "'.$newMotClef.'" à la bonne pratique id='.$idbp.' le mot clef est déjà associé à la bonne pratique';
         $loginlog = $_SESSION['name'];
         include '/var/www/r2c.uca-project.com/Forms/addLogs.php';
@@ -52,7 +52,7 @@
       $request = $BDD->prepare($sql);
       $request->execute();
       //Log d'ajout de mot clef//
-      $typelog = "Réussite";
+      $typelog = "Information";
       $desclog = 'Création du mot clef "'.$newMotClef.'"';
       $loginlog = $_SESSION['name'];
       include '/var/www/r2c.uca-project.com/Forms/addLogs.php';
@@ -68,7 +68,7 @@
       $request = $BDD->prepare($sql);
       $request->execute();
       //Log d'ajout de mot clef//
-      $typelog = "Réussite";
+      $typelog = "Information";
       $desclog = 'Ajout du mot clef "'.$newMotClef.'" à la bonne pratique id='.$idbp;
       $loginlog = $_SESSION['name'];
       include '/var/www/r2c.uca-project.com/Forms/addLogs.php';
@@ -78,7 +78,7 @@
     }
   } else {
     //Log d'erreur d'ajout de mot clef//
-    $typelog = "Erreur";
+    $typelog = "Warning";
     $desclog = 'Erreur lors de la création du mot clef certains parametres sont manquants';
     $loginlog = $_SESSION['name'];
     include '/var/www/r2c.uca-project.com/Forms/addLogs.php';

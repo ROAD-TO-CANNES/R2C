@@ -23,7 +23,7 @@
     $request->execute();
 
     //Log de suppression de BP//
-    $typelog = "Réussite";
+    $typelog = "Information";
     $desclog = 'Suppression de la bonne pratique "'.$nombp.'" id='.$bpToDelete;
     $loginlog = $_SESSION['name'];
     include '/var/www/r2c.uca-project.com/Forms/addLogs.php';
@@ -31,7 +31,7 @@
     header('Location: ../Accueil/accueil.php');
   } else {
     //Log d'erreur de suppression de BP//
-    $typelog = "Erreur";
+    $typelog = "Warning";
     $desclog = 'Erreur lors de la suppression de la bonne pratique certains parametres sont manquants';
     $loginlog = $_SESSION['name'];
     include '/var/www/r2c.uca-project.com/Forms/addLogs.php';
