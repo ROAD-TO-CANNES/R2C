@@ -6,13 +6,19 @@ body {
 }
 
 #filtre {
-  width: 25px;
-  height: 20px;
+  color: white;
+  background: grey;
+  border: solid 1px black;
+  border-radius: 555px;
+  padding: 5px 10px;
+  margin: 1px;
+  height: 4vh;
+  width: 5vw;
 }
 
 #filtre img {
-  width: 90%;
-  height: 80%;
+  width: 20px;
+  margin-bottom: -5px;
 }
 
 .top {
@@ -30,6 +36,22 @@ body {
   margin: 0;
   font-size: 170%;
   font-weight: normal;
+}
+
+input[type="date"],
+select[name="user"],
+select[name="action"] {
+  color: white;
+  background: grey;
+  border: solid 1px black;
+  border-radius: 555px;
+  padding: 5px 10px;
+  margin: 1px;
+  height: 4vh;
+}
+
+input[type="date"] {
+  height: 2.7vh;
 }
 
 .content {
@@ -77,4 +99,43 @@ body {
 }
 .content-table tbody tr:last-child {
   border-bottom: 2px solid #34a5d7;
+}
+
+.bottom {
+  margin: 0 10vw;
+  width: 80vw;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 1vh;
+}
+
+.bottom .nav {
+  width: 22vw;
+}
+
+.nav-btn {
+  padding: 1%;
+  border: solid 2px grey;
+  border-radius: 5px;
+  background: darkgrey;
+  text-decoration: none;
+  color: white;
+  display: inline-block;
+  width: 10vw;
+  text-align: center;
+  height: 100%;
+}
+
+.inactive {
+  border-color: rgb(201, 201, 201);
+  background: lightgrey;
+}
+
+#suivant {
+  float: right;
+}
+
+#precedent {
+  float: left;
 }

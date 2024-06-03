@@ -56,57 +56,99 @@
         </thead>
         <tbody>
           <?php
-          if (isset($_GET['date']) && isset($_GET['user']) && isset($_GET['action'])) {
-            $datea = '%' . $_GET['date'] . '%';
-            $login = '%' . $_GET['user'] . '%';
-            $type = '%' . $_GET['action'] . '%';
-            $sql = "SELECT * FROM LOGS WHERE datea LIKE '$datea' AND login LIKE '$login' AND desca LIKE '$type' ORDER BY datea DESC;";
-            $request = $BDD->prepare($sql);
-            $request->execute();
-            $logs = $request->fetchAll();
-          } else {
-            $sql = "SELECT * FROM LOGS WHERE idlog > 0 ORDER BY datea DESC;";
-            $request = $BDD->prepare($sql);
-            $request->execute();
-            $logs = $request->fetchAll();
-          }
+            $conditions = [];
+            $params = [];
 
-          if (isset($_GET['page'])) {
-            $page = $_GET['page'];
-          } else {
-            $page = 1;
-          }
-
-          $start = ($page - 1) * 20;
-          $end = $start + 20;
-          $logs = array_slice($logs, $start, $end);
-
-          foreach ($logs as $log) {
-            $date = date('d/m/Y \à H\hi, s\s', strtotime($log['datea']));
-
-            if ($log['type'] == 'Information') {
-              $type = '<td>Information</td>';
-            } elseif ($log['type'] == 'Warning') {
-              $type = '<td style="color: orange;">Warning</td>';
-            } elseif ($log['type'] == 'Alert') {
-              $type = '<td style="color: red;">Alert</td>';
+            if (isset($_GET['date']) && !empty($_GET['date'])) {
+              $conditions[] = "datea LIKE ?";
+              $params[] = '%' . $_GET['date'] . '%';
             }
 
-            echo '<tr>';
-              echo '<td>' . $date . '</td>';
-              echo $type;
-              echo '<td>' . $log['desca'] . '</td>';
-              echo '<td>' . $log['login'] . '</td>';
-            echo '</tr>';
-          }
+            if (isset($_GET['user']) && !empty($_GET['user'])) {
+              $conditions[] = "login LIKE ?";
+              $params[] = '%' . $_GET['user'] . '%';
+            }
+
+            if (isset($_GET['action']) && !empty($_GET['action'])) {
+              $conditions[] = "type LIKE ?";
+              $params[] = '%' . $_GET['action'] . '%';
+            }
+
+            $sql = "SELECT * FROM LOGS";
+
+            if (!empty($conditions)) {
+              $sql .= " WHERE " . implode(" AND ", $conditions);
+            }
+
+            $sql .= " ORDER BY datea DESC";
+
+            $request = $BDD->prepare($sql);
+            $request->execute($params);
+            $logsAll = $request->fetchAll();
+
+            if (isset($_GET['page'])) {
+              $page = $_GET['page'];
+            } else {
+              $page = 1;
+            }
+
+            $size = 20;
+
+            $start = ($page - 1) * $size;
+            $end = $start + $size;
+            $logs = array_slice($logsAll, $start, $size);
+
+            foreach ($logs as $log) {
+              $date = date('d/m/Y \à H\hi, s\s', strtotime($log['datea']));
+
+              if ($log['type'] == 'Information') {
+                $type = '<td>Information</td>';
+              } elseif ($log['type'] == 'Warning') {
+                $type = '<td style="color: orange;">Warning</td>';
+              } elseif ($log['type'] == 'Alert') {
+                $type = '<td style="color: red;">Alert</td>';
+              }
+
+              echo '<tr>';
+                echo '<td>' . $date . '</td>';
+                echo $type;
+                echo '<td>' . $log['desca'] . '</td>';
+                echo '<td>' . $log['login'] . '</td>';
+              echo '</tr>';
+            }
           ?>
         </tbody>
       </table>
     </div>
-    <p>20 résultats affichés</p>
-    <a href="?page=<?= $page - 1 ?>">Page précédente</a>
-    <a href="?page=<?= $page + 1 ?>">Page suivante</a>
-    <?= $start.'-'.$end ?>
+    <div class="bottom">
+      <p><?= $size ?> résultats affichés</p>
+      <?php
+        // Récupérer le nombre total de logs correspondant aux critères de filtrage
+        $totalLogs = count($logsAll);
+        
+        if ($totalLogs > $end) {
+          echo 'Logs '.$start.' à '.$end;
+        } else {
+          echo 'Logs '.$start.' à '.$totalLogs;
+        }
+      ?>
+      <div class="nav">
+        <?php 
+          if ($page == 1 && $totalLogs > $end)  { ?>
+            <a id="precedente" class="nav-btn inactive">Page précédente</a> 
+            <a id="suivant" class="nav-btn" href="?page=<?= $page + 1 ?>">Page suivante</a>
+        <?php 
+          } elseif ($page > 1 && $totalLogs > $end) { ?>
+            <a id="precedente" class="nav-btn" href="?page=<?= $page - 1 ?>">Page précédente</a>
+            <a id="suivant" class="nav-btn" href="?page=<?= $page + 1 ?>">Page suivante</a>
+        <?php 
+          } elseif ($page > 1 && $totalLogs <= $end) { ?>
+            <a id="precedente" class="nav-btn" href="?page=<?= $page - 1 ?>">Page précédente</a>
+            <a id="suivant" class="nav-btn inactive">Page suivante</a>
+        <?php 
+          }?>
+      </div>
+    </div>
   </body>
   <script src="../timer.js"></script>
 </html>
