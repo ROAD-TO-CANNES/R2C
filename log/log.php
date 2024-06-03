@@ -121,14 +121,17 @@
       </table>
     </div>
     <div class="bottom">
-      <p><?= $size ?> résultats affichés</p>
       <?php
         // Récupérer le nombre total de logs correspondant aux critères de filtrage
         $totalLogs = count($logsAll);
         
         if ($totalLogs > $end) {
+          $aff = $end - $start;
+          echo '<p>'.$aff.' résultats affichés</p>';
           echo 'Logs '.$start.' à '.$end;
         } else {
+          $aff = $totalLogs - $start;
+          echo '<p>'.$aff.' résultats affichés</p>';
           echo 'Logs '.$start.' à '.$totalLogs;
         }
       ?>
