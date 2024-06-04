@@ -128,11 +128,11 @@
         if ($totalLogs > $end) {
           $aff = $end - $start;
           echo '<p>'.$aff.' résultats affichés</p>';
-          echo 'Logs '.$start.' à '.$end;
+          echo 'Page-'.$page.' Logs '.$start.' à '.$end;
         } else {
           $aff = $totalLogs - $start;
           echo '<p>'.$aff.' résultats affichés</p>';
-          echo 'Logs '.$start.' à '.$totalLogs;
+          echo 'Page-'.$page.' Logs '.$start.' à '.$totalLogs;
         }
       ?>
       <div class="nav">
