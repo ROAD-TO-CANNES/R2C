@@ -55,7 +55,7 @@
       echo('
         <img src="../Img/default_pp.png" alt="photo de profile" class="pp">
         <p>
-          Vous n\'etes pas 
+          Vous n\'êtes pas 
           <br> 
           connecté
         </p>'
