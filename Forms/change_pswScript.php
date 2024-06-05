@@ -9,8 +9,12 @@
   $request->execute();
   $specspsw = $request->fetch();
 
-  if(isset($_POST['old_psw']) && isset($_POST['new_psw']) && isset($_POST['new_psw2'])){
-    $old_psw = $_POST['old_psw'];
+  if(isset($_POST['new_psw']) && isset($_POST['new_psw2'])){
+    if (isset($_POST['old_psw'])) {
+      $old_psw = $_POST['old_psw'];
+    } elseif (isset($_POST['login'])) {
+      $login = $_POST['login'];
+    } 
     $new_psw = $_POST['new_psw'];
     $new_psw_hash = password_hash($new_psw, PASSWORD_DEFAULT);
     $new_psw2 = $_POST['new_psw2'];
@@ -24,11 +28,40 @@
           if ($nbspecial >= $specspsw['specialchar']) {
             $nbupper = preg_match_all("/[A-Z]/", $new_psw);//Nombre de majuscules
             if ($nbupper >= $specspsw['uppercase']) {
-              if($new_psw != $old_psw) {
-                //Sécurisez les entrées//
-                $new_psw_seq = $BDD->quote($new_psw_hash);
-                //---------Sécurisez les entrées---------//
+              //Sécurisez les entrées//
+              $new_psw_seq = $BDD->quote($new_psw_hash);
+              if (isset($login)) {
+                $sql = "SELECT mdp FROM USER WHERE login LIKE '".$login."'";
+                $request = $BDD->prepare($sql);
+                $request->execute();
+                $result = $request->fetch();
 
+                //Vérification de l'ancien mot de passe
+                if (password_verify($new_psw, $result['mdp'])) {
+                  //log de tentative de changement de mot de passe//
+                  $typelog = "Warning";
+                  $desclog = "Tentative de changement de mot de passe échouée pour le compte ".$login." le nouveau mot de passe doit être différent de l'ancien";
+                  $loginlog = $_SESSION['name'];
+                  include '/var/www/r2c.uca-project.com/Forms/addLogs.php';
+                  //Envoie d'erreur//
+                  $response = 3;//Le nouveau mot de passe doit être différent de l'ancien
+                  echo json_encode($response);
+                  exit();
+                } else {
+                  $sql = "UPDATE USER SET mdp=$new_psw_seq WHERE login LIKE '".$login."'";
+                  $request = $BDD->prepare($sql);
+                  $request->execute();
+                  //log de changement de mot de passe//
+                  $typelog = "Information";
+                  $desclog = "Changement de mot de passe du compte ".$login." réussi";
+                  $loginlog = $_SESSION['name'];
+                  include '/var/www/r2c.uca-project.com/Forms/addLogs.php';
+                  //Envoie de confirmation//
+                  $response = 0;
+                  echo json_encode($response);
+                  exit();
+                }
+              } elseif($new_psw != $old_psw) {
                 //Requete SQL//
                 $sql = "SELECT mdp FROM USER WHERE login LIKE '".$_SESSION['name']."'";
                 $request = $BDD->prepare($sql);

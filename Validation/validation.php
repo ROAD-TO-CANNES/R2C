@@ -42,6 +42,12 @@
         } elseif ($_GET['message'] == "ecpdf") {
           echo('<p style="color:red">Erreure lors de la création du fichier PDF</p>');
           include '/var/www/r2c.uca-project.com/Validation/error.php';
+        } elseif ($_GET['message'] == "suppruser") {
+          echo('<p>Utilisateur supprimé avec succès</p>');
+          include '/var/www/r2c.uca-project.com/Validation/ok.php';
+        } elseif ($_GET['message'] == "ersuppruser") {
+          echo('<p style="color:red">Une erreur est survenue lors de la suppression de l\'utilisateur</p>');
+          include '/var/www/r2c.uca-project.com/Validation/error.php';
         } else {
           echo('<p style="color:red">Error</p>');
           include '/var/www/r2c.uca-project.com/Validation/error.php';
