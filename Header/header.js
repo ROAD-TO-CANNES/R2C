@@ -15,7 +15,7 @@ $(".fond_popup").on("click", function () {
 });
 
 // Change password popup
-$(".changepsw").on("click", function () {
+$(".changeownpsw").on("click", function () {
   $(".psw-popup").addClass("active-fond");
   $(".fond_psw").addClass("active-fond");
   document.body.classList.add("noScroll");

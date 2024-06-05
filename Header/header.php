@@ -39,7 +39,7 @@
               </div>
             </div>');
             if($_SESSION['droits'] == 1) {
-              echo('<span class="changepsw">Modifier votre mot de passe</span>');
+              echo('<span class="changeownpsw">Modifier votre mot de passe</span>');
             };
             echo('
             <form method="post" action="../Forms/logout.php">

@@ -162,7 +162,7 @@ header {
   font-family: "Roboto", sans-serif;
 }
 
-.changepsw {
+.changeownpsw {
   font-size: 70%;
   font-family: sans-serif;
   text-align: start;
@@ -175,7 +175,7 @@ header {
   cursor: pointer;
 }
 
-.changepsw:hover {
+.changeownpsw:hover {
   color: #000000;
 }
 
