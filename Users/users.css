@@ -87,7 +87,9 @@ body {
 }
 
 .line h2 {
-  font-weight: normal;
+  font-weight: 700;
+  width: 10vw;
+  margin-left: 1vw;
 }
 
 .btns {
@@ -132,7 +134,7 @@ body {
   height: 3vh;
   cursor: pointer;
   transition: 0.3s;
-  margin: 10px;
+  margin: 10px 1vw 10px 10px;
 }
 
 .corbeille:hover {

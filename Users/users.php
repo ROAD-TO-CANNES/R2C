@@ -43,16 +43,19 @@
           } 
 
           if ($users[$i]['tentativedelogin'] >= 3) {
-            $status = 'Bloqué';
+            $status = '<p style="font-weight: 700; color: #951e1e; width: 50px;">Bloqué</p>';
           } else {
-            $status = 'Actif';
+            $status = '<p style="font-weight: 700; color: #4ed34e; width: 50px;">Actif</p>';
           }
+          setlocale(LC_TIME, 'fr_FR', 'fra');
+          $date = date_create_from_format('Y-m-d', $users[$i]['dateus']);
+          $formattedDate = strftime('%d %B %Y', $date->getTimestamp());
       ?>
         <div class="line">
           <h2><?= $name?></h2>
-          <p><?= $role?></p>
-          <p><?= $status?></p>
-          <p>Créé le <?= $users[$i]['dateus']?></p>
+          <p style="width: 80px;"><?= $role?></p>
+          <?= $status?>
+          <p style="width: 12vw;">Créé le <?= $formattedDate?></p>
           <div class="btns">
             <?php if ($status == 'Bloqué') { ?>
               <form action="../Forms/unlockUser.php" method="POST">

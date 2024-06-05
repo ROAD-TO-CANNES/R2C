@@ -151,14 +151,16 @@
 
           echo('
             <div class="bp">
-              <h2>'.$nombp.'</h2>');
-              if ($statut == 1) {
-                echo('<input type="checkbox" id="bp'.$i.'" name="checkedBp" value="'.$idbp.'" checked />' );
-              } elseif ($statut == 0) {
-                echo('<input type="checkbox" id="bp'.$i.'" name="checkedBp" value="'.$idbp.'" />' );
-              };
-              echo ('
-              <label for="bp'.$i.'">Selectionner la bonne pratique</label>  
+              <h2>'.$nombp.'</h2>
+              <div class="selectionbp">
+                <label for="bp'.$i.'">Selectionner la bonne pratique :</label>');
+                if ($statut == 1) {
+                  echo('<input type="checkbox" id="bp'.$i.'" name="checkedBp" value="'.$idbp.'" checked />' );
+                } elseif ($statut == 0) {
+                  echo('<input type="checkbox" id="bp'.$i.'" name="checkedBp" value="'.$idbp.'" />' );
+                };
+                echo ('
+              </div>
               <button class="infobtn" id="info'.$idbp.'">Voir la bonne pratique</button>
               <div class="infopopup" id="info'.$idbp.'">');
                 include '/var/www/r2c.uca-project.com/Forms/infoBp.php';
