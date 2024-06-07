@@ -2,6 +2,10 @@
   session_start(); 
   include '/var/www/r2c.uca-project.com/Forms/checkSession.php';
 
+  if ($_SESSION['droits'] < 1) {
+    header('Location: ../Accueil/accueil.php');
+  }
+
   if (isset($_GET['changepsw'])) {
     $pswname = $_GET['changepsw'];
   }
@@ -32,6 +36,21 @@
     </div>
     <div class="scroll">
       <?php
+        $months = array(
+          1 => 'janvier',
+          2 => 'février',
+          3 => 'mars',
+          4 => 'avril',
+          5 => 'mai',
+          6 => 'juin',
+          7 => 'juillet',
+          8 => 'août',
+          9 => 'septembre',
+          10 => 'octobre',
+          11 => 'novembre',
+          12 => 'décembre'
+        );
+        
         foreach ($users as $i => $user) { 
           $name = $users[$i]['login'];
           if ($users[$i]['droits'] == 2) {
@@ -47,9 +66,9 @@
           } else {
             $status = '<p style="font-weight: 700; color: #4ed34e; width: 50px;">Actif</p>';
           }
-          setlocale(LC_TIME, 'fr_FR', 'fra');
+
           $date = date_create_from_format('Y-m-d', $users[$i]['dateus']);
-          $formattedDate = strftime('%d %B %Y', $date->getTimestamp());
+          $formattedDate = date_format($date, 'd') . ' ' . $months[date_format($date, 'n')] . ' ' . date_format($date, 'Y');
       ?>
         <div class="line">
           <h2><?= $name?></h2>

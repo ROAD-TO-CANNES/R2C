@@ -2,7 +2,7 @@
   session_start(); 
   include '/var/www/r2c.uca-project.com/Forms/checkSession.php';
 
-  if (!$_SESSION['droits'] > 1) {
+  if ($_SESSION['droits'] < 1) {
     header('Location: ../Accueil/accueil.php');
   }
 

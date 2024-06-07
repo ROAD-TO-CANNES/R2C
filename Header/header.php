@@ -63,10 +63,11 @@
     };
   ?>
 </div>
-
-<div class="psw-popup">
-  <?php include '/var/www/r2c.uca-project.com/Forms/change_psw.php' ?>
-</div>
+<?php if ($_SESSION['droits'] == 1) {?>
+  <div class="psw-popup">
+    <?php include '/var/www/r2c.uca-project.com/Forms/change_psw.php' ?>
+  </div>
+<?php } ?>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script src="../Header/header.js"></script>
