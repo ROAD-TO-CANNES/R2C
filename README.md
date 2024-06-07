@@ -18,7 +18,6 @@ Le site de Thalès est conçu pour offrir une expérience utilisateur intuitive 
 - **Connexion sécurisée** : Connectez-vous avec votre ID et mot de passe.
 - **Tableau de bord personnalisé** : Accédez rapidement à vos informations et tâches.
 - **Outils collaboratifs** : Partagez et collaborez facilement avec vos collègues.
-- **Support intégré** : Obtenez de l'aide directement depuis le site.
 
 ## Installation
 Aucune installation n'est nécessaire pour utiliser le site de Thalès. Vous pouvez accéder à la plateforme via n'importe quel navigateur web moderne.
@@ -39,9 +38,9 @@ Une fois connecté, vous accéderez à votre tableau de bord personnalisé. Util
 - **Support** : N'hésitez pas à contacter le support en cas de problème ou de question.
 
 ## Licence
-Ce projet est sous licence ##RoadToCannes. Veuillez consulter le fichier LICENSE pour plus d'informations.
+Ce projet est sous licence **RoadToCannes**. Veuillez consulter le fichier LICENSE pour plus d'informations.
 
 ## Support
-Pour toute question ou problème, veuillez contacter notre équipe de support à l'adresse email suivante : support@thales.com.
+Pour toute question ou problème, veuillez contacter l'administrateur ou le super-administrateur.
 
 Merci d'utiliser le site de Thalès !
