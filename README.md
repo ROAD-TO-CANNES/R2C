@@ -38,7 +38,7 @@ Une fois connecté, vous accéderez à votre tableau de bord personnalisé. Util
 - **Support** : N'hésitez pas à contacter le support en cas de problème ou de question.
 
 ## Licence
-Ce projet est sous licence **RoadToCannes**. Veuillez consulter le fichier LICENSE pour plus d'informations.
+Ce projet est sous licence **Road2Cannes**. Veuillez consulter le fichier LICENSE pour plus d'informations.
 
 ## Support
 Pour toute question ou problème, veuillez contacter l'administrateur ou le super-administrateur.
