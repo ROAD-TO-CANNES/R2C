@@ -174,7 +174,7 @@
                 <form action="../Accueil/enableDisableBP.php" method="post">');
               }
               echo('
-                  <img id="'.$idbp.'" class="corbeille" src="../Img/corbeille.png" alt="corbeille">
+                  <img '); if($_SESSION['droits'] == 0){echo 'style="margin-right: 1vw"';}; echo 'id="'.$idbp.'" class="corbeille" src="../Img/corbeille.png" alt="corbeille">
                   <div id="'.$idbp.'" class="delConfirm">
                     <p>Êtes-vous sûr de vouloir supprimer <br/> la bonne pratique "'.$nombp.'" ?</p>
                     <input type="hidden" name="idbp" value="'.$idbp.'">
@@ -182,7 +182,7 @@
                     <button type="button">Non</button>
                   </div>
                 </form>   
-                ');
+                ';
               if ($_SESSION['droits'] > 0) {
                 if ($statut == 1) {
                   echo('
