@@ -1,5 +1,5 @@
 # Groupe Thalès 8
-crée par Tom - Tarik - Hugo - Elouan
+_crée par Tom - Tarik - Hugo - Elouan_
 
 Bienvenue sur le site R2C, un site destiner a gérer les bonnes pratiques liés aux satellites de Thalès ! Ce document vous guidera à travers les étapes d'installation, d'utilisation et de bonnes pratiques pour tirer le meilleur parti de notre plateforme.
 
