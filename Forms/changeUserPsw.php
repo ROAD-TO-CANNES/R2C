@@ -17,6 +17,12 @@
 >
   <h1>Changer le mot de passe</br>de l'utilisateur <?= $pswname ?></h1>
   <input type="hidden" name="login" value="<?= $pswname ?>">
+  <label for="new_psw" class="infomsg">
+    <p>Le mot de passe doit faire un minimum de <?=$specspsw['size']?> caracteres 
+      et contenir au moins <?=$specspsw['number']?> chiffres, <?=$specspsw['uppercase']?> majuscules 
+      et <?=$specspsw['specialchar']?> caratères spéciaux.
+    </p>
+  </label>
   <input
     type="password"
     name="new_psw"

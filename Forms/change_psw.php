@@ -8,7 +8,6 @@
   $specspsw = $request->fetch(); 
 ?>
 <link rel="stylesheet" href="../Forms/change_psw.css" />
-
 <form
   id="change-password-form"
   class="change-password-form"
@@ -16,6 +15,12 @@
   method="post"
 >
   <h1>Changer le mot de passe</h1>
+  <label for="old_psw" class="infomsg">
+    <p>Votre nouveau mot de passe doit faire un minimum de <?=$specspsw['size']?> caracteres 
+      et contenir au moins <?=$specspsw['number']?> chiffres, <?=$specspsw['uppercase']?> majuscules 
+      et <?=$specspsw['specialchar']?> caratères spéciaux.
+    </p>
+  </label>
   <input
     type="password"
     id="old_psw"
