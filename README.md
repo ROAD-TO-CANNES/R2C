@@ -44,4 +44,4 @@ Ce projet est sous licence **Road2Cannes**. Veuillez consulter le fichier LICENS
 ## Support
 Pour toute question ou problème, veuillez contacter l'administrateur ou le super-administrateur.
 
-Merci d'utiliser le site de Thalès !
+Merci d'utiliser notre site !
