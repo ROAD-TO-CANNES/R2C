@@ -1,6 +1,6 @@
 # R2C
 
-Bienvenue sur le site de Thalès ! Ce document vous guidera à travers les étapes d'installation, d'utilisation et de bonnes pratiques pour tirer le meilleur parti de notre plateforme.
+Bienvenue sur le site R2C, un site destiner a gérer les bonnes pratiques liés aux satellites de Thalès ! Ce document vous guidera à travers les étapes d'installation, d'utilisation et de bonnes pratiques pour tirer le meilleur parti de notre plateforme.
 
 ## Table des matières
 1. [Introduction](#introduction)
