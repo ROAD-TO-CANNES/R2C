@@ -31,7 +31,7 @@
     <div class="top">
       <h1>Gérer les utilisateurs</h1>
       <div class="btns">
-        <button class="btn">Créer un nouvel utilisateur</button>
+        <a href="../Users/newUser.php"><button class="btn">Créer un nouvel utilisateur</button></a>
       </div>
     </div>
     <div class="scroll">
@@ -62,9 +62,11 @@
           } 
 
           if ($users[$i]['tentativedelogin'] >= 3) {
-            $status = '<p style="font-weight: 700; color: #951e1e; width: 50px;">Bloqué</p>';
+            $affstatus = '<p style="font-weight: 700; color: #951e1e; width: 50px;">Bloqué</p>';
+            $status = 0;
           } else {
-            $status = '<p style="font-weight: 700; color: #4ed34e; width: 50px;">Actif</p>';
+            $affstatus = '<p style="font-weight: 700; color: #4ed34e; width: 50px;">Actif</p>';
+            $status = 1;
           }
 
           $date = date_create_from_format('Y-m-d', $users[$i]['dateus']);
@@ -73,17 +75,17 @@
         <div class="line">
           <h2><?= $name?></h2>
           <p style="width: 80px;"><?= $role?></p>
-          <?= $status?>
+          <?= $affstatus?>
           <p style="width: 12vw;">Créé le <?= $formattedDate?></p>
           <div class="btns">
-            <?php if ($status == 'Bloqué') { ?>
+            <?php if ($status == 0) { ?>
               <form action="../Forms/unlockUser.php" method="POST">
                 <input type="hidden" name="userToUnlock" value="<?=$name?>">
                 <button class="btn" type="submit">Débloquer</button>
               </form>
             <?php } else { ?>
               <button class="btn inactive">Débloquer</button>
-            <?php } ?>
+            <?php }?>
             <form action="" method="get">
               <input type="hidden" name="changepsw" value="<?= $name?>">
               <button class="btn" type="submit">Modifier le mot de passe</button>
