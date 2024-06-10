@@ -22,7 +22,7 @@
 
     // Log de génération de PDF
     $typelog = "Information";
-    $desclog = 'Génération d\'un fichier PDF des bonnes pratiques '.$param;
+    $desclog = 'Génération d\'un fichier PDF des bonnes pratiques '.$listebp;
     $loginlog = $_SESSION['name'];
     include '/var/www/r2c.uca-project.com/Forms/addLogs.php';
 

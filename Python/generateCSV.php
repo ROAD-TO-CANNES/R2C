@@ -4,11 +4,17 @@
 
   if(isset($_POST['generate_csv'])) {
     $bps = json_decode($_POST['generate_csv']);
-    $param = '';
+    $phase = "ph[".substr($_POST['generate_csv-phase'], 1)."]";
+    $prog = "pr[".substr($_POST['generate_csv-prog'], 1)."]";
+    $keyword = "kw[".substr($_POST['generate_csv-keyword'], 1.)."]";
+    $listebp = 'bp[';
     foreach ($bps as $bp) {
-      $param .= $bp . ' ';
+      $listebp .= $bp . ' ';
     }
-    $param = trim($param);
+    $listebp = trim($listebp);
+    $listebp .= ']';
+
+    $param = $listebp . ' ' . $phase . ' ' . $prog . ' ' . $keyword;
     $command = "/usr/bin/python3 /var/www/r2c.uca-project.com/Python/ProgToCSV.py $param";
     shell_exec($command);
     $csv_filename = "Bonnes_Pratiques.csv";
@@ -16,7 +22,7 @@
 
     // Log de génération de CSV
     $typelog = "Information";
-    $desclog = 'Génération d\'un fichier CSV des bonnes pratiques '.$param;
+    $desclog = 'Génération d\'un fichier CSV des bonnes pratiques '.$listebp;
     $loginlog = $_SESSION['name'];
     include '/var/www/r2c.uca-project.com/Forms/addLogs.php';
 
