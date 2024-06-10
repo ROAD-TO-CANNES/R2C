@@ -14,6 +14,22 @@
 
   if (isset($_POST['username']) && isset($_POST['newuserpsw']) && isset($_POST['newuserpsw2']) && isset($_POST['role'])) {
     $username = $_POST['username'];
+    $sql = "SELECT login FROM USER WHERE login LIKE '".$username."'";
+    $request = $BDD->prepare($sql);
+    $request->execute();
+    $result = $request->fetch();
+    if ($result) {
+      //logs d'erreur
+      $typelog = "Warning";
+      $desclog = "Erreur lors de la création d'un utilisateur, le login '".$username."' est déjà utilisé";
+      $loginlog = $_SESSION['name'];
+      include '/var/www/r2c.uca-project.com/Forms/addLogs.php';
+
+      $response = 8;//Le login est déjà utilisé
+      echo json_encode($response);
+      exit();
+    }
+
     $newuserpsw = $_POST['newuserpsw'];
     $newuserpsw2 = $_POST['newuserpsw2'];
     $role = $_POST['role'];

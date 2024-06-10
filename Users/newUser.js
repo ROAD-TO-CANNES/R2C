@@ -33,6 +33,10 @@ document
           case 7:
             document.getElementById("newUser-form").reset();
             window.location.href = "../Users/users.php";
+            break;
+          case 8:
+            $("#errusr7").css("display", "block");
+            break;
           default:
             break;
         }
@@ -48,6 +52,7 @@ $(".annulerUser").on("click", function () {
   $("#errusr4").css("display", "none");
   $("#errusr5").css("display", "none");
   $("#errusr6").css("display", "none");
+  $("#errusr7").css("display", "none");
   document.getElementById("newUser-form").reset();
 });
 
@@ -59,4 +64,5 @@ $("#enregistrerUser").on("click", function () {
   $("#errusr4").css("display", "none");
   $("#errusr5").css("display", "none");
   $("#errusr6").css("display", "none");
+  $("#errusr7").css("display", "none");
 });
