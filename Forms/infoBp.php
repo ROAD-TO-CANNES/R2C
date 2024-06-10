@@ -4,7 +4,12 @@
   <h1>Informations de la bonne pratique : "'.$nombp.'"</h1>
   <h2>Phase : '.$nomphase.'</h2>
   <h2>Statut : '.$statutAff.'</h2> 
-  <div class="divProg">
+  <div class="wrapper">
+    <div class="textbp">
+      <p>'.$descbp.'</p>
+    </div>
+  </div>
+  <div class="divProg" style="margin: 0">
     <select id="SP'.$idbp.'" class="selectProgInfo" name="programme" form="formProg">
       <option class="default_value" value="">Programmes</option>
     ');
@@ -27,7 +32,7 @@
     </div>
   </div>');
   echo('
-  <div class="divMotClef">
+  <div class="divMotClef" style="margin: 0">
     <select id="SM'.$idbp.'" class="selectMotClefInfo" name="motClef" form="formMotClef">
       <option class="default_value" value="">Mots clefs</option>
     ');

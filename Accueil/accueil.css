@@ -165,7 +165,7 @@ body {
   left: 50%;
   transform: translate(-50%, -50%);
   width: 85vw;
-  height: 75vh;
+  height: 80vh;
   background-color: #000000c9;
   border-radius: 15px;
   z-index: 3;
@@ -196,6 +196,45 @@ body {
   width: fit-content;
   padding: 5px;
   margin-left: 10px;
+}
+
+.wrapper {
+  width: calc(60vw + 20px);
+  height: calc(10vh + 20px);
+  border-radius: 15px;
+  background-color: #4b4b4bc2;
+  overflow: hidden;
+}
+
+.textbp::-webkit-scrollbar {
+  width: 8px;
+}
+
+.textbp::-webkit-scrollbar-track {
+  background: rgb(192 192 192);
+  border-radius: 10px;
+}
+
+.textbp::-webkit-scrollbar-thumb {
+  background-color: rgb(106 106 106);
+  border: 2px solid rgb(192 192 192);
+  border-radius: 20px;
+}
+
+.textbp {
+  width: calc(60vw - 10px);
+  height: calc(10vh + 10px);
+  padding: 0px 10px;
+  margin-top: 5px;
+  border-radius: 15px;
+  color: white;
+  overflow-y: scroll;
+  font-size: larger;
+  font-family: monospace;
+}
+
+.textbp p {
+  margin: 0;
 }
 
 .infopopup input {

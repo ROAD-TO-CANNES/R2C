@@ -138,6 +138,7 @@
               $nomphase = $phase['descript'];
             }
           }
+          $descbp = $bpsFiltered[$i]['descbp'];
 
           $sql = "SELECT idprog FROM BONNESPRATIQUES_PROGRAMME WHERE idbp = $idbp";
           $request = $BDD->prepare($sql);
@@ -205,10 +206,16 @@
     </div>
     <form id="pythonPDF" action="../Python/generatePDF.php" method="post">
       <input type="hidden" id="generate_pdf" name="generate_pdf">
+      <input type="hidden" id="generate_pdf-phase" name="generate_pdf-phase">
+      <input type="hidden" id="generate_pdf-keyword" name="generate_pdf-keyword">
+      <input type="hidden" id="generate_pdf-prog" name="generate_pdf-prog">
       <button type="submit" class="pdf_btn"><img src="../Img/pdf.png" alt="PDF">Générer un fichier PDF</button>
     </form>
     <form id="pythonCSV" action="../Python/generateCSV.php" method="post">
       <input type="hidden" id="generate_csv" name="generate_csv" >
+      <input type="hidden" id="generate_csv-phase" name="generate_csv-phase">
+      <input type="hidden" id="generate_csv-keyword" name="generate_csv-keyword">
+      <input type="hidden" id="generate_csv-prog" name="generate_csv-prog">
       <button type="submit" class="csv_btn"><img src="../Img/csv.png" alt="CSV">Générer un fichier CSV</button>
     </form>
     <div class="select-fond_popup"></div> 
