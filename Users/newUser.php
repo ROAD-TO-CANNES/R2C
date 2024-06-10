@@ -68,6 +68,12 @@
       <div id="errusr4" class="errorusr">
         <?php echo '<p>Le mot de passe doit contenir au moins '.$specspsw['uppercase'].' majuscule</p>';?>
       </div>
+      <div id="errusr5" class="errorusr">
+        <p>Le mot de passe ne doit pas contenir le login</p>
+      </div>
+      <div id="errusr6" class="errorusr">
+        <p>Le mot de passe ne doit pas contenir de caractères accentués</p>
+      </div>
       <select id="role" name="role" required>
         <option value="" disabled selected>Choisir un rôle</option>
         <option value="1">Admin</option>
@@ -105,6 +111,12 @@
             $("#errusr4").css("display", "block");
             break;
           case 5:
+            $("#errusr5").css("display", "block");
+            break;
+          case 6:
+            $("#errusr6").css("display", "block");
+            break;
+          case 7:
             document.getElementById("newUser-form").reset();
             window.location.href = "../Users/users.php";
           default:
@@ -120,6 +132,8 @@ $(".annuler").on("click", function () {
   $("#errusr2").css("display", "none");
   $("#errusr3").css("display", "none");
   $("#errusr4").css("display", "none");
+  $("#errusr5").css("display", "none");
+  $("#errusr6").css("display", "none");
   document.getElementById("newUser-form").reset();
 });
 
@@ -129,6 +143,8 @@ $(".enregistrer").on("click", function () {
   $("#errusr2").css("display", "none");
   $("#errusr3").css("display", "none");
   $("#errusr4").css("display", "none");
+  $("#errusr5").css("display", "none");
+  $("#errusr6").css("display", "none");
 });
 
   </script>

@@ -34,6 +34,12 @@ document
           case 7:
             $("#err7").addClass("act");
             break;
+          case 8:
+            $("#err8").addClass("act");
+            break;
+          case 9:
+            $("#err9").addClass("act");
+            break;
           default:
             break;
         }
@@ -49,6 +55,8 @@ $(".annuler").on("click", function () {
   $("#err5").removeClass("act");
   $("#err6").removeClass("act");
   $("#err7").removeClass("act");
+  $("#err8").removeClass("act");
+  $("#err9").removeClass("act");
   $(".psw-popup").removeClass("active-fond");
   $(".fond_psw").removeClass("active-fond");
   document.getElementById("change-password-form").reset();
@@ -62,6 +70,8 @@ $(".valider").on("click", function () {
   $("#err5").removeClass("act");
   $("#err6").removeClass("act");
   $("#err7").removeClass("act");
+  $("#err8").removeClass("act");
+  $("#err9").removeClass("act");
 });
 
 $("#okbtn").on("click", function () {

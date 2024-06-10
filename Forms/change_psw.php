@@ -64,6 +64,12 @@
   <div id="err7" class="error">
     <?php echo '<p>Le mot de passe doit contenir au moins '.$specspsw['uppercase'].' majuscule</p>';?>
   </div>
+  <div id="err8" class="error">
+    <p>Le mot de passe ne doit pas contenir le login de l'utilisateur</p>
+  </div>
+  <div id="err9" class="error">
+    <p>Le mot de passe ne doit pas contenir de caractères accentués</p>
+  </div>
   <button class="valider" type="submit" value="Valider">Valider</button>
   <button class="annuler" type="button">Annuler</button>
 </form>
