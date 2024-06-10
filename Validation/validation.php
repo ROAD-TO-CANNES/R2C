@@ -23,7 +23,10 @@
           include '/var/www/r2c.uca-project.com/Validation/ok.php';
         } elseif ($_GET['message'] == "ep") {
           echo('<p style="color:red">Une erreur est survenue lors de la création du programme</p>');
-          include '/var/www/r2c.uca-project.com/Validation/ok.php';
+          include '/var/www/r2c.uca-project.com/Validation/error.php';
+        } elseif ($_GET['message'] == "eprogexist") {
+          echo('<p style="color:red">Un programme avec ce nom existe déjà</p>');
+          include '/var/www/r2c.uca-project.com/Validation/error.php';
         }  elseif ($_GET['message'] == "cbp") {
           echo('<p>Bonne pratique créée avec succès</p>');
           include '/var/www/r2c.uca-project.com/Validation/ok.php';
