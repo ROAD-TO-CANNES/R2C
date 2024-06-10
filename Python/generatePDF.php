@@ -5,11 +5,17 @@
 
   if(isset($_POST['generate_pdf'])) {
     $bps = json_decode($_POST['generate_pdf']);
-    $param = '';
+    $phase = "ph[".substr($_POST['generate_pdf-phase'], 1)."]";
+    $prog = "pr[".substr($_POST['generate_pdf-prog'], 1)."]";
+    $keyword = "kw[".substr($_POST['generate_pdf-keyword'], 1.)."]";
+    $listebp = 'bp[';
     foreach ($bps as $bp) {
-      $param .= $bp . ' ';
+      $listebp .= $bp . ' ';
     }
-    $param = trim($param);
+    $listebp = trim($listebp);
+    $listebp .= ']';
+
+    $param = $listebp . ' ' . $phase . ' ' . $prog . ' ' . $keyword;
     $command = "/usr/bin/python3 /var/www/r2c.uca-project.com/Python/ProgToPDF.py $param 2>&1";
     shell_exec($command);
     $pdf_filename = "Bonnes_Pratiques.pdf";

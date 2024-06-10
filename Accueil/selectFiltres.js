@@ -11,6 +11,18 @@ $(document).ready(function () {
 
 // Select multiple items
 let divIds = [];
+// Element input avec l'ID "generate_pdf-phase"
+let pdfInputPhase = document.getElementById("generate_pdf-phase");
+// Element input avec l'ID "generate_csv-phase"
+let csvInputPhase = document.getElementById("generate_csv-phase");
+// Element input avec l'ID "generate_pdf-keyword"
+let pdfInputKeyword = document.getElementById("generate_pdf-keyword");
+// Element input avec l'ID "generate_csv-keyword"
+let csvInputKeyword = document.getElementById("generate_csv-keyword");
+// Element input avec l'ID "generate_pdf-prog"
+let pdfInputProg = document.getElementById("generate_pdf-prog");
+// Element input avec l'ID "generate_csv-prog"
+let csvInputProg = document.getElementById("generate_csv-prog");
 
 function updateSelectedItems(selectId, selectedItemsDiv, optionValue = null) {
   const select = document.getElementById(selectId);
@@ -77,10 +89,64 @@ function updateSelectedItems(selectId, selectedItemsDiv, optionValue = null) {
         if (index > -1) {
           divIds.splice(index, 1);
         }
+
+        // Update the input values
+        switch (prefix) {
+          case "PH":
+            pdfInputPhase.value = pdfInputPhase.value.replace(
+              " " + option.value,
+              ""
+            );
+            csvInputPhase.value = csvInputPhase.value.replace(
+              " " + option.value,
+              ""
+            );
+            break;
+          case "PR":
+            pdfInputProg.value = pdfInputProg.value.replace(
+              " " + option.value,
+              ""
+            );
+            csvInputProg.value = csvInputProg.value.replace(
+              " " + option.value,
+              ""
+            );
+            break;
+          case "MC":
+            pdfInputKeyword.value = pdfInputKeyword.value.replace(
+              " " + option.value,
+              ""
+            );
+            csvInputKeyword.value = csvInputKeyword.value.replace(
+              " " + option.value,
+              ""
+            );
+            break;
+          default:
+            break;
+        }
       });
 
       itemDiv.appendChild(removeButton);
       selectedItemsDiv.appendChild(itemDiv);
+
+      // Update the input values
+      switch (prefix) {
+        case "PH":
+          pdfInputPhase.value += " " + option.value;
+          csvInputPhase.value += " " + option.value;
+          break;
+        case "PR":
+          pdfInputProg.value += " " + option.value;
+          csvInputProg.value += " " + option.value;
+          break;
+        case "MC":
+          pdfInputKeyword.value += " " + option.value;
+          csvInputKeyword.value += " " + option.value;
+          break;
+        default:
+          break;
+      }
     }
   });
 }
