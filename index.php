@@ -26,5 +26,6 @@
   </header>
   <body>
     <?php include '/var/www/r2c.uca-project.com/Forms/login_form.php'; ?>
+    <img src="./Img/thales.png" alt="Thales" class="thales">
   </body>
 </html>

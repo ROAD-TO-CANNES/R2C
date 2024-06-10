@@ -9,4 +9,11 @@ body {
   background-attachment: fixed;
 }
 
+.thales {
+  width: 15vw;
+  position: absolute;
+  bottom: 3vh;
+  left: 3vw;
+}
+
 /*---index---*/
