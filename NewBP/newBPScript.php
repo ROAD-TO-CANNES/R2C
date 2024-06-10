@@ -4,6 +4,21 @@
 
   if (isset($_POST['nombp']) && isset($_POST['descbp']) && isset($_POST['phase'])) {
     $nombp = htmlspecialchars($_POST['nombp']);
+    $sql = "SELECT nombp FROM BONNESPRATIQUES WHERE nombp = ?";
+    $request = $BDD->prepare($sql);
+    $request->execute([$nombp]);
+    $result = $request->fetch();
+    if ($result) {
+      //Log d'erreur de création de BP//
+      $typelog = "Warning";
+      $desclog = 'Erreur lors de la création d\'une bonne pratique "'.$nombp.'" existe déjà';
+      $loginlog = $_SESSION['name'];
+      include '/var/www/r2c.uca-project.com/Forms/addLogs.php';
+      $message = "ebpexist";
+      urlencode($message);
+      header('Location: ../Validation/validation.php?message='.$message);
+      exit();
+    }
     $descbp = htmlspecialchars($_POST['descbp']);
     $phase = htmlspecialchars($_POST['phase']);
     if(isset($_POST['switch']) && $_POST['switch'] == "on") {
