@@ -18,7 +18,7 @@
   <label for="old_psw" class="infomsg">
     <p>Votre nouveau mot de passe doit faire un minimum de <?=$specspsw['size']?> caracteres 
       et contenir au moins <?=$specspsw['number']?> chiffres, <?=$specspsw['uppercase']?> majuscules 
-      et <?=$specspsw['specialchar']?> caratères spéciaux.
+      et <?=$specspsw['specialchar']?> caratères spéciaux. Il ne doit pas non plus contenir de caractères accentués, ni votre nom d'utilisateur.
     </p>
   </label>
   <input

@@ -20,7 +20,7 @@
   <label for="new_psw" class="infomsg">
     <p>Le mot de passe doit faire un minimum de <?=$specspsw['size']?> caracteres 
       et contenir au moins <?=$specspsw['number']?> chiffres, <?=$specspsw['uppercase']?> majuscules 
-      et <?=$specspsw['specialchar']?> caratères spéciaux.
+      et <?=$specspsw['specialchar']?> caratères spéciaux. Il ne doit pas non plus contenir de caractères accentués, ni le nom de l'utilisateur.
     </p>
   </label>
   <input
