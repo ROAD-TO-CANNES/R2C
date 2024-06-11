@@ -2,6 +2,7 @@
   session_start();
   include '/var/www/r2c.uca-project.com/bdd.php';
 
+  // Retrieving the password specifications
   $sql = "SELECT * FROM SPECSPSW";
   $request = $BDD->prepare($sql);
   $request->execute();

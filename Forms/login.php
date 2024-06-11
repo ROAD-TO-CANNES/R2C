@@ -1,52 +1,50 @@
 <?php 
   session_start();
+  // Reset the cookie of inactivity
   setcookie('m1', 1, time()-3600, "/");
 
-  //Récuperation des données//
+  // Get the username and password from the form
   $name = htmlspecialchars($_POST['userName']);
   $password = ($_POST['password']);
 
   include '/var/www/r2c.uca-project.com/bdd.php';
 
-  //Sécurisez les entrées//
+  // Encote the username
   $name_encote = $BDD->quote($name);
 
-  //Verrification de l'userName//
+  // Check if the username exists in the database
   $sql = "SELECT login FROM USER WHERE login LIKE $name_encote";
   $request = $BDD->prepare($sql);
   $request->execute();
   $result = $request->fetchColumn();
 
-  if ($result == NULL) {
-    //Log d'érreure de connexion//
+  if ($result == NULL) { // If the username does not exist
+    // Log the error of connection
     $typelog = "Information";
     $desclog = "Connexion échouée utilisateur inconnu";
     $loginlog = $name;
     include '/var/www/r2c.uca-project.com/Forms/addLogs.php';
 
-    //Envoie d'erreur//
-    $error = "e1"; //nom d'utilisateur ou mot de passe incorrect
-    $error = urlencode($error);
-    header('Location: ../index.php?error='.$error);
-  } else {
-    //Récuperation des droits//
+    $error = "e1"; // Username incorrect
+  } else { // If the username exists
+    // Get the rights of the user
     $sql = "SELECT droits FROM USER WHERE login LIKE '$name'";
     $request = $BDD->prepare($sql);
     $request->execute();
     $droits = $request->fetchColumn();
 
-    //Si connexion du SuperAdmin//
+    // If the user is the super administrator
     if ($droits == 2) {    
-      //Recuperation du mot de passe//
+      // Get the password of the user
       $sql = "SELECT mdp FROM USER WHERE login=$name_encote";
       $request = $BDD->prepare($sql);
       $request->execute();
       $result = $request->fetchColumn();
 
-      //Verification du mot de passe//
+      // Verify the password
       if (password_verify($password, $result)) {
 
-        //Récuperation des utilisateurs connectés//
+        // Get the status of the users
         $sql = "SELECT login, statutcon FROM USER";
         $request = $BDD->prepare($sql);
         $request->execute();
@@ -54,12 +52,12 @@
 
         foreach ($statususer as $user) {
           if ($user['statutcon'] == 1) {
-            //Deconnexion des utilisateurs//
+            // Disconect connected users
             $sql = "UPDATE USER SET statutcon=0";
             $request = $BDD->prepare($sql);
             $request->execute();
 
-            //Log de déconnexion//
+            // Log the disconnection
             $typelog = "Information";
             $desclog = "Déconnexion forcée par le SuperAdministrateur";
             $loginlog = $user['login'];
@@ -67,44 +65,42 @@
           }
         }
 
-        //Attribution du nom d'utilisateur//
+        // Set the username
         $_SESSION['name'] = $name;
 
-        //Log de connexion//
+        // Log the connection
         $typelog = "Information";
         $desclog = "Connexion réussie";
         $loginlog = $name;
         include '/var/www/r2c.uca-project.com/Forms/addLogs.php';
 
-        //Attribution des droits//
+        // Set the rights
         $_SESSION['droits'] = $droits;
         
-        //Mise a jours du status de la connexion//
+        // Set the connection status
         $sql = "UPDATE USER SET statutcon=1 WHERE login LIKE '$_SESSION[name]'";
         $request = $BDD->prepare($sql);
         $request->execute();
 
-        //Remise a 0 de l'inactivité//
+        // Reset the inactivity
         $_SESSION['derniereActivite'] = time();
 
-        //Redirection//
+        // Redirect to the home page
         header('Location: ../Accueil/accueil.php');
-      } else {
+        exit(); // Exit the script
+      } else { // If the password is incorrect
 
-        //Log d'érreure de connexion//
+        // Log the error of connection
         $typelog = "Warning";
         $desclog = "Connexion échouée mot de passe incorrect";
         $loginlog = $name;
         include '/var/www/r2c.uca-project.com/Forms/addLogs.php';
       
-        //Envoie d'erreur//
-        $error = "e1"; //nom d'utilisateur ou mot de passe incorrect
-        $error = urlencode($error);
-        header('Location: ../index.php?error='.$error);
+        $error = "e1"; // Username or password incorrect
       };  
-    } else { //Si connexion d'un utilisateur ou administrateur//
+    } else { // If the user is not the super administrator
 
-      //Verrification de la disponibilité de connexion//
+      // Get the connected users
       $sql = "SELECT login, statutcon FROM USER";
       $request = $BDD->prepare($sql);
       $request->execute();
@@ -117,104 +113,100 @@
         };
       };
 
+      // If a user is already connected
       if ($connexcount > 0) {
-        //Log d'érreure de connexion//
+        // Log the error of connection
         $typelog = "Warning";
         $desclog = 'Connexion échouée l\'utilisateur "'.$userconected.'" est déjà connecté';
         $loginlog = $name;
         include '/var/www/r2c.uca-project.com/Forms/addLogs.php';
 
-        //Envoie d'erreur//
-        $error = "e3"; //un utilisateur est déjà connecté
-        $error = urlencode($error);
-        header('Location: ../index.php?error='.$error);
-      } else {
-        //Vérification des tentatives de connexion//
+        $error = "e3"; // User already connected
+      } else { // If no user is connected
+        // Get the number of connection attempts
         $sql = "SELECT tentativedelogin FROM USER WHERE login LIKE $name_encote";
         $request = $BDD->prepare($sql);
         $request->execute();
         $tentative = $request->fetchColumn();
 
-        if ($tentative < 3) {
-          //Recuperation du mot de passe//
+        if ($tentative < 3) { // If the number of attempts is less than 3
+          // Get the password of the user
           $sql = "SELECT mdp FROM USER WHERE login=$name_encote";
           $request = $BDD->prepare($sql);
           $request->execute();
           $result = $request->fetchColumn();
           
+          // Verify the password
           if (password_verify($password, $result)) {
-            //Attribution du nom d'utilisateur//
+            // Set the username
             $_SESSION['name'] = $name;
 
-            //Log de connexion//
+            // Log the connection
             $typelog = "Information";
             $desclog = "Connexion réussie";
             $loginlog = $name;
             include '/var/www/r2c.uca-project.com/Forms/addLogs.php';
 
-            //Remise a 0 des tentatives de connexion//
+            // Reset the number of connection attempts
             $sql = "UPDATE USER SET tentativedelogin=0 WHERE login LIKE '$_SESSION[name]'";
             $request = $BDD->prepare($sql);
             $request->execute();
             
-            //Attribution des droits//
+            // Set the rights
             $_SESSION['droits'] = $droits;
             
-            //Mise a jours du status de la connexion//
+            // Set the connection status
             $sql = "UPDATE USER SET statutcon=1 WHERE login LIKE '$_SESSION[name]'";
             $request = $BDD->prepare($sql);
             $request->execute();
 
-            //Remise a 0 de l'inactivité//
+            // Reset the inactivity
             $_SESSION['derniereActivite'] = time();
             setcookie('m1', 0, 0, "/");
 
-            //Redirection//
+            // Redirect to the home page
             header('Location: ../Accueil/accueil.php');
-          } else {
-            //Log d'érreure de connexion//
+            exit();// Exit the script
+          } else {// If the password is incorrect
+            // Log the error of connection
             $typelog = "Warning";
             $desclog = "Connexion échouée mot de passe incorrect";
             $loginlog = $name;
             include '/var/www/r2c.uca-project.com/Forms/addLogs.php';
 
-            //+1 tentative de connexion echouée//
+            // Update the number of connection attempts +1
             $sql = "UPDATE USER SET tentativedelogin=tentativedelogin+1 WHERE login LIKE $name_encote";
             $request = $BDD->prepare($sql);
             $request->execute();
 
-            //Vérification des tentatives de connexion//
+            // Get the number of connection attempts
             $sql = "SELECT tentativedelogin FROM USER WHERE login LIKE $name_encote";
             $request = $BDD->prepare($sql);
             $request->execute();
             $tentative = $request->fetchColumn();
 
-            if ($tentative == 3) {
-              //Log de blocage du compte//
+            if ($tentative == 3) {// If the number of attempts is equal to 3
+              // Block the account
               $typelog = "Alert";
               $desclog = "Blocage du compte suite à 3 tentatives de connexion échouées";
               $loginlog = $name;
               include '/var/www/r2c.uca-project.com/Forms/addLogs.php';
             }
             
-            //Envoie d'erreur//
-            $error = "e1"; //nom d'utilisateur ou mot de passe incorrect
-            $error = urlencode($error);
-            header('Location: ../index.php?error='.$error);
+            $error = "e1"; // Username or password incorrect
           };  
-        } else {
-          //Log d'érreure de connexion//
+        } else {// If the number of attempts is equal to 3
+          // Log the error of connection
           $typelog = "Warning";
           $desclog = "Connexion échouée le compte est bloqué";
           $loginlog = $name;
           include '/var/www/r2c.uca-project.com/Forms/addLogs.php';
 
-          //Envoie d'erreur//
-          $error = "e2"; //compte bloqué
-          $error = urlencode($error);
-          header('Location: ../index.php?error='.$error);
+          $error = "e2"; // Account blocked
         };
       };
     };
   };
+  $error = urlencode($error);
+  header('Location: ../index.php?error='.$error);// Redirect to the index page with the error message
 ?>  

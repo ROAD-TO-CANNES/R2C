@@ -3,7 +3,7 @@
   include '/var/www/r2c.uca-project.com/Forms/checkSession.php';
   include '/var/www/r2c.uca-project.com/Accueil/compareLists.php';
 
-  //Récuperation des bonnes pratiques
+  // Retrieving best practices
   $sql = "SELECT * FROM BONNESPRATIQUES";
   $request = $BDD->prepare($sql);
   $request->execute();
@@ -14,19 +14,19 @@
     });
   }
 
-  //Récuperation des correspondances entre les bonnes pratiques et les programmes
+  // Retrieving the associations between best practices and programs
   $sql = "SELECT * FROM BONNESPRATIQUES_PROGRAMME";
   $request = $BDD->prepare($sql);
   $request->execute();
   $bpsProg = $request->fetchAll();
 
-  //Récuperation des correspondances entre les bonnes pratiques et les mots clefs
+  // Retrieving the associations between best practices and keywords
   $sql = "SELECT * FROM BONNESPRATIQUES_MOTSCLEF";
   $request = $BDD->prepare($sql);
   $request->execute();
   $bpsMC = $request->fetchAll();
 
-  // Récupération des programmes
+  // Retrieving programs
   $sql = "SELECT * FROM PROGRAMME";
   $request = $BDD->prepare($sql);
   $request->execute();
@@ -35,7 +35,7 @@
     return strcmp($a['nomprog'], $b['nomprog']);
   });
 
-  // Récupération des mots clefs
+  // Retrieving keywords
   $sql = "SELECT * FROM MOTSCLEF";
   $request = $BDD->prepare($sql);
   $request->execute();
@@ -44,38 +44,40 @@
     return strcmp($a['motclef'], $b['motclef']);
   });
 
-  //Récuperation des phases
+  // Retrieving phases
   $sql = "SELECT * FROM PHASE";
   $request = $BDD->prepare($sql);
   $request->execute();
   $phases = $request->fetchAll();
 
-  // Récupération des filtres
+  // Retrieving filters
   $filtres = json_decode($_COOKIE['filtres']);
   
   $filtrePH = [];
   $filtrePR = [];
   $filtreMC = [];
 
+  // Separating filters by type
   foreach($filtres as $filtre) {
-    $type = substr($filtre, 0, 2); // Obtient les deux premiers caractères de la chaîne
+    $type = substr($filtre, 0, 2); // Get the first two characters of the string
 
     switch($type) {
-      case 'PH':
+      case 'PH': // PH for Phase
         $filtrePH[] = substr($filtre, 2);
         break;
-      case 'PR':
+      case 'PR': // PR for Program
         $filtrePR[] = substr($filtre, 2);
         break;
-      case 'MC':
+      case 'MC': // MC for Keyword
         $filtreMC[] = substr($filtre, 2);
         break;
     }
   }
 
+  // Filtering best practices
   if(!empty($filtrePR) || !empty($filtrePH) || !empty($filtreMC)) {
     $bpsFiltered = compare_lists($filtrePR, $filtrePH, $filtreMC, $bps, $bpsProg, $bpsMC);
-  } else {
+  } else { // If no filter is applied
     $bpsFiltered = null;
   }
 ?>
@@ -98,9 +100,9 @@
         <?php
           if ($_SESSION['droits'] > 0) {
             echo('
-                <a href="../NewProg/newProg.php"><button>Créer un programme</button></a>
-                <a href="../Users/users.php"><button>Gérer les utilisateur</button></a>
                 <a href="../log/log.php"><button>Consulter les logs</button></a>
+                <a href="../Users/users.php"><button>Gérer les utilisateur</button></a>
+                <a href="../NewProg/newProg.php"><button>Créer un programme</button></a>
             ');
           }
         ?>
@@ -109,7 +111,7 @@
       </div>    
     </div>
     <?php
-      if ($bpsFiltered == null) {
+      if ($bpsFiltered == null) { // If no filter is applied or if no results are found show the filter button
         echo '
         <div style="overflow: hidden; justify-content: center; align-items: center" class="scroll">
           <p style="font-size: x-large;">Veulliez appliquer des filtres pour afficher les bonnes pratiques correspondantes</p>
@@ -120,9 +122,9 @@
               display: none;
             }
           </style>';
-      } else {
+      } else { // Otherwise display filtered best practices
         echo '<div class="scroll">';
-        foreach ($bpsFiltered as $i => $bpFiltered) { 
+        foreach ($bpsFiltered as $i => $bpFiltered) {  // New element for each good practice
           $idbp = $bpsFiltered[$i]['idbp'];
           $nombp = $bpsFiltered[$i]['nombp'];
           $statut = $bpsFiltered[$i]['statut'];
@@ -139,6 +141,7 @@
           }
           $descbp = $bpsFiltered[$i]['descbp'];
 
+          // Retrieving programs and keywords associated with the best practice
           $sql = "SELECT idprog FROM BONNESPRATIQUES_PROGRAMME WHERE idbp = $idbp";
           $request = $BDD->prepare($sql);
           $request->execute();
@@ -165,11 +168,11 @@
               <div class="infopopup" id="info'.$idbp.'">');
                 include '/var/www/r2c.uca-project.com/Forms/infoBp.php';
               echo ('</div>'); 
-              if ($_SESSION['droits'] > 0) {
+              if ($_SESSION['droits'] > 0) { // If the user has rights, display the delete button
                 echo('
                 <form action="../Forms/delBp.php" method="post">');
               }
-              elseif ($_SESSION['droits'] == 0) {
+              elseif ($_SESSION['droits'] == 0) { // If the user has no rights, display the disable button
                 echo('
                 <form action="../Accueil/enableDisableBP.php" method="post">');
               }
@@ -183,7 +186,7 @@
                   </div>
                 </form>   
                 ';
-              if ($_SESSION['droits'] > 0) {
+              if ($_SESSION['droits'] > 0) {  // If the user has rights, display the enable/disable button
                 if ($statut == 1) {
                   echo('
                   <input class="switch-case" type="checkbox" id="switch'.$idbp.'" checked />
@@ -230,7 +233,7 @@
     </div>
   </body>
   <?php 
-    // Recuperation de la fenetre ouverte
+    // Displaying the popup for the good practice creation
     if(isset($_GET['info'])) {
     $info = $_GET['info'];
       echo('<script>
