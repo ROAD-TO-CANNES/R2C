@@ -36,6 +36,9 @@
       <div id="errusr7" class="errorusr">
         <p>Ce nom d'utilisateur est déja utilisé</p>
       </div>
+      <div id="errusr8" class="errorusr">
+        <p>Le nom d'utilisateur ne doit pas contenir de caractères spéciaux ni d'espaces</p>
+      </div>
       <label for="newuserpsw" class="infomsgusr">
         <p>Le mot de passe doit faire un minimum de <?=$specspsw['size']?> caracteres 
           et contenir au moins <?=$specspsw['number']?> chiffres, <?=$specspsw['uppercase']?> majuscules 

@@ -60,6 +60,9 @@
         } elseif ($_GET['message'] == "epswsadmin") {
           echo('<p style="color:red">Vous ne pouvez pas modifier le mot de passe du Super Administrateur</p>');
           include '/var/www/r2c.uca-project.com/Validation/error.php';
+        } elseif ($_GET['message'] == "epswuserinexist") {
+          echo('<p style="color:red">L\'utilisateur dont vous tentez de changer le mot de passe n\'existe pas</p>');
+          include '/var/www/r2c.uca-project.com/Validation/error.php';
         } else {
           echo('<p style="color:red">Error</p>');
           include '/var/www/r2c.uca-project.com/Validation/error.php';
