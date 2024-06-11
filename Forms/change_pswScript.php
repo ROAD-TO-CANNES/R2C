@@ -22,7 +22,7 @@
       $droits = $request->fetchColumn();
     //Vérification que d'un utilisateur désigné
     } elseif (isset($_POST['login'])) {
-      $login = $_POST['login'];
+      $login = htmlspecialchars($_POST['login']);
       $username = $login;
 
       //Récuperation des droits de l'utilisateur concerné

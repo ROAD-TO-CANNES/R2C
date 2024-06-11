@@ -3,21 +3,21 @@
   include '/var/www/r2c.uca-project.com/Forms/checkSession.php';
 
   if (isset($_POST['nomprog']) && isset($_POST['descprog'])) {
+    $nomprog = htmlspecialchars($_POST['nomprog']);
     $sql = "SELECT nomprog FROM PROGRAMME WHERE nomprog = ?";
     $request = $BDD->prepare($sql);
-    $request->execute([$_POST['nomprog']]);
+    $request->execute($nomprog);
     $result = $request->fetch();
     if ($result) {
       //Log d'erreur de création de programme//
       $typelog = "Warning";
-      $desclog = 'Erreur lors de la création d\'un programme "'.$_POST['nomprog'].'" existe déjà';
+      $desclog = 'Erreur lors de la création d\'un programme "'.$nomprog.'" existe déjà';
       $loginlog = $_SESSION['name'];
       include '/var/www/r2c.uca-project.com/Forms/addLogs.php';
       header('Location: ../Validation/validation.php?message=eprogexist');
       exit();
     }
 
-    $nomprog = htmlspecialchars($_POST['nomprog']);
     $descprog = htmlspecialchars($_POST['descprog']);
 
     $nomprog_seq = $BDD->quote($nomprog);

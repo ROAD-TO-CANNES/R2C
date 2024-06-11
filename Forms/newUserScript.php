@@ -13,7 +13,7 @@
   $specspsw = $request->fetch();
 
   if (isset($_POST['username']) && isset($_POST['newuserpsw']) && isset($_POST['newuserpsw2']) && isset($_POST['role'])) {
-    $username = $_POST['username'];
+    $username = htmlspecialchars($_POST['username']);
     $sql = "SELECT login FROM USER WHERE login LIKE '".$username."'";
     $request = $BDD->prepare($sql);
     $request->execute();
