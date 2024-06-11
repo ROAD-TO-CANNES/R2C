@@ -39,15 +39,16 @@
     $loginlog = $_SESSION['name'];
     include '/var/www/r2c.uca-project.com/Forms/addLogs.php';
 
-    $message = "cp";
-    urlencode($message);
-    header('Location: ../Validation/validation.php?message='.$message);
+    $message = "cprog";
   } else {
     //Log d'erreur de création de programme//
     $typelog = "Erreur";
     $desclog = 'Erreur lors de la création du programme certains parametres sont manquants';
     $loginlog = $_SESSION['name'];
     include '/var/www/r2c.uca-project.com/Forms/addLogs.php';
-    header('Location: ../Validation/validation.php?message=ep');
+
+    $message = "eprog";
   }
+  urlencode($message);
+  header('Location: ../Validation/validation.php?message='.$message);
 ?>

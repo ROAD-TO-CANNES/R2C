@@ -42,7 +42,7 @@
         } elseif ($_GET['message'] == "deletebp") {
           echo('<p>Bonne pratique supprimée avec succès</p>');
           include '/var/www/r2c.uca-project.com/Validation/ok.php';
-        } elseif ($_GET['message'] == "ecmc") {
+        } elseif ($_GET['message'] == "eckeyword") {
           echo('<p style="color:red">Impossible d\'ajouter le mot clef/p>');
           include '/var/www/r2c.uca-project.com/Validation/error.php';
         } elseif ($_GET['message'] == "eccsv") {

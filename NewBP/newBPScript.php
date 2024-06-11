@@ -14,9 +14,7 @@
       $desclog = 'Erreur lors de la création d\'une bonne pratique "'.$nombp.'" existe déjà';
       $loginlog = $_SESSION['name'];
       include '/var/www/r2c.uca-project.com/Forms/addLogs.php';
-      $message = "ebpexist";
-      urlencode($message);
-      header('Location: ../Validation/validation.php?message='.$message);
+      header('Location: ../Validation/validation.php?message=ebpexist');
       exit();
     }
     $descbp = htmlspecialchars($_POST['descbp']);
@@ -98,8 +96,6 @@
     }
 
     $message = "cbp";
-    urlencode($message);
-    header('Location: ../Validation/validation.php?message='.$message);
   } else {
     //Log d'erreur de création de BP//
     $typelog = "Warning";
@@ -108,7 +104,7 @@
     include '/var/www/r2c.uca-project.com/Forms/addLogs.php';
 
     $message = "ebp";
-    urlencode($message);
-    header('Location: ../Validation/validation.php?message='.$message);
   }
+  urlencode($message);
+  header('Location: ../Validation/validation.php?message='.$message);
 ?> 

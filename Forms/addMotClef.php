@@ -61,6 +61,6 @@
     $desclog = 'Erreur lors de la création du mot clef certains parametres sont manquants';
     $loginlog = $_SESSION['name'];
     include '/var/www/r2c.uca-project.com/Forms/addLogs.php';
-    header('Location: ../Validation/validation.php?message=ecmc');
+    header('Location: ../Validation/validation.php?message=eckeyword');
   }
 ?>
