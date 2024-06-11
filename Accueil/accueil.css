@@ -124,6 +124,8 @@ body {
   font-weight: 700;
   width: 10vw;
   margin-left: 1vw;
+  max-height: 7vh;
+  overflow: hidden;
 }
 
 .selectionbp {
