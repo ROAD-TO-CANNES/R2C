@@ -1,7 +1,6 @@
 <?php 
   session_start(); 
   include '/var/www/r2c.uca-project.com/Forms/checkSession.php';
-
   include '/var/www/r2c.uca-project.com/Accueil/compareLists.php';
 
   //Récuperation des bonnes pratiques

@@ -117,7 +117,7 @@
         };
       };
 
-      if ($connexcount > 10) {
+      if ($connexcount > 0) {
         //Log d'érreure de connexion//
         $typelog = "Warning";
         $desclog = 'Connexion échouée l\'utilisateur "'.$userconected.'" est déjà connecté';
