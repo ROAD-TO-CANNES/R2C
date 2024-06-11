@@ -1,7 +1,6 @@
 <?php
   session_start();
   include '/var/www/r2c.uca-project.com/Forms/checkSession.php';
-  error_reporting(E_ALL);
 
   if(isset($_POST['generate_pdf'])) {
     $bps = json_decode($_POST['generate_pdf']);
