@@ -13,8 +13,9 @@
     }
     $listebp = trim($listebp);
     $listebp .= ']';
+    $user = $_SESSION['name'];
 
-    $param = $listebp . ' ' . $phase . ' ' . $prog . ' ' . $keyword;
+    $param = $listebp . ' ' . $phase . ' ' . $prog . ' ' . $keyword.' '.$user;
     $command = "/usr/bin/python3 /var/www/r2c.uca-project.com/Python/ProgToCSV.py $param";
     shell_exec($command);
     $csv_filename = "Bonnes_Pratiques.csv";

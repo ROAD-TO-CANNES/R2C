@@ -13,8 +13,9 @@
     }
     $listebp = trim($listebp);
     $listebp .= ']';
+    $user = $_SESSION['name'];
 
-    $param = $listebp . ' ' . $phase . ' ' . $prog . ' ' . $keyword;
+    $param = $listebp . ' ' . $phase . ' ' . $prog . ' ' . $keyword.' '.$user;
     $command = "/usr/bin/python3 /var/www/r2c.uca-project.com/Python/ProgToPDF.py $param 2>&1";
     shell_exec($command);
     $pdf_filename = "Bonnes_Pratiques.pdf";
