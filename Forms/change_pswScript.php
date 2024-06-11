@@ -10,17 +10,44 @@
   $specspsw = $request->fetch();
 
   if(isset($_POST['new_psw']) && isset($_POST['new_psw2'])){
+    //Vérification que l'utilisateur change son propre mot de passe
     if (isset($_POST['old_psw'])) {
       $old_psw = $_POST['old_psw'];
+      $username = $_SESSION['name'];
+
+      //Récuperation des droits de l'utilisateur concerné
+      $sql = "SELECT droits FROM USER WHERE login LIKE '".$_SESSION['name']."'";
+      $request = $BDD->prepare($sql); 
+      $request->execute();
+      $droits = $request->fetchColumn();
+    //Vérification que d'un utilisateur désigné
     } elseif (isset($_POST['login'])) {
       $login = $_POST['login'];
+      $username = $login;
+
+      //Récuperation des droits de l'utilisateur concerné
+      $sql = "SELECT droits FROM USER WHERE login LIKE '".$login."'";
+      $request = $BDD->prepare($sql);
+      $request->execute();
+      $droits = $request->fetchColumn();
     } 
+    //Vérification que l'utilisateur concerné n'est pas le SuperAdmin
+    if ($droits == 2) {
+      $typelog = "Alert";
+      $desclog = "Tentative de changement de mot de passe fauduleuse détectée le mot de passe du SuperAdmin ne peut pas être changé";
+      $loginlog = $_SESSION['name'];
+      include '/var/www/r2c.uca-project.com/Forms/addLogs.php';
+      
+      $response = 10;//Le mot de passe de l'admin ne peut pas être changé
+      echo json_encode($response);
+      exit();
+    }
     $new_psw = $_POST['new_psw'];
     $new_psw_hash = password_hash($new_psw, PASSWORD_DEFAULT);
     $new_psw2 = $_POST['new_psw2'];
 
     if($new_psw == $new_psw2){
-      $loginInPassword = strpos($new_psw, $_SESSION['name']); //Vérification que le mot de passe ne contient pas le login
+      $loginInPassword = strpos($new_psw, $username); //Vérification que le mot de passe ne contient pas le login
       if ($loginInPassword === false) {
         $size = strlen($new_psw);//Taille du mot de passe
         if ($size >= $specspsw['size']) {

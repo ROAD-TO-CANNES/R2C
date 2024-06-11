@@ -18,10 +18,10 @@
     <div class="validation">
       <?php
       if (isset($_GET['message'])) {
-        if ($_GET['message'] == "cp") {
+        if ($_GET['message'] == "cprog") {
           echo('<p>Programme créé avec succès</p>');
           include '/var/www/r2c.uca-project.com/Validation/ok.php';
-        } elseif ($_GET['message'] == "ep") {
+        } elseif ($_GET['message'] == "eprog") {
           echo('<p style="color:red">Une erreur est survenue lors de la création du programme</p>');
           include '/var/www/r2c.uca-project.com/Validation/error.php';
         } elseif ($_GET['message'] == "eprogexist") {
@@ -36,9 +36,12 @@
         } elseif ($_GET['message'] == "ebp") {
           echo('<p style="color:red">Une erreur est survenue lors de la création de la bonne pratique</p>');
           include '/var/www/r2c.uca-project.com/Validation/error.php';
-        } elseif ($_GET['message'] == "ed") {
+        } elseif ($_GET['message'] == "edeletebp") {
           echo('<p style="color:red">Une erreur est survenue lors de la supression de la bonne pratique</p>');
           include '/var/www/r2c.uca-project.com/Validation/error.php';
+        } elseif ($_GET['message'] == "deletebp") {
+          echo('<p>Bonne pratique supprimée avec succès</p>');
+          include '/var/www/r2c.uca-project.com/Validation/ok.php';
         } elseif ($_GET['message'] == "ecmc") {
           echo('<p style="color:red">Impossible d\'ajouter le mot clef/p>');
           include '/var/www/r2c.uca-project.com/Validation/error.php';
@@ -53,6 +56,9 @@
           include '/var/www/r2c.uca-project.com/Validation/ok.php';
         } elseif ($_GET['message'] == "ersuppruser") {
           echo('<p style="color:red">Une erreur est survenue lors de la suppression de l\'utilisateur</p>');
+          include '/var/www/r2c.uca-project.com/Validation/error.php';
+        } elseif ($_GET['message'] == "epswsadmin") {
+          echo('<p style="color:red">Vous ne pouvez pas modifier le mot de passe du Super Administrateur</p>');
           include '/var/www/r2c.uca-project.com/Validation/error.php';
         } else {
           echo('<p style="color:red">Error</p>');

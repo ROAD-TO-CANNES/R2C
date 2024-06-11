@@ -40,6 +40,10 @@ document
           case 9:
             $("#err9").addClass("act");
             break;
+          case 10:
+            window.location.href =
+              "../Validation/validation.php?message=epswsadmin";
+            break;
           default:
             break;
         }
