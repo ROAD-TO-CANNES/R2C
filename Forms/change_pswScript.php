@@ -25,6 +25,22 @@
       $login = htmlspecialchars($_POST['login']);
       $username = $login;
 
+      //Verification de l'existance de l'utilisateur concerné
+      $sql = "SELECT login FROM USER WHERE login LIKE '".$login."'";
+      $request = $BDD->prepare($sql);
+      $request->execute();
+      $result = $request->fetch();
+      if (!$result) {
+        $typelog = "Alert";
+        $desclog = "Tentative de changement de mot de passe fauduleuse détectée l'utilisateur concerné n'existe pas";
+        $loginlog = $_SESSION['name'];
+        include '/var/www/r2c.uca-project.com/Forms/addLogs.php';
+        
+        $response = 11;//L'utilisateur concerné n'existe pas
+        echo json_encode($response);
+        exit();
+      }
+
       //Récuperation des droits de l'utilisateur concerné
       $sql = "SELECT droits FROM USER WHERE login LIKE '".$login."'";
       $request = $BDD->prepare($sql);

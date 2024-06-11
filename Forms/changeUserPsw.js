@@ -42,6 +42,10 @@ document
             window.location.href =
               "../Validation/validation.php?message=epswsadmin";
             break;
+          case 11:
+            window.location.href =
+              "../Validation/validation.php?message=epswuserinexist";
+            break;
           default:
             break;
         }

@@ -13,7 +13,19 @@
   $specspsw = $request->fetch();
 
   if (isset($_POST['username']) && isset($_POST['newuserpsw']) && isset($_POST['newuserpsw2']) && isset($_POST['role'])) {
+    if (!preg_match('/^[a-zA-Z0-9]+$/', $_POST['username'])) {
+      //logs d'erreur
+      $typelog = "Warning";
+      $desclog = "Erreur lors de la création d'un utilisateur le nom d'utilisateur contient des caractères spéciaux ou des espaces";
+      $loginlog = $_SESSION['name'];
+      include '/var/www/r2c.uca-project.com/Forms/addLogs.php';
+
+      $response = 9; // Le nom d'utilisateur contient des caractères spéciaux
+      echo json_encode($response);
+      exit();
+    }
     $username = htmlspecialchars($_POST['username']);
+
     $sql = "SELECT login FROM USER WHERE login LIKE '".$username."'";
     $request = $BDD->prepare($sql);
     $request->execute();
