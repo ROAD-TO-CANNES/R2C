@@ -1,3 +1,4 @@
+
 import mariadb
 import argparse
 from datetime import datetime
