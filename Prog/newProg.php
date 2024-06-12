@@ -44,7 +44,7 @@
         required
       ></textarea>
       <button class="enregistrer" type="submit" value="Enregistrer">Enregistrer</button>
-      <a href="../Accueil/accueil.php"><button class="annulerProg" type="button">Annuler</button></a>
+      <a href="../Prog/progs.php"><button class="annulerProg" type="button">Annuler</button></a>
     </form>
   </body>
   <script src="../timer.js"></script>
