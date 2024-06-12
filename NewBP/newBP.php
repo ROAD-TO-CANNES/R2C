@@ -8,7 +8,7 @@
   $request->execute();
   $progs = $request->fetchAll();
   usort($progs, function($a, $b) {
-    return strcmp($a['nomprog'], $b['nomprog']);
+    return strnatcasecmp($a['nomprog'], $b['nomprog']);
   });
 
   // Retrieve the keywords
@@ -17,7 +17,7 @@
   $request->execute();
   $motsClefs = $request->fetchAll();
   usort($motsClefs, function($a, $b) {
-    return strcmp($a['motclef'], $b['motclef']);
+    return strnatcasecmp($a['motclef'], $b['motclef']);
   });
 
   //Retrieve the phases

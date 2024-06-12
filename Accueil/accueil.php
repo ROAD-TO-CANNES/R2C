@@ -32,7 +32,7 @@
   $request->execute();
   $progs = $request->fetchAll();
   usort($progs, function($a, $b) {
-    return strcmp($a['nomprog'], $b['nomprog']);
+    return strnatcasecmp($a['nomprog'], $b['nomprog']);
   });
 
   // Retrieving keywords
@@ -41,7 +41,7 @@
   $request->execute();
   $motsClefs = $request->fetchAll();
   usort($motsClefs, function($a, $b) {
-    return strcmp($a['motclef'], $b['motclef']);
+    return strnatcasecmp($a['motclef'], $b['motclef']);
   });
 
   // Retrieving phases
@@ -101,8 +101,8 @@
           if ($_SESSION['droits'] > 0) {
             echo('
                 <a href="../log/log.php"><button>Consulter les logs</button></a>
-                <a href="../Users/users.php"><button>Gérer les utilisateur</button></a>
-                <a href="../Prog/newProg.php"><button>Créer un programme</button></a>
+                <a href="../Users/users.php"><button>Gérer les utilisateurs</button></a>
+                <a href="../Prog/progs.php"><button>Gérer les programmes</button></a>
             ');
           }
         ?>
