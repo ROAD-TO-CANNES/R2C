@@ -12,7 +12,8 @@
     <h2>Sélectionnez les programmes</h2>
     <div class="selected-itemsDiv" id="selected-itemsProg"></div>
   </div>');
-  if ($_SERVER['REQUEST_URI'] == "/Accueil/accueil.php") {
+  $folder = explode('/', $_SERVER['REQUEST_URI'])[1];
+  if ($folder == "Accueil") {
     echo ('
     <div class="divPhase">
       <select id="selectPhase" name="phase" form="formPhase">
@@ -38,7 +39,7 @@
     echo('
     </select>
     ');
-    if ($_SERVER['REQUEST_URI'] == "/NewBP/newBP.php") {
+    if ($folder == "NewBP") {
       echo('
         <form id="formMotClef" action="../Forms/addMotClef.php" method="post">
           <button type="submit" id="addMotClef">Ajouter</button>
