@@ -44,6 +44,9 @@
             if($_SESSION['droits'] == 1) {
               echo('<span class="changeownpsw">Modifier votre mot de passe</span>');
             };
+            if($_SESSION['droits'] == 2) {
+              echo('<a href="../Forms/policyPassword.php" class="policypsw">Changer la politique des mots de passe</a>');
+            };
             echo('
             <form method="post" action="../Forms/logout.php">
               <button type="submit">Déconnexion</button>

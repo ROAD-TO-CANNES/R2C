@@ -162,6 +162,7 @@ header {
   font-family: "Roboto", sans-serif;
 }
 
+.policypsw,
 .changeownpsw {
   font-size: 70%;
   font-family: sans-serif;
@@ -175,6 +176,7 @@ header {
   cursor: pointer;
 }
 
+.policypsw:hover,
 .changeownpsw:hover {
   color: #000000;
 }

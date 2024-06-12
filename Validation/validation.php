@@ -63,6 +63,15 @@
         } elseif ($_GET['message'] == "epswuserinexist") {
           echo('<p style="color:red">L\'utilisateur dont vous tentez de changer le mot de passe n\'existe pas</p>');
           include '/var/www/r2c.uca-project.com/Validation/error.php';
+        } elseif ($_GET['message'] == "epolicy") {
+          echo('<p style="color:red">Erreur lors de la modification de la politique des mots de passe certains parametres sont manquant</p>');
+          include '/var/www/r2c.uca-project.com/Validation/error.php';
+        } elseif ($_GET['message'] == "epolicynumber") {
+          echo('<p style="color:red">Erreur lors de la modification de la politique des mots de passe les paramètres ne sont pas du bon type</p>');
+          include '/var/www/r2c.uca-project.com/Validation/error.php';
+        } elseif ($_GET['message'] == "epolicyright") { 
+          echo('<p style="color:red">Erreur lors de la modification de la politique des mots de passe vous n\'avez pas les droits</p>');
+          include '/var/www/r2c.uca-project.com/Validation/error.php';
         } else {// if the message is not recognized
           echo('<p style="color:red">Error</p>');
           include '/var/www/r2c.uca-project.com/Validation/error.php';
