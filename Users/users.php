@@ -2,15 +2,17 @@
   session_start(); 
   include '/var/www/r2c.uca-project.com/Forms/checkSession.php';
 
+  // Verify if the user has the rights to access this page
   if ($_SESSION['droits'] < 1) {
     header('Location: ../Accueil/accueil.php');
   }
 
+  // Verify if the change password form is open
   if (isset($_GET['changepsw'])) {
     $pswname = $_GET['changepsw'];
   }
 
-  //Récuperation des utilisateurs sauf de l'admin
+  // Recover all users except super admin
   $sql = "SELECT * FROM USER WHERE droits != 2";
   $request = $BDD->prepare($sql);
   $request->execute();
@@ -36,6 +38,7 @@
     </div>
     <div class="scroll">
       <?php
+        // Set the months in french
         $months = array(
           1 => 'janvier',
           2 => 'février',
@@ -51,8 +54,10 @@
           12 => 'décembre'
         );
         
+        // Display all users
         foreach ($users as $i => $user) { 
           $name = $users[$i]['login'];
+          // Set the role
           if ($users[$i]['droits'] == 2) {
             $role = 'Super Admin';
           } elseif ($users[$i]['droits'] == 1) {
@@ -61,6 +66,7 @@
             $role = 'User';
           } 
 
+          // Set the status
           if ($users[$i]['tentativedelogin'] >= 3) {
             $affstatus = '<p style="font-weight: 700; color: #951e1e; width: 50px;">Bloqué</p>';
             $status = 0;
@@ -69,6 +75,7 @@
             $status = 1;
           }
 
+          // Format the date
           $date = date_create_from_format('Y-m-d', $users[$i]['dateus']);
           $formattedDate = date_format($date, 'd') . ' ' . $months[date_format($date, 'n')] . ' ' . date_format($date, 'Y');
       ?>
@@ -78,12 +85,12 @@
           <?= $affstatus?>
           <p style="width: 12vw;">Créé le <?= $formattedDate?></p>
           <div class="btns">
-            <?php if ($status == 0) { ?>
+            <?php if ($status == 0) { // If the user is blocked display the unlock button?>
               <form action="../Forms/unlockUser.php" method="POST">
                 <input type="hidden" name="userToUnlock" value="<?=$name?>">
                 <button class="btn" type="submit">Débloquer</button>
               </form>
-            <?php } else { ?>
+            <?php } else { // If the user is active hide the unlock button?>
               <button class="btn inactive">Débloquer</button>
             <?php }?>
             <form action="" method="get">
@@ -102,6 +109,7 @@
           </div>
         </div>
       <?php } ?>
+      <!-- Popup to change the password -->
       <div class="fondpsw" <?php if (isset($_GET['changepsw'])) { echo 'style="display:block"';} ?>></div>
       <div class="popupPsw" <?php if (isset($_GET['changepsw'])) { echo 'style="display:block"';} ?>>
         <?php include '/var/www/r2c.uca-project.com/Forms/changeUserPsw.php'; ?>

@@ -20,7 +20,7 @@
     shell_exec($command);
     $pdf_filename = "Bonnes_Pratiques.pdf";
 
-    // Log de génération de PDF
+    // Log the generation of the PDF
     $typelog = "Information";
     $desclog = 'Génération d\'un fichier PDF des bonnes pratiques '.$listebp;
     $loginlog = $_SESSION['name'];
@@ -32,7 +32,7 @@
     readfile('/var/www/r2c.uca-project.com/Python/Download/'.$pdf_filename);
     exit; // Stop further execution of the script
   } else {
-    // Log d'erreur de génération de PDF
+    // Log the error of generating the PDF
     $typelog = "Warning";
     $desclog = 'Erreur lors de la génération du fichier PDF certains parametres sont manquants';
     $loginlog = $_SESSION['name'];

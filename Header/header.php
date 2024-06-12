@@ -4,6 +4,7 @@
 <link rel="stylesheet" type="text/css" href="../Header/header.css">
 
 <?php
+  // Define the role of the user
   if ($_SESSION['droits'] == 0) {
     $role = 'Utilisateur';
   } elseif ($_SESSION['droits'] == 1) {
@@ -34,7 +35,9 @@
             <div class="auth-popup-content">
               <img src="../Img/default_pp.png" alt="photo de profile" class="ppa">
               <div class="p">
-                <h1>'.ucfirst(strtolower($_SESSION['name'])).'</h1>'.
+                <h1>'.
+                  ucfirst(strtolower($_SESSION['name'])) // Display the name of the user with the first letter in uppercase
+                .'</h1>'.
                 $role.'<br>
               </div>
             </div>');
@@ -63,7 +66,7 @@
     };
   ?>
 </div>
-<?php if ($_SESSION['droits'] == 1) {?>
+<?php if ($_SESSION['droits'] == 1) {// if user have the right display the change password forms?>
   <div class="psw-popup">
     <?php include '/var/www/r2c.uca-project.com/Forms/change_psw.php' ?>
   </div>

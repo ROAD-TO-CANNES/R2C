@@ -1,9 +1,7 @@
 <?php 
   session_start(); 
-
   include '/var/www/r2c.uca-project.com/Forms/checkSession.php';
 ?>
-
 <!DOCTYPE html>
 <html>
   <head>
@@ -17,7 +15,9 @@
   <body>
     <div class="validation">
       <?php
+      // If a message is sent by the URL
       if (isset($_GET['message'])) {
+        // Display the message according to the message sent
         if ($_GET['message'] == "cprog") {
           echo('<p>Programme créé avec succès</p>');
           include '/var/www/r2c.uca-project.com/Validation/ok.php';
@@ -63,7 +63,7 @@
         } elseif ($_GET['message'] == "epswuserinexist") {
           echo('<p style="color:red">L\'utilisateur dont vous tentez de changer le mot de passe n\'existe pas</p>');
           include '/var/www/r2c.uca-project.com/Validation/error.php';
-        } else {
+        } else {// if the message is not recognized
           echo('<p style="color:red">Error</p>');
           include '/var/www/r2c.uca-project.com/Validation/error.php';
         };

@@ -20,8 +20,7 @@
     shell_exec($command);
     $csv_filename = "Bonnes_Pratiques.csv";
 
-
-    // Log de génération de CSV
+    // Log the generation of the CSV
     $typelog = "Information";
     $desclog = 'Génération d\'un fichier CSV des bonnes pratiques '.$listebp;
     $loginlog = $_SESSION['name'];
@@ -33,7 +32,7 @@
     readfile('/var/www/r2c.uca-project.com/Python/Download/'.$csv_filename);
     exit; // Stop further execution of the script
   } else {
-    // Log d'erreur de génération de CSV
+    // Log the error of generating the CSV
     $typelog = "Warning";
     $desclog = 'Erreur lors de la génération du fichier CSV certains parametres sont manquants';
     $loginlog = $_SESSION['name'];

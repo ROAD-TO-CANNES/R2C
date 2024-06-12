@@ -2,11 +2,7 @@
   session_start(); 
   include '/var/www/r2c.uca-project.com/Forms/checkSession.php';
 
-  if ($_SESSION['droits'] < 1) {
-    header('Location: ../Accueil/accueil.php');
-  }
-
-  // Récupération des programmes
+  // Retrieve the programs
   $sql = "SELECT * FROM PROGRAMME";
   $request = $BDD->prepare($sql);
   $request->execute();
@@ -15,7 +11,7 @@
     return strcmp($a['nomprog'], $b['nomprog']);
   });
 
-  // Récupération des mots clefs
+  // Retrieve the keywords
   $sql = "SELECT * FROM MOTSCLEF";
   $request = $BDD->prepare($sql);
   $request->execute();
@@ -24,7 +20,7 @@
     return strcmp($a['motclef'], $b['motclef']);
   });
 
-  //Récuperation des phases
+  //Retrieve the phases
   $sql = "SELECT * FROM PHASE";
   $request = $BDD->prepare($sql);
   $request->execute();
@@ -59,12 +55,14 @@
         required
       />
       <?php
-        if($_SESSION['droits'] > 0) {
+        if($_SESSION['droits'] > 0) {// if user is admin or super admin
+          // Display the switch to activate or deactivate the good practice
           echo '
             <input class="switch-case" type="checkbox" id="switch" name="switch" checked />
             <label class="switch" for="switch">Activer/Désactiver la bonne pratique : </label> 
           ';
-        } elseif($_SESSION['droits'] == 0) {
+        } elseif($_SESSION['droits'] == 0) {// if user is a user
+          // Hide the switch to activate the good practice
           echo '
             <input class="switch-case" type="hidden" id="switch" name="switch" value="on" />
           ';
@@ -73,7 +71,7 @@
         <select id="selectPhase" name="phase">
         <option class="default_value" value="" disabled selected>Phases</option>
         <?php
-          foreach($phases as $i => $phase) {
+          foreach($phases as $i => $phase) {// Display all phases in the select
             echo('<option value="'.$phases[$i]['idphase'].'">'.$phases[$i]['descript'].'</option>');
           }
         ?>
