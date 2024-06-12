@@ -21,7 +21,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>R2C - Admin</title>
+    <title>R2C - Users</title>
     <link rel="stylesheet" type="text/css" href="../Users/users.css">
     <link rel="icon" type="image/png" href="../Img/icon.png">
   </head>

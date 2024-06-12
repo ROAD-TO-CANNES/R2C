@@ -3,7 +3,7 @@
   include '/var/www/r2c.uca-project.com/Forms/checkSession.php';
 
   // Verify if the user has the rights to access this page
-  if (!$_SESSION['droits'] > 0) {
+  if ($_SESSION['droits'] < 1) {
     header('Location: ../Accueil/accueil.php');
   }
 ?>

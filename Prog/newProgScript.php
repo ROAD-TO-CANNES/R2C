@@ -2,15 +2,25 @@
   session_start();
   include '/var/www/r2c.uca-project.com/Forms/checkSession.php';
 
+  echo 'here';
   // Verify if nomprog and descprog are set in POST array
   if (isset($_POST['nomprog']) && isset($_POST['descprog'])) {
+
     // sanitize nomprog
     $nomprog = htmlspecialchars($_POST['nomprog']);
+
     // Verify if the programme already exists
-    $sql = "SELECT nomprog FROM PROGRAMME WHERE nomprog = ?";
+    $sql = "SELECT nomprog FROM PROGRAMME";
     $request = $BDD->prepare($sql);
-    $request->execute($nomprog);
-    $result = $request->fetch();
+    $request->execute();
+    $prog = $request->fetchAll();
+
+    foreach ($prog as $row) {
+      if ($row['nomprog'] == $nomprog) {
+        $result = true;
+        break;
+      }
+    }
 
     if ($result) {// if the programme already exists
       // Log the error of creating a programme
@@ -27,6 +37,7 @@
     // sanitize descprog
     $descprog = htmlspecialchars($_POST['descprog']);
 
+    
     // encode nomprog, descprog and dateprog
     $nomprog_seq = $BDD->quote($nomprog);
     $descprog_seq = $BDD->quote($descprog);

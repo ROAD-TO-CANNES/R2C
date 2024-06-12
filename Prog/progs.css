@@ -1,0 +1,145 @@
+body {
+  margin: 0;
+  width: 100%;
+  height: 100%;
+  font-family: sans-serif;
+}
+
+.top {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  border-bottom: black solid 2px;
+  margin-bottom: 4vh;
+  height: 8vh;
+  width: 80vw;
+  margin-left: 10vw;
+}
+
+.top h1 {
+  margin: 0;
+  font-weight: normal;
+  font-size: 170%;
+}
+
+.btns {
+  margin-bottom: 5px;
+  text-align: end;
+  display: flex;
+}
+
+.btns button {
+  border-radius: 100px;
+  border: none;
+  background-color: #9fccff;
+  color: #003e74;
+  width: 12vw;
+  height: 4vh;
+  margin-left: 5px;
+  padding: 3px;
+  text-decoration: none;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.btns button:hover {
+  background-color: #c2deff;
+  color: #00182e;
+  border: 0.5px solid #00182e;
+}
+
+.scroll {
+  margin-left: 10vw;
+  width: calc(80vw + 20px);
+  height: 60vh;
+  overflow-y: scroll;
+  overflow-x: hidden;
+  display: flex;
+  flex-direction: column;
+  row-gap: 10px;
+}
+
+.scroll::-webkit-scrollbar {
+  width: 10px;
+}
+
+.scroll::-webkit-scrollbar-track {
+  background: rgb(192 192 192);
+  border-radius: 10px;
+}
+
+.scroll::-webkit-scrollbar-thumb {
+  background-color: rgb(106 106 106);
+  border: 2px solid rgb(192 192 192);
+  border-radius: 20px;
+}
+
+.prog {
+  background-color: grey;
+  border-radius: 8px;
+  width: calc(80vw - 20px);
+  transition: 0.3s;
+  padding: 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 7vh;
+}
+
+.prog h2 {
+  font-weight: 700;
+  width: 10vw;
+  margin-left: 1vw;
+  max-height: 7vh;
+  overflow: hidden;
+}
+
+.wrapper {
+  width: calc(43vw + 15px);
+  height: calc(6vh + 10px);
+  background: #616161;
+  border-radius: 5px;
+}
+
+.prog p {
+  margin: 0;
+  width: 43vw;
+  height: 6vh;
+  overflow-y: auto;
+  margin: 5px;
+}
+
+.prog p::-webkit-scrollbar {
+  width: 10px;
+}
+
+.prog p::-webkit-scrollbar-track {
+  background: rgb(192 192 192);
+  border-radius: 10px;
+}
+
+.prog p::-webkit-scrollbar-thumb {
+  background-color: rgb(106 106 106);
+  border: 2px solid rgb(192 192 192);
+  border-radius: 20px;
+}
+
+.prog button {
+  color: rgb(0, 0, 0);
+  background: rgb(189, 189, 189);
+  border: solid 1px black;
+  border-radius: 555px;
+  padding: 5px 10px;
+  margin: 1px;
+  height: 4vh;
+  width: 12vw;
+  transition: 0.3s;
+  margin: 0 10px;
+  cursor: pointer;
+}
+
+.prog button:hover {
+  background-color: #3f3f3f;
+  color: white;
+  border: 0.5px solid #000000;
+}
