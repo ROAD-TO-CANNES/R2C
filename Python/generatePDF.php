@@ -6,9 +6,9 @@
   if(isset($_POST['generate_pdf'])) {
     $bps = json_decode($_POST['generate_pdf']);// Decode the JSON array of good practices
     // Format the parameters for the Python script
-    $phase = "'ph[".substr($_POST['generate_pdf-phase'], 1)."]'";
-    $prog = "'pr[".substr($_POST['generate_pdf-prog'], 1)."]'";
-    $keyword = "'kw[".substr($_POST['generate_pdf-keyword'], 1.)."]'";
+    $phase = '"ph['.substr($_POST['generate_pdf-phase'], 1).']"';
+    $prog = '"pr['.substr($_POST['generate_pdf-prog'], 1).']"';
+    $keyword = '"kw['.substr($_POST['generate_pdf-keyword'], 1.).']"';
     $listebp = '"bp[';
     foreach ($bps as $bp) {
       $listebp .= $bp . ' ';

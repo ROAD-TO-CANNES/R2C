@@ -6,15 +6,15 @@
   if(isset($_POST['generate_csv'])) {
     $bps = json_decode($_POST['generate_csv']);// Decode the JSON array of good practices
     // Format the parameters for the Python script
-    $phase = "ph[".substr($_POST['generate_csv-phase'], 1)."]";
-    $prog = "pr[".substr($_POST['generate_csv-prog'], 1)."]";
-    $keyword = "kw[".substr($_POST['generate_csv-keyword'], 1.)."]";
-    $listebp = 'bp[';
+    $phase = '"ph['.substr($_POST['generate_csv-phase'], 1).']"';
+    $prog = '"pr['.substr($_POST['generate_csv-prog'], 1).']"';
+    $keyword = '"kw['.substr($_POST['generate_csv-keyword'], 1.).']"';
+    $listebp = '"bp[';
     foreach ($bps as $bp) {
       $listebp .= $bp . ' ';
     }
     $listebp = trim($listebp);
-    $listebp .= ']';
+    $listebp .= ']"';
     $user = ucfirst(strtolower($_SESSION['name']));// Put the first letter in uppercase 
     $date = date('d-m-Y');
 
