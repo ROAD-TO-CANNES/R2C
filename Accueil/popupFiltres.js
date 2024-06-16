@@ -1,37 +1,30 @@
+// When filter button is clicked display the popup and the background
 $(".filtre").on("click", function () {
-  // Add "active-popup" class to select-popup element
   $(".select-popup").addClass("active-popup");
-  // Add "active-fond" class to select-fond_popup element
   $(".select-fond_popup").addClass("active-fond");
 });
 
+// When the user clicks outside of the popup, it disappears
 $(".select-fond_popup").on("click", function () {
-  // Remove "active-popup" class from select-popup element
   $(".select-popup").removeClass("active-popup");
-  // Remove "active-fond" class from select-fond_popup element
   $(".select-fond_popup").removeClass("active-fond");
 });
 
-// Delete selection
+// When the user clicks on the clear filter button, remove all objects and clear the divIds array
 $("#rmFiltreBtn").on("click", function () {
-  // Remove all object divs
   $(".object").remove();
   // Clear the divIds array
   divIds = [];
 });
 
-// Cancel popup
+// When the user clicks on the cancel button, the popup disappears
 $("#cancelBtn").on("click", function () {
-  // Remove "active-popup" class from select-popup element
   $(".select-popup").removeClass("active-popup");
-  // Remove "active-fond" class from select-fond_popup element
   $(".select-fond_popup").removeClass("active-fond");
 });
 
-// Validate selection
+// When the user clicks on the valid button, set a cookie with the divIds array and reload the page
 $("#validBtn").on("click", function () {
-  // Set a cookie with the name "filtres" and the value of the stringified divIds array
   document.cookie = "filtres=" + JSON.stringify(divIds) + ";path=/";
-  // Reload the page
   location.reload();
 });

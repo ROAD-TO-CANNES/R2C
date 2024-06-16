@@ -1,9 +1,4 @@
-$(".changepswuser").on("click", function () {
-  $(".popupPsw").css("display", "block");
-  $(".fondpsw").css("display", "block");
-  document.body.classList.add("noScroll");
-});
-
+// When the user clicks on the cancel button, all the error messages and the popup disappears
 $("#annulerusr").on("click", function () {
   $("#err2usr").removeClass("act");
   $("#err3usr").removeClass("act");
@@ -17,6 +12,7 @@ $("#annulerusr").on("click", function () {
   document.body.classList.remove("noScroll");
 });
 
+// When the user clicks on the button "validate", all the error messages disappear
 $("#validerusr").on("click", function () {
   $("#err2usr").removeClass("act");
   $("#err3usr").removeClass("act");
@@ -26,6 +22,7 @@ $("#validerusr").on("click", function () {
   $("#err7usr").removeClass("act");
 });
 
+// When the user clicks on the button "ok", the popup disappears
 $("#okbtnusr").on("click", function () {
   $("#validusr").css("display", "none");
   $("#change-password-form-user").css("display", "flex");

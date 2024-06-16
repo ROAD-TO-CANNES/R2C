@@ -1,4 +1,4 @@
-// Sauvegarder l'état du formulaire dans le stockage local avant de recharger la page
+// Save the state of the form in the local storage after reloading the page
 $("#formMotClef").on("submit", function () {
   $("input, select, textarea").each(function () {
     var inputType =
@@ -10,13 +10,13 @@ $("#formMotClef").on("submit", function () {
     ) {
       localStorage.setItem(this.name, this.value);
     } else if (inputType === "CHECKBOX" || inputType === "RADIO") {
-      localStorage.setItem(this.name, this.checked); // Sauvegarder l'état de la checkbox
+      localStorage.setItem(this.name, this.checked);
     }
   });
-  localStorage.removeItem("newMotClef"); // Supprimer la valeur de 'newMotClef' du stockage local
+  localStorage.removeItem("newMotClef"); // delete the previous value of the newMotClef
 });
 
-// Restaurer l'état du formulaire à partir du stockage local après le rechargement de la page
+// Restore the state of the form after reloading the page
 $(document).ready(function () {
   $("input, select, textarea").each(function () {
     var value = localStorage.getItem(this.name);
@@ -25,7 +25,7 @@ $(document).ready(function () {
         this.type.toUpperCase() === "CHECKBOX" ||
         this.type.toUpperCase() === "RADIO"
       ) {
-        this.checked = value === "true"; // Restaurer l'état de la checkbox
+        this.checked = value === "true";
       } else {
         this.value = value;
       }
@@ -60,24 +60,24 @@ $(document).ready(function () {
     });
   }
 });
-// Supprimer un cookies
+// Delete a cookie
 function deleteCookie(name) {
   document.cookie = name + "=; Path=/; Expires=Thu, 01 Jan 1970 00:00:01 GMT;";
 }
 
-// Supprimer les éléments du stockage local après la soumission du formulaire
+// Delete the cookie "selection" after submitting the form
 $("#newBP-form").on("submit", function () {
   localStorage.clear();
   deleteCookie("selection");
 });
 
-// Supprimer les éléments du stockage local après l'annulation du formulaire
+// Delete the cookie "selection" after clicking on the cancel button or the logo
 $(".annulerBP, .logo").on("click", function () {
   localStorage.clear();
   deleteCookie("selection");
 });
 
-// Sauvegarder les divs sélectionnés dans le cookies "selection"
+// Save the selected items in the cookie "selection" after clicking on the add button
 $("#addMotClef").on("click", function () {
   document.cookie = "selection=" + JSON.stringify(divIds) + ";path=/";
 });

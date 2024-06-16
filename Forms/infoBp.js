@@ -1,4 +1,4 @@
-// Already display first items
+// Already display first items in the select elements
 $(document).ready(function () {
   // When selectProg or selectMotClef changes
   $(".selectProgInfo, .selectMotClefInfo").change(function () {
@@ -9,6 +9,7 @@ $(document).ready(function () {
   });
 });
 
+// When the DOM is fully loaded
 document.addEventListener("DOMContentLoaded", (event) => {
   // Get all selectProgInfo elements
   const selectProgInfos = document.querySelectorAll(".selectProgInfo");
@@ -31,6 +32,7 @@ document.addEventListener("DOMContentLoaded", (event) => {
   });
 });
 
+// Update the selected items in the div
 function updateItem(select, prefix, optionValue = null) {
   let selectedOptions;
 
@@ -46,9 +48,10 @@ function updateItem(select, prefix, optionValue = null) {
 
   // Display selected items in the div
   selectedOptions.forEach((option) => {
-    // Check if a div with the same id already exists
     const itemId = prefix + option.value;
     let selectedItemsDiv;
+
+    // Determine the prefix based on the selectId
     if (prefix === "PR") {
       selectedItemsDiv = document.querySelector(
         `.selected-itemsDivProgInfo[id='${select.id}']`
@@ -58,6 +61,8 @@ function updateItem(select, prefix, optionValue = null) {
         `.selected-itemsDivMcInfo[id='${select.id}']`
       );
     }
+
+    // Check if a div with the same id already exists
     if (selectedItemsDiv.querySelector("#" + itemId)) {
       return;
     } else {
@@ -86,6 +91,7 @@ function updateItem(select, prefix, optionValue = null) {
         xhr.send(`selectId=${select.id}&itemId=${itemId}&action=remove`);
       });
 
+      // Append the remove button to the item div
       itemDiv.appendChild(removeButton);
       // Find the selectedItemsDiv with the same id as the select
       const matchingSelectedItemsDiv = document.querySelector(

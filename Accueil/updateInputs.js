@@ -1,37 +1,37 @@
-// Créez un tableau vide pour stocker les valeurs
+// Create a div for each selected item
 let checkedValues = [];
-// Obtenez tous les éléments input avec le nom "checkedBp"
+// Get all input elements with the name "checkedBp"
 let inputs = document.querySelectorAll('input[name="checkedBp"]');
-// Element input avec l'ID "generate_pdf"
+// Get the input elements for the PDF and CSV generation
 let pdfInput = document.getElementById("generate_pdf");
-// Element input avec l'ID "generate_csv"
 let csvInput = document.getElementById("generate_csv");
 
-// Exécutez le script lorsque le DOM est chargé
+// When the DOM is fully loaded
 document.addEventListener("DOMContentLoaded", () => {
-  // Parcourez tous les éléments input
+  // Loop through each input element
   inputs.forEach((input) => {
-    // Si l'input est coché, ajoutez sa valeur au tableau
+    // If the input is checked, add its value to the checkedValues array
     if (input.checked) {
       checkedValues.push(input.value);
     }
-    // Ajoutez un écouteur d'événement "change" à chaque input
+    // When the input changes
     input.addEventListener("change", () => {
-      // Si l'input est coché, ajoutez sa valeur au tableau
+      // If the input is checked, add its value to the checkedValues array
       if (input.checked) {
         checkedValues.push(input.value);
       } else {
-        // Si l'input est décoché, retirez sa valeur du tableau
+        // If the input is unchecked, remove its value from the checkedValues array
         let index = checkedValues.indexOf(input.value);
         if (index > -1) {
           checkedValues.splice(index, 1);
         }
       }
-      // Mettez à jour la valeur de generate_pdf avec le tableau checkedValues
+      // Update the input values when the input changes
       pdfInput.value = JSON.stringify(checkedValues);
       csvInput.value = JSON.stringify(checkedValues);
     });
   });
+  // Update the input values when the DOM is fully loaded
   pdfInput.value = JSON.stringify(checkedValues);
   csvInput.value = JSON.stringify(checkedValues);
 });

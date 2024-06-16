@@ -1,4 +1,4 @@
-// Already display first items
+// Already display first items in the select elements
 $(document).ready(function () {
   // When selectProg, selectPhase, or selectMotClef changes
   $("#selectProg, #selectPhase, #selectMotClef").change(function () {
@@ -11,19 +11,15 @@ $(document).ready(function () {
 
 // Select multiple items
 let divIds = [];
-// Element input avec l'ID "generate_pdf-phase"
+// Get the input elements for the PDF and CSV generation
 let pdfInputPhase = document.getElementById("generate_pdf-phase");
-// Element input avec l'ID "generate_csv-phase"
 let csvInputPhase = document.getElementById("generate_csv-phase");
-// Element input avec l'ID "generate_pdf-keyword"
 let pdfInputKeyword = document.getElementById("generate_pdf-keyword");
-// Element input avec l'ID "generate_csv-keyword"
 let csvInputKeyword = document.getElementById("generate_csv-keyword");
-// Element input avec l'ID "generate_pdf-prog"
 let pdfInputProg = document.getElementById("generate_pdf-prog");
-// Element input avec l'ID "generate_csv-prog"
 let csvInputProg = document.getElementById("generate_csv-prog");
 
+// Update the selected items in the div and the input values
 function updateSelectedItems(selectId, selectedItemsDiv, optionValue = null) {
   const select = document.getElementById(selectId);
   let selectedOptions;

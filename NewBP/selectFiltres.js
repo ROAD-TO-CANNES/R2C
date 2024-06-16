@@ -1,4 +1,4 @@
-// Already display first items
+// Already display first items in the select elements
 $(document).ready(function () {
   // When selectProg or selectMotClef changes
   $("#selectProg, #selectMotClef").change(function () {
@@ -12,6 +12,7 @@ $(document).ready(function () {
 // Select multiple items
 let divIds = [];
 
+// Update the selected items in the div
 function updateSelectedItems(selectId, selectedItemsDiv, optionValue = null) {
   const select = document.getElementById(selectId);
   let selectedOptions;
@@ -94,8 +95,8 @@ document.getElementById("selectMotClef").addEventListener("change", () => {
 });
 
 $("#newBP-form").submit(function () {
-  // Convertir le tableau divIds en une chaîne de caractères
+  // Convert the array to a string
   var divIdsString = JSON.stringify(divIds);
-  // Stocker la chaîne dans le champ caché
+  // Update the input value
   $("#divIds").val(divIdsString);
 });
