@@ -1,3 +1,21 @@
+.closeInfoBp {
+  position: absolute;
+  top: 20px;
+  right: 25px;
+  font-size: 2em;
+  color: white;
+  border: none;
+  background: none;
+  cursor: pointer;
+  padding: 10px;
+  transition: all 0.3s;
+}
+
+.closeInfoBp:hover {
+  color: red;
+  scale: 1.2;
+}
+
 .selected-itemsDivProgInfo,
 .selected-itemsDivMcInfo {
   background-color: #a2a2a2;

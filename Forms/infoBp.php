@@ -1,4 +1,5 @@
 <link rel="stylesheet" type="text/css" href="../Forms/infoBp.css">
+<button class="closeInfoBp">✘</button>
 <?php
   echo('
   <h1>Informations de la bonne pratique : "'.$nombp.'"</h1>

@@ -6,7 +6,7 @@ $(".infobtn").on("click", function () {
 });
 
 // When the user clicks on the button "fermer", the popup disappears
-$(".infopopup button[type=button]").on("click", function () {
+$(".closeInfoBp").on("click", function () {
   $(".infopopup").css("display", "none");
   $(".fond_delConfirm").css("display", "none");
 });
