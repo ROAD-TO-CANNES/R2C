@@ -22,7 +22,7 @@
   <head>
     <title>R2C - Programmes</title>
     <link rel="stylesheet" type="text/css" href="./progs.css">
-    <link rel="icon" type="image/png" href="../Img/icon.png">
+    <link rel="icon" type="image/png" href="../Img/icon.webp">
   </head>
   <header>
     <?php include '/var/www/r2c.uca-project.com/Header/header.php'; ?>

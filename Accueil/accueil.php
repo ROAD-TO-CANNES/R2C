@@ -86,7 +86,7 @@
   <head>
     <title>R2C - Accueil</title>
     <link rel="stylesheet" type="text/css" href="../Accueil/accueil.css">
-    <link rel="icon" type="image/png" href="../Img/icon.png">
+    <link rel="icon" type="image/png" href="../Img/icon.webp">
 
   </head>
   <header>
@@ -107,7 +107,7 @@
           }
         ?>
         <a href="../NewBP/newBP.php"><button>Créer une bonne pratique</button></a>
-        <button style="width: 4vw;" class="filtre"><img src="../Img/filter.png" alt="filtrer"></button>
+        <button style="width: 4vw;" class="filtre"><img src="../Img/filter.webp" alt="filtrer"></button>
       </div>    
     </div>
     <?php
@@ -115,7 +115,7 @@
         echo '
         <div style="overflow: hidden; justify-content: center; align-items: center" class="scroll">
           <p style="font-size: x-large;">Veulliez appliquer des filtres pour afficher les bonnes pratiques correspondantes</p>
-          <button class="filtre" id="bigFiltre">Filtrer<img src="../Img/filter.png" alt="filtrer"></button>
+          <button class="filtre" id="bigFiltre">Filtrer<img src="../Img/filter.webp" alt="filtrer"></button>
           <style>
             .pdf_btn,
             .csv_btn {
@@ -177,7 +177,7 @@
                 <form action="../Accueil/enableDisableBP.php" method="post">');
               }
               echo('
-                  <img '); if($_SESSION['droits'] == 0){echo 'style="margin-right: 1vw"';}; echo 'id="'.$idbp.'" class="corbeille" src="../Img/corbeille.png" alt="corbeille">
+                  <img '); if($_SESSION['droits'] == 0){echo 'style="margin-right: 1vw"';}; echo 'id="'.$idbp.'" class="corbeille" src="../Img/corbeille.webp" alt="corbeille">
                   <div id="'.$idbp.'" class="delConfirm">
                     <p>Êtes-vous sûr de vouloir supprimer <br/> la bonne pratique "'.$nombp.'" ?</p>
                     <input type="hidden" name="idbp" value="'.$idbp.'">
@@ -211,14 +211,14 @@
       <input type="hidden" id="generate_pdf-phase" name="generate_pdf-phase">
       <input type="hidden" id="generate_pdf-keyword" name="generate_pdf-keyword">
       <input type="hidden" id="generate_pdf-prog" name="generate_pdf-prog">
-      <button type="submit" class="pdf_btn"><img src="../Img/pdf.png" alt="PDF">Générer un fichier PDF</button>
+      <button type="submit" class="pdf_btn"><img src="../Img/pdf.webp" alt="PDF">Générer un fichier PDF</button>
     </form>
     <form id="pythonCSV" action="../Python/generateCSV.php" method="post">
       <input type="hidden" id="generate_csv" name="generate_csv" >
       <input type="hidden" id="generate_csv-phase" name="generate_csv-phase">
       <input type="hidden" id="generate_csv-keyword" name="generate_csv-keyword">
       <input type="hidden" id="generate_csv-prog" name="generate_csv-prog">
-      <button type="submit" class="csv_btn"><img src="../Img/csv.png" alt="CSV">Générer un fichier CSV</button>
+      <button type="submit" class="csv_btn"><img src="../Img/csv.webp" alt="CSV">Générer un fichier CSV</button>
     </form>
     <div class="select-fond_popup"></div> 
     <div class="select-popup">

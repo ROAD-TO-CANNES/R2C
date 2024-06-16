@@ -23,7 +23,7 @@
   <head>
     <title>R2C - Users</title>
     <link rel="stylesheet" type="text/css" href="../Users/users.css">
-    <link rel="icon" type="image/png" href="../Img/icon.png">
+    <link rel="icon" type="image/png" href="../Img/icon.webp">
   </head>
   <header>
     <?php include '/var/www/r2c.uca-project.com/Header/header.php'; ?>
@@ -98,7 +98,7 @@
               <button class="btn" type="submit">Modifier le mot de passe</button>
             </form>
             <form class="delete" action="../Forms/deleteUser.php" method="post">
-              <img id="<?= $name?>" class="corbeille" src="../Img/corbeille.png" alt="corbeille">
+              <img id="<?= $name?>" class="corbeille" src="../Img/corbeille.webp" alt="corbeille">
               <div id="<?= $name?>" class="delConfirm">
                 <p>Êtes-vous sûr de vouloir supprimer <br/> l'utilisateur <?= $name?> ?</p>
                 <input type="hidden" name="usertodelete" value="<?= $name?>">

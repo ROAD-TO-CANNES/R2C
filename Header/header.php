@@ -18,7 +18,7 @@
 <div class="fond_popup"></div>
 <div class="fond_psw"></div>
 <div class="banner">
-  <img src="../Img/logo.png" alt="R2C" class="logo">
+  <img src="../Img/logo.webp" alt="R2C" class="logo">
   <div class="title_header">
     <h1>Bienvenue sur R2C</h1>
     <h2>Votre plateforme de bonne pratique de validation des avioniques</h2>
@@ -33,7 +33,7 @@
           <div class="auth-popup">
             <span class="close">✘</span>
             <div class="auth-popup-content">
-              <img src="../Img/default_pp.png" alt="photo de profile" class="ppa">
+              <img src="../Img/default_pp.webp" alt="photo de profile" class="ppa">
               <div class="p">
                 <h1>'.
                   ucfirst(strtolower($_SESSION['name'])) // Display the name of the user with the first letter in uppercase
@@ -52,14 +52,14 @@
               <button type="submit">Déconnexion</button>
             </form>
           </div>
-          <img src="../Img/default_pp.png" alt="photo de profile" style="background-color:#5893c7" class="pp connected_pp">
+          <img src="../Img/default_pp.webp" alt="photo de profile" style="background-color:#5893c7" class="pp connected_pp">
         </div>
         <p>Bonjour </br>'. ucfirst(strtolower($_SESSION['name'])) .'</p>'
       );
     } 
     else {
       echo('
-        <img src="../Img/default_pp.png" alt="photo de profile" class="pp">
+        <img src="../Img/default_pp.webp" alt="photo de profile" class="pp">
         <p>
           Vous n\'êtes pas 
           <br> 

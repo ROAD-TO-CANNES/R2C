@@ -19,13 +19,13 @@
   <head>
       <title>R2C - Login</title>
       <link rel="stylesheet" type="text/css" href="index.css">
-      <link rel="icon" type="image/png" href="./Img/icon.png">
+      <link rel="icon" type="image/png" href="./Img/icon.webp">
   </head>
   <header>
     <?php include '/var/www/r2c.uca-project.com/Header/header.php'; ?>
   </header>
   <body>
     <?php include '/var/www/r2c.uca-project.com/Forms/login_form.php'; ?>
-    <img src="./Img/thales.png" alt="Thales" class="thales">
+    <img src="./Img/thales.webp" alt="Thales" class="thales">
   </body>
 </html>

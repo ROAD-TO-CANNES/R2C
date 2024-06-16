@@ -18,7 +18,7 @@
   <head>
     <title>R2C - logs</title>
     <link rel="stylesheet" type="text/css" href="./log.css">
-    <link rel="icon" type="image/png" href="../Img/icon.png">
+    <link rel="icon" type="image/png" href="../Img/icon.webp">
   </head>
   <header>
     <?php include '/var/www/r2c.uca-project.com/Header/header.php'; ?>
@@ -42,7 +42,7 @@
           <option value="Warning"  <?= isset($_GET['action'])==true ? ($_GET['action']=='Warning' ? 'selected':'' ):'' // Display selected option if $_GET['action'] is set?> >Warning</option>
           <option value="Alert"  <?= isset($_GET['action'])==true ? ($_GET['action']=='Alert' ? 'selected':'' ):'' // Display selected option if $_GET['action'] is set?> >Alert</option>
         </select>
-        <button type="submit" id="filtre"><img src="../Img/filter.png" alt="filtrer"><a href="../log/log.php"></a></button>
+        <button type="submit" id="filtre"><img src="../Img/filter.webp" alt="filtrer"><a href="../log/log.php"></a></button>
       </form>
     </div>
     <div class="content">

@@ -13,7 +13,7 @@
   <head>
     <title>R2C - Nouveau programme</title>
     <link rel="stylesheet" type="text/css" href="./newProg.css">
-    <link rel="icon" type="image/png" href="../Img/icon.png">
+    <link rel="icon" type="image/png" href="../Img/icon.webp">
   </head>
   <header>
     <?php include '/var/www/r2c.uca-project.com/Header/header.php'; ?>
