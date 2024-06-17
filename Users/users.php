@@ -104,7 +104,7 @@ $users = $request->fetchAll();
           <form class="delete" action="../Forms/deleteUser.php" method="post">
             <img id="<?= $name ?>" class="corbeille" src="../Img/corbeille.webp" alt="corbeille">
             <div id="<?= $name ?>" class="delConfirm">
-              <p>Êtes-vous sûr de vouloir supprimer <br /> l'utilisateur <?= $name ?> ?</p>
+              <p>Êtes-vous sûr de vouloir supprimer <br /> l'utilisateur "<?= $name ?>" ?</p>
               <input type="hidden" name="usertodelete" value="<?= $name ?>">
               <button type="submit">Oui</button>
               <button type="button">Non</button>

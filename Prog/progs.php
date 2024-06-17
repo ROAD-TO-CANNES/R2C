@@ -52,7 +52,7 @@ usort($progs, function ($a, $b) {
         </div>
         <button id="<?= $id ?>" class="corbeille">Supprimer</button>
         <form id="<?= $id ?>" action="../Forms/deleteProg.php" method="get" class="delConfirm">
-          <p>Êtes-vous sûr de vouloir supprimer <br /> le programme <?= $name ?> ?</p>
+          <p>Êtes-vous sûr de vouloir supprimer <br /> le programme "<?= $name ?>" ?</p>
           <input type="hidden" name="idprog" value="<?= $id ?>">
           <button type="submit">Oui</button>
           <button type="button">Non</button>

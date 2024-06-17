@@ -114,7 +114,7 @@ if ($result == NULL) { // If the username does not exist
     };
 
     // If a user is already connected
-    if ($connexcount > 10) {
+    if ($connexcount > 0) {
       // Log the error of connection
       $typelog = "Warning";
       $desclog = 'Connexion échouée l\'utilisateur "' . $userconected . '" est déjà connecté';
