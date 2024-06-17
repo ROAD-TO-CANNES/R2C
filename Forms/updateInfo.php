@@ -6,12 +6,27 @@ if (isset($_POST)) { // if POST is set
   $action = $_POST['action'];
   $idbp = $_POST['selectId'];
   $idbp = substr($idbp, 2);
+  // Retrieve the name of the good practice
+  $sql = 'SELECT nombp FROM BONNESPRATIQUES WHERE idbp = ' . $idbp;
+  $request = $BDD->prepare($sql);
+  $request->execute();
+  $nombp = $request->fetchColumn();
   $element = $_POST['itemId'];
 
   if (substr($element, 0, 2) == 'PR') { // if element is a programme
     $idprog = substr($element, 2);
+    // Retrieve the name of the programme
+    $sql = 'SELECT nomprog FROM PROGRAMME WHERE idprog = ' . $idprog;
+    $request = $BDD->prepare($sql);
+    $request->execute();
+    $nomprog = $request->fetchColumn();
   } elseif (substr($element, 0, 2) == 'MC') { // if element is a mot clef
     $idmotclef = substr($element, 2);
+    // Retrieve the name of the mot clef
+    $sql = 'SELECT motclef FROM MOTSCLEF WHERE idmotclef = ' . $idmotclef;
+    $request = $BDD->prepare($sql);
+    $request->execute();
+    $nommotclef = $request->fetchColumn();
   }
 
   if ($action == 'add') { // if action is add
@@ -23,7 +38,7 @@ if (isset($_POST)) { // if POST is set
 
       // Log the addition of a programme
       $typelog = 'Information';
-      $desclog = 'Ajout du programme ' . $idprog . ' à la bonne pratique ' . $idbp;
+      $desclog = 'Ajout du programme "' . $nomprog . '" à la bonne pratique "' . $nombp . '"';
       $loginlog = $_SESSION['name'];
       include '/var/www/r2c.uca-project.com/Forms/addLogs.php';
     } elseif (!empty($idmotclef)) { // if element is a mot clef
@@ -34,7 +49,7 @@ if (isset($_POST)) { // if POST is set
 
       // Log the addition of a mot clef
       $typelog = 'Information';
-      $desclog = 'Ajout du mot clef ' . $idmotclef . ' à la bonne pratique ' . $idbp;
+      $desclog = 'Ajout du mot clef "' . $nommotclef . '" à la bonne pratique "' . $nombp . '"';
       $loginlog = $_SESSION['name'];
       include '/var/www/r2c.uca-project.com/Forms/addLogs.php';
     }
@@ -47,7 +62,7 @@ if (isset($_POST)) { // if POST is set
 
       // logs de suppression de programme
       $typelog = 'Information';
-      $desclog = 'Suppression du programme ' . $idprog . ' de la bonne pratique ' . $idbp;
+      $desclog = 'Suppression du programme "' . $nomprog . '" de la bonne pratique "' . $nombp . '"';
       $loginlog = $_SESSION['name'];
       include '/var/www/r2c.uca-project.com/Forms/addLogs.php';
     } elseif (!empty($idmotclef)) { // if element is a mot clef
@@ -58,7 +73,7 @@ if (isset($_POST)) { // if POST is set
 
       // Log the deletion of a mot clef
       $typelog = 'Information';
-      $desclog = 'Suppression du mot clef ' . $idmotclef . ' de la bonne pratique ' . $idbp;
+      $desclog = 'Suppression du mot clef "' . $nommotclef . '" de la bonne pratique "' . $nombp . '"';
       $loginlog = $_SESSION['name'];
       include '/var/www/r2c.uca-project.com/Forms/addLogs.php';
     }
