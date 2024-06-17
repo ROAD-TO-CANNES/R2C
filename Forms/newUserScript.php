@@ -52,8 +52,13 @@
 
     // Check if the passwords match
     if ($newuserpsw == $newuserpsw2) {
-      $loginInPassword = strpos($newuserpsw, $username); // Check if the password contains the username
-      if ($loginInPassword === false) {
+      $upperUsername = strtoupper($username); // Uppercase the username
+      $upperLoginInPassword = strpos($newuserpsw, $upperUsername);
+      $firstUpperUsername = ucfirst(strtolower($username)); // First letter uppercase of the username
+      $firstUpperLoginInPassword = strpos($newuserpsw, $firstUpperUsername);
+      $loginInPassword = strpos($newuserpsw, $username); 
+      // Check if the password contains the login in lowercase or uppercase or the first letter in uppercase
+      if ($loginInPassword === false && $upperLoginInPassword === false && $firstUpperLoginInPassword === false) {
         $size = strlen($newuserpsw);// Password size
         if ($size >= $specspsw['size']) { // Check if the password is long enough
           $nbnumber = preg_match_all("/[0-9]/", $newuserpsw);// Number of numbers
