@@ -91,7 +91,20 @@ body {
   width: 10vw;
   margin-left: 1vw;
   max-height: 7vh;
-  overflow: hidden;
+  overflow-y: hidden;
+}
+
+.prog h2::-webkit-scrollbar {
+  height: 5px;
+}
+
+.prog h2::-webkit-scrollbar-track {
+  border-radius: 10px;
+}
+
+.prog h2::-webkit-scrollbar-thumb {
+  background-color: rgb(106 106 106);
+  border-radius: 20px;
 }
 
 .wrapper {

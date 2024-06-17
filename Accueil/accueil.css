@@ -120,12 +120,26 @@ body {
   align-items: center;
   height: 7vh;
 }
+
 .bp h2 {
   font-weight: 700;
-  width: 10vw;
+  width: 15vw;
   margin-left: 1vw;
   max-height: 7vh;
-  overflow: hidden;
+  overflow-y: hidden;
+}
+
+.bp h2::-webkit-scrollbar {
+  height: 5px;
+}
+
+.bp h2::-webkit-scrollbar-track {
+  border-radius: 10px;
+}
+
+.bp h2::-webkit-scrollbar-thumb {
+  background-color: rgb(106 106 106);
+  border-radius: 20px;
 }
 
 .selectionbp {

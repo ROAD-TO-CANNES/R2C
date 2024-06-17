@@ -91,6 +91,21 @@ body {
   font-weight: 700;
   width: 10vw;
   margin-left: 1vw;
+  max-height: 7vh;
+  overflow-y: hidden;
+}
+
+.line h2::-webkit-scrollbar {
+  height: 5px;
+}
+
+.line h2::-webkit-scrollbar-track {
+  border-radius: 10px;
+}
+
+.line h2::-webkit-scrollbar-thumb {
+  background-color: rgb(106 106 106);
+  border-radius: 20px;
 }
 
 .btns {
