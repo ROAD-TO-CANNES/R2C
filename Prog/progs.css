@@ -156,3 +156,67 @@ body {
   color: white;
   border: 0.5px solid #000000;
 }
+
+.delConfirm {
+  display: none;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 50vw;
+  height: 30vh;
+  background-color: white;
+  border-radius: 15px;
+  z-index: 3;
+  text-align: center;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 0 0px 17px 2px;
+  font-family: "Roboto";
+  font-size: 120%;
+}
+
+.delConfirm button[type="submit"],
+.delConfirm button[type="button"] {
+  position: absolute;
+  bottom: 15%;
+  width: 15%;
+  padding: 6px 0px 6px 0;
+  border-radius: 100px;
+  border: none;
+  color: white;
+  font-size: 13px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.delConfirm button[type="button"] {
+  right: 25%;
+  background: #9b0000;
+}
+
+.delConfirm button[type="submit"] {
+  left: 25%;
+  background: #1f6900;
+}
+
+.delConfirm button[type="submit"]:hover {
+  background: #4cb221;
+  box-shadow: 0 0px 20px #1f6900;
+}
+
+.delConfirm button[type="button"]:hover {
+  background: #dc0000;
+  box-shadow: 0 0px 20px #9b0000;
+}
+
+.fond_delConfirm {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0);
+  z-index: 2;
+  display: none;
+}

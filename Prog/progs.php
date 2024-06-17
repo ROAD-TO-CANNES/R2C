@@ -30,6 +30,7 @@ usort($progs, function ($a, $b) {
 </header>
 
 <body>
+  <div class="fond_delConfirm"></div>
   <div class="top">
     <h1>Gérer les programmes</h1>
     <div class="btns">
@@ -43,18 +44,23 @@ usort($progs, function ($a, $b) {
       $name = $progs[$i]['nomprog'];
       $desc = $progs[$i]['descprog'];
       $id = $progs[$i]['idprog'];
-      echo ('
-            <div class="prog">
-              <h2>' . $name . '</h2>
-              <div class="wrapper">
-                <p>' . $desc . '</p>
-              </div>
-              <a href="../Forms/deleteProg.php?idprog=' . $id . '"><button>Supprimer</button></a>
-            </div>
-          ');
-    }
     ?>
+      <div class="prog">
+        <h2><?= $name ?></h2>
+        <div class="wrapper">
+          <p><?= $desc ?></p>
+        </div>
+        <button id="<?= $id ?>" class="corbeille">Supprimer</button>
+        <form id="<?= $id ?>" action="../Forms/deleteProg.php" method="get" class="delConfirm">
+          <p>Êtes-vous sûr de vouloir supprimer <br /> le programme <?= $name ?> ?</p>
+          <input type="hidden" name="idprog" value="<?= $id ?>">
+          <button type="submit">Oui</button>
+          <button type="button">Non</button>
+        </form>
+      </div>
+    <?php } ?>
   </div>
 </body>
+<script src="../Accueil/delConfirm.js"></script>
 
 </html>
