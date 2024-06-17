@@ -55,7 +55,7 @@
     $idprog = $request->fetchColumn();
 
     // Log the creation of the programme
-    $typelog = "Réussite";
+    $typelog = "Information";
     $desclog = 'Création du programme "'.$nomprog.'" id='.$idprog;
     $loginlog = $_SESSION['name'];
     include '/var/www/r2c.uca-project.com/Forms/addLogs.php';
@@ -63,7 +63,7 @@
     $message = "cprog";// Success message
   } else {// if nomprog or descprog are not set in POST array
     // Log the error of creating a programme
-    $typelog = "Erreur";
+    $typelog = "Warning";
     $desclog = 'Erreur lors de la création du programme certains parametres sont manquants';
     $loginlog = $_SESSION['name'];
     include '/var/www/r2c.uca-project.com/Forms/addLogs.php';
