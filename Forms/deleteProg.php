@@ -20,6 +20,29 @@ if ($_SESSION['droits'] >= 1) {
     $request->execute();
     $nomprog = $request->fetchColumn();
 
+    // Select the good practices associated with the program
+    $sql = "SELECT idbp FROM BONNESPRATIQUES_PROGRAMME WHERE idprog = $idprog";
+    $request = $BDD->prepare($sql);
+    $request->execute();
+    $associateds = $request->fetchAll();
+    // Log the deletion of the associations between good practices and the program
+    foreach ($associateds as $associated) {
+      // Retrieve the name of the good practice
+      $sql = "SELECT nombp FROM BONNESPRATIQUES WHERE idbp = $associated[idbp]";
+      $request = $BDD->prepare($sql);
+      $request->execute();
+      $nombp = $request->fetchColumn();
+      $typelog = "Information";
+      $desclog = 'Suppression du programme "' . $nomprog . '" de la bonne pratique "' . $nombp . '"';
+      $loginlog = $_SESSION['name'];
+      include '/var/www/r2c.uca-project.com/Forms/addLogs.php';
+    };
+
+    // Delete the associations between good practices and the program
+    $sql = "DELETE FROM BONNESPRATIQUES_PROGRAMME WHERE idprog = $idprog";
+    $request = $BDD->prepare($sql);
+    $request->execute();
+
     // Delete the program
     $sql = "DELETE FROM PROGRAMME WHERE idprog = $idprog";
     $request = $BDD->prepare($sql);
