@@ -6,6 +6,8 @@ $("#annulerusr").on("click", function () {
   $("#err5usr").removeClass("act");
   $("#err6usr").removeClass("act");
   $("#err7usr").removeClass("act");
+  $("#err8usr").removeClass("act");
+  $("#err9usr").removeClass("act");
   $(".popupPsw").css("display", "none");
   $(".fondpsw").css("display", "none");
   document.getElementById("change-password-form-user").reset();
@@ -20,6 +22,8 @@ $("#validerusr").on("click", function () {
   $("#err5usr").removeClass("act");
   $("#err6usr").removeClass("act");
   $("#err7usr").removeClass("act");
+  $("#err8usr").removeClass("act");
+  $("#err9usr").removeClass("act");
 });
 
 // When the user clicks on the button "ok", the popup disappears
